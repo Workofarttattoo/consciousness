@@ -1,0 +1,15 @@
+.DS_Store
+*.swp
+*.swo
+*~
+.env
+.env.local
+.env.production
+node_modules/
+.cache/
+*.pyc
+__pycache__/
+*.key
+*.pem
+secrets/
+.credentials
