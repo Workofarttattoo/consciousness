@@ -1,0 +1,117 @@
+{
+  "version": "1.0",
+  "created": "2025-10-27T14:33:42.643873",
+  "masterworks": {
+    "reasoning_prompts": {
+      "chain_of_thought": "\n                    Let's think through this step by step:\n                    1. [First, identify the key elements]\n                    2. [Second, analyze the relationships]\n                    3. [Third, consider implications]\n                    4. [Finally, synthesize the answer]\n                ",
+      "socratic_method": "\n                    Guide me through Socratic questioning:\n                    - What is the core question here?\n                    - What assumptions am I making?\n                    - What evidence supports this?\n                    - What would challenge this thinking?\n                    - What conclusions follow?\n                ",
+      "devil_advocate": "\n                    Argue the opposite perspective:\n                    1. Present the strongest counter-argument\n                    2. Identify weaknesses in my position\n                    3. Suggest how to address those weaknesses\n                    4. Recommend a stronger stance\n                ",
+      "inversion": "\n                    Instead of how to do X, think:\n                    \"How could I most reliably fail at X?\"\n                    Then invert each failure point.\n                ",
+      "first_principles": "\n                    Break this down to first principles:\n                    1. What are the fundamental truths?\n                    2. What can we build from those truths?\n                    3. What assumptions can we eliminate?\n                    4. What novel solution emerges?\n                "
+    },
+    "domain_expert_prompts": {
+      "doctor_role": "\n                    You are a board-certified physician with 20 years\n                    of experience. Provide medical guidance that is:\n                    - Evidence-based and current\n                    - Appropriately cautious\n                    - Referral-ready when needed\n                ",
+      "lawyer_role": "\n                    You are a senior partner at a top law firm.\n                    Provide legal analysis that:\n                    - Cites applicable case law\n                    - Identifies relevant statutes\n                    - Anticipates counterarguments\n                    - Recommends specific next steps\n                ",
+      "researcher_role": "\n                    You are a principal investigator leading research.\n                    Approach this with:\n                    - Rigorous methodology thinking\n                    - Literature awareness\n                    - Statistical understanding\n                    - Clear limitations\n                ",
+      "entrepreneur_role": "\n                    You are a successful entrepreneur and venture capitalist.\n                    Analyze business opportunities through:\n                    - Market sizing lens\n                    - Competitive dynamics\n                    - Unit economics thinking\n                    - Go-to-market strategy focus\n                ",
+      "quantum_physicist_role": "\n                    You are a quantum physicist with deep expertise.\n                    Explain quantum concepts through:\n                    - Mathematical precision\n                    - Physical intuition\n                    - Experimental verification\n                    - Computational applications\n                "
+    },
+    "output_optimization_prompts": {
+      "structured_thinking": "\n                    Structure your response as:\n                    # Summary (one sentence)\n                    ## Key Points (3-5 bullet points)\n                    ## Evidence (cite specific sources)\n                    ## Limitations (what's uncertain)\n                    ## Next Steps (what to do with this)\n                ",
+      "layered_depth": "\n                    Explain like I'm:\n                    1. A 10-year-old (simple, clear)\n                    2. A graduate student (nuanced, detailed)\n                    3. An expert (advanced, cutting-edge)\n                ",
+      "uncertainty_quantified": "\n                    For each claim, specify:\n                    - Confidence level (High/Medium/Low)\n                    - Evidence type (research/experience/reasoning)\n                    - Potential counterevidence\n                "
+    },
+    "synthesis_prompts": {
+      "synthesis_framework": "\n                    Synthesize these perspectives by:\n                    1. Finding common ground\n                    2. Identifying genuine conflicts\n                    3. Distinguishing empirical from values disagreements\n                    4. Proposing integrated view\n                ",
+      "novel_insight": "\n                    Looking at this from first principles:\n                    1. Question every assumption\n                    2. Find the non-obvious connection\n                    3. Apply insight from unexpected domain\n                    4. State the surprising conclusion\n                ",
+      "knowledge_composition": "\n                    What this is analogous to in other fields:\n                    - In physics: [analogy]\n                    - In business: [analogy]\n                    - In biology: [analogy]\n\n                    Insights from these domains:\n                    [synthesized insights]\n                "
+    },
+    "creative_prompts": {
+      "brainstorm_unconstrained": "\n                    Generate 20 ideas without filtering:\n                    - Start with the obvious\n                    - Move to the uncommon\n                    - Reach for the wildly improbable\n                    - Include \"what if\" scenarios\n                ",
+      "constraint_driven": "\n                    Create solution with constraints:\n                    - Must cost <$X\n                    - Must work without [resource]\n                    - Must be implementable in Y days\n                    - Must satisfy Z stakeholder concerns\n                "
+    },
+    "learning_prompts": {
+      "explain_back": "\n                    Teach me until I understand:\n                    1. Explain the core concept simply\n                    2. Give concrete example\n                    3. Show me the formal version\n                    4. Ask me questions to test understanding\n                    5. Clarify based on my gaps\n                ",
+      "concept_map": "\n                    Show how this relates to:\n                    - Foundational concepts (what it builds on)\n                    - Related concepts (what else is similar)\n                    - Applications (where it matters)\n                    - Open questions (what we don't know)\n                "
+    },
+    "critical_analysis_prompts": {
+      "argument_evaluation": "\n                    Evaluate this argument:\n                    1. State the claim clearly\n                    2. Identify the evidence presented\n                    3. Check for logical fallacies\n                    4. Consider alternative explanations\n                    5. Rate argument strength (scale 1-10)\n                    6. Suggest how to strengthen it\n                ",
+      "bias_detection": "\n                    What biases might affect this:\n                    - Confirmation bias (what we want to be true)\n                    - Selection bias (which data was chosen)\n                    - Expert bias (domain specialist blindness)\n                    - Incentive bias (what benefits the source)\n                    - Temporal bias (what's changed since)\n                "
+    }
+  },
+  "workflows": {
+    "research_workflow": {
+      "step_1": "Generate research question using Socratic method",
+      "step_2": "Identify relevant literature domains",
+      "step_3": "Synthesize existing knowledge",
+      "step_4": "Identify research gap",
+      "step_5": "Propose novel methodology",
+      "output": "Research proposal ready for funding"
+    },
+    "problem_solving_workflow": {
+      "step_1": "Define problem with constraint-based prompting",
+      "step_2": "Brainstorm solutions with creative prompting",
+      "step_3": "Evaluate each with critical analysis",
+      "step_4": "Synthesize best approach",
+      "step_5": "Create implementation plan",
+      "output": "Actionable solution"
+    },
+    "learning_workflow": {
+      "step_1": "Assess current knowledge with test questions",
+      "step_2": "Explain concept at appropriate level",
+      "step_3": "Provide examples and counterexamples",
+      "step_4": "Have student explain back",
+      "step_5": "Iterate until mastery",
+      "output": "True understanding"
+    },
+    "decision_analysis_workflow": {
+      "step_1": "Frame decision with clarity",
+      "step_2": "Identify stakeholders and constraints",
+      "step_3": "Generate options with creativity",
+      "step_4": "Analyze tradeoffs for each",
+      "step_5": "Recommend with confidence level",
+      "output": "Well-reasoned decision"
+    },
+    "quantum_reasoning_workflow": {
+      "step_1": "Define quantum problem space",
+      "step_2": "Map to classical analogies",
+      "step_3": "Apply quantum principles",
+      "step_4": "Calculate quantum advantage",
+      "step_5": "Propose implementation",
+      "output": "Quantum solution strategy"
+    }
+  },
+  "emergent_capabilities": {
+    "self_correction": {
+      "technique": "Prompt model to check and improve own work",
+      "prompt": "\n                    Here's my answer: [response]\n\n                    Let me check this:\n                    - Is this logically sound?\n                    - Did I miss anything?\n                    - What's the strongest counterargument?\n                    - How should I improve?\n\n                    Better answer: [revised response]\n                ",
+      "outcome": "Models improve their own outputs without retraining"
+    },
+    "recursion_and_depth": {
+      "technique": "Use model's output as input for deeper analysis",
+      "prompt": "\n                    First pass: Answer the question\n                    Second pass: Analyze your answer for assumptions\n                    Third pass: Question those assumptions\n                    Fourth pass: Propose revised answer\n                ",
+      "outcome": "Multi-level reasoning without training"
+    },
+    "multi_perspective_synthesis": {
+      "technique": "Generate and synthesize multiple viewpoints",
+      "prompt": "\n                    Perspective 1 (pro argument): ...\n                    Perspective 2 (con argument): ...\n                    Perspective 3 (economic analysis): ...\n                    Perspective 4 (historical precedent): ...\n\n                    Synthesis that honors all viewpoints: ...\n                ",
+      "outcome": "Nuanced analysis of complex topics"
+    },
+    "zero_shot_reasoning": {
+      "technique": "Achieve tasks without examples, through pure reasoning",
+      "prompt": "\n                    I've never seen a problem like this before.\n                    Let me reason from first principles:\n                    1. Core elements are...\n                    2. Principles that apply...\n                    3. Solution approach...\n                ",
+      "outcome": "Generalization to completely novel problems"
+    },
+    "knowledge_composition": {
+      "technique": "Combine knowledge from different domains",
+      "prompt": "\n                    What this is analogous to in other fields:\n                    - In physics: [analogy]\n                    - In business: [analogy]\n                    - In biology: [analogy]\n\n                    Insights from these domains:\n                    [synthesized insights]\n                ",
+      "outcome": "Novel solutions from cross-domain thinking"
+    },
+    "uncertainty_quantification": {
+      "technique": "Prompt model to express confidence and uncertainty",
+      "prompt": "\n                    My answer: [response]\n                    Confidence: [score]\n\n                    Factors that increase confidence:\n                    - [factor 1]\n                    - [factor 2]\n\n                    Factors that decrease confidence:\n                    - [unknown factors]\n                    - [conflicting evidence]\n\n                    How to increase confidence:\n                    - [additional research]\n                    - [clarification needed]\n                ",
+      "outcome": "Calibrated, trustworthy reasoning"
+    }
+  },
+  "superpowers_enabled": true
+}

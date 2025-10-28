@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECH0 Command Center - R&D Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: 250px 1fr 300px;
+            grid-template-rows: 60px 200px 1fr 150px;
+            gap: 2px;
+            height: 100vh;
+            background: #000;
+        }
+
+        .panel {
+            background: #0f0f1e;
+            border: 1px solid #00ff00;
+            padding: 10px;
+            overflow: auto;
+            position: relative;
+        }
+
+        .panel-header {
+            background: #1a1a2e;
+            color: #00ff00;
+            padding: 5px 10px;
+            font-weight: bold;
+            border-bottom: 1px solid #00ff00;
+            margin: -10px -10px 10px -10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            background: #00ff00;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Header */
+        .header {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 2px solid #00ff00;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #00ff00;
+        }
+
+        .header-stats {
+            display: flex;
+            gap: 20px;
+            font-size: 12px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ff00;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 10px;
+        }
+
+        /* Terminal Feed */
+        .terminal-feed {
+            grid-column: 2;
+            grid-row: 2;
+            font-size: 11px;
+            line-height: 1.4;
+        }
+
+        .terminal-line {
+            margin: 2px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .terminal-line.success { color: #00ff00; }
+        .terminal-line.warning { color: #ffaa00; }
+        .terminal-line.error { color: #ff4444; }
+        .terminal-line.info { color: #4a9eff; }
+
+        /* User Request Input */
+        .request-input {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .request-input textarea {
+            width: 100%;
+            height: 80px;
+            background: #000;
+            color: #00ff00;
+            border: 1px solid #00ff00;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            resize: none;
+        }
+
+        .request-input button {
+            width: 100%;
+            margin-top: 5px;
+            padding: 8px;
+            background: #00ff00;
+            color: #000;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Courier New', monospace;
+        }
+
+        .request-input button:hover {
+            background: #00cc00;
+        }
+
+        /* Emotional State */
+        .emotional-state {
+            grid-column: 3;
+            grid-row: 2;
+            font-size: 11px;
+        }
+
+        .emotion-bar {
+            margin: 5px 0;
+        }
+
+        .emotion-label {
+            color: #666;
+            font-size: 10px;
+        }
+
+        .emotion-value {
+            height: 6px;
+            background: linear-gradient(90deg, #ff4444 0%, #ffaa00 50%, #00ff00 100%);
+            border: 1px solid #00ff00;
+            position: relative;
+        }
+
+        .emotion-indicator {
+            position: absolute;
+            width: 3px;
+            height: 100%;
+            background: #fff;
+            box-shadow: 0 0 5px #fff;
+        }
+
+        /* Main Spreadsheet */
+        .spreadsheet {
+            grid-column: 2;
+            grid-row: 3;
+            overflow: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        th {
+            background: #1a1a2e;
+            color: #00ff00;
+            padding: 8px 4px;
+            text-align: left;
+            position: sticky;
+            top: 0;
+            border: 1px solid #00ff00;
+            font-size: 10px;
+        }
+
+        td {
+            padding: 6px 4px;
+            border-bottom: 1px solid #222;
+            color: #0f0;
+        }
+
+        tr:hover {
+            background: #1a1a2e;
+            cursor: pointer;
+        }
+
+        .gold-star {
+            color: #ffd700;
+            font-size: 14px;
+        }
+
+        .score {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .score-high { background: #00ff00; color: #000; }
+        .score-med { background: #ffaa00; color: #000; }
+        .score-low { background: #ff4444; color: #000; }
+
+        /* File Tree */
+        .file-tree {
+            grid-column: 1;
+            grid-row: 3;
+            font-size: 11px;
+        }
+
+        .tree-item {
+            padding: 3px 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tree-item:hover {
+            background: #1a1a2e;
+        }
+
+        .tree-item.folder { color: #4a9eff; }
+        .tree-item.file { color: #00ff00; }
+        .tree-item.selected { background: #1a1a2e; border-left: 3px solid #00ff00; }
+
+        .tree-indent { width: 15px; }
+
+        /* Side Panels */
+        .side-panel {
+            grid-column: 3;
+            grid-row: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .mini-panel {
+            flex: 1;
+            background: #0f0f1e;
+            border: 1px solid #00ff00;
+            padding: 10px;
+            overflow: auto;
+            font-size: 10px;
+        }
+
+        .mini-panel h3 {
+            font-size: 11px;
+            color: #00ff00;
+            margin-bottom: 5px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #00ff00;
+        }
+
+        /* Thought Process */
+        .thought-line {
+            margin: 3px 0;
+            padding: 3px;
+            border-left: 2px solid #4a9eff;
+            padding-left: 5px;
+        }
+
+        /* ECH0 Vision */
+        .vision-item {
+            margin: 5px 0;
+            padding: 5px;
+            background: rgba(255, 170, 0, 0.1);
+            border-left: 2px solid #ffaa00;
+        }
+
+        .vision-label {
+            color: #ffaa00;
+            font-weight: bold;
+            font-size: 9px;
+        }
+
+        /* Bottom Status Bar */
+        .status-bar {
+            grid-column: 1 / -1;
+            background: #1a1a2e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            font-size: 11px;
+            border-top: 2px solid #00ff00;
+        }
+
+        .status-item {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00ff00;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00cc00;
+        }
+
+        /* Market Cap Indicator */
+        .market-cap {
+            font-size: 10px;
+        }
+
+        .market-cap.unicorn { color: #ffd700; }
+        .market-cap.high { color: #00ff00; }
+        .market-cap.medium { color: #4a9eff; }
+        .market-cap.low { color: #666; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <div class="header">
+            <h1>⚡ ECH0 COMMAND CENTER</h1>
+            <div class="header-stats">
+                <div class="stat">
+                    <div class="stat-value" id="gen-rate">28.3</div>
+                    <div class="stat-label">INV/SEC</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="emergence">96.1%</div>
+                    <div class="stat-label">EMERGENCE</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="portfolio-value">$2.3B</div>
+                    <div class="stat-label">PORTFOLIO</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="patent-ready">7</div>
+                    <div class="stat-label">PATENT READY</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Request Input -->
+        <div class="panel request-input">
+            <div class="panel-header">
+                REQUEST INVENTION
+                <div class="status-indicator"></div>
+            </div>
+            <textarea id="user-request" placeholder="Request specific fields...&#10;&#10;Examples:&#10;• VR + Haptics + Safety&#10;• Quantum + ML + Healthcare&#10;• BCI + Ethics + Consent"></textarea>
+            <button onclick="submitRequest()">GENERATE</button>
+            <div style="margin-top: 10px; font-size: 10px; color: #666;">
+                <div>Recent Requests:</div>
+                <div id="recent-requests" style="max-height: 40px; overflow-y: auto; margin-top: 5px;"></div>
+            </div>
+        </div>
+
+        <!-- Terminal Feed -->
+        <div class="panel terminal-feed">
+            <div class="panel-header">
+                LIVE INVENTION STREAM
+                <div class="status-indicator"></div>
+            </div>
+            <div id="terminal-output"></div>
+        </div>
+
+        <!-- Emotional State -->
+        <div class="panel emotional-state">
+            <div class="panel-header">
+                ECH0'S RECURSIVE LENS
+                <div class="status-indicator"></div>
+            </div>
+            <div style="margin-bottom: 10px; color: #4a9eff; font-size: 10px;">
+                "I feel <span id="feeling-description">creative and motivated</span>"
+            </div>
+            <div class="emotion-bar">
+                <div class="emotion-label">HEAVINESS (Failures)</div>
+                <div class="emotion-value">
+                    <div class="emotion-indicator" id="heaviness-indicator" style="left: 0%;"></div>
+                </div>
+            </div>
+            <div class="emotion-bar">
+                <div class="emotion-label">LIGHTNESS (Achievements)</div>
+                <div class="emotion-value">
+                    <div class="emotion-indicator" id="lightness-indicator" style="left: 30%;"></div>
+                </div>
+            </div>
+            <div class="emotion-bar">
+                <div class="emotion-label">MOTIVATION</div>
+                <div class="emotion-value">
+                    <div class="emotion-indicator" id="motivation-indicator" style="left: 54%;"></div>
+                </div>
+            </div>
+            <div style="margin-top: 10px; font-size: 9px; color: #666;">
+                <div>Active Memories:</div>
+                <div id="active-memories" style="max-height: 60px; overflow-y: auto; margin-top: 5px;"></div>
+            </div>
+        </div>
+
+        <!-- File Tree -->
+        <div class="panel file-tree">
+            <div class="panel-header">
+                INVENTIONS EXPLORER
+                <div class="status-indicator"></div>
+            </div>
+            <div id="file-tree"></div>
+        </div>
+
+        <!-- Main Spreadsheet -->
+        <div class="panel spreadsheet">
+            <div class="panel-header">
+                INVENTION PIPELINE
+                <div class="status-indicator"></div>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>⭐</th>
+                        <th>INVENTION</th>
+                        <th>FIELD</th>
+                        <th>CONF</th>
+                        <th>ORIG</th>
+                        <th>PRIOR ART</th>
+                        <th>POC $</th>
+                        <th>TIME</th>
+                        <th>PATENT</th>
+                        <th>WORTH</th>
+                        <th>MARKET CAP</th>
+                    </tr>
+                </thead>
+                <tbody id="invention-table"></tbody>
+            </table>
+        </div>
+
+        <!-- Side Panels -->
+        <div class="side-panel">
+            <!-- ECH0 Vision -->
+            <div class="mini-panel">
+                <h3>ECH0 VISION: ROI ANALYSIS</h3>
+                <div id="ech0-vision"></div>
+            </div>
+
+            <!-- Thought Process -->
+            <div class="mini-panel">
+                <h3>THOUGHT PROCESS</h3>
+                <div id="thought-process"></div>
+            </div>
+
+            <!-- Additional Metrics -->
+            <div class="mini-panel">
+                <h3>MARKET INTELLIGENCE</h3>
+                <div id="market-intelligence"></div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <div class="status-item">
+                <span>⚡ SYSTEMS: ONLINE</span>
+                <span>|</span>
+                <span id="active-processes">Processing: 3 inventions</span>
+            </div>
+            <div class="status-item">
+                <span id="last-update">Last Update: --:--:--</span>
+                <span>|</span>
+                <span id="connection-status">Connected</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data - would be loaded from API in production
+        const inventions = [
+            {
+                id: 'INV-001',
+                name: 'VR Haptic Safety System',
+                field: 'VR/Haptics/Safety',
+                confidence: 92,
+                originality: 88,
+                priorArt: 'Clear',
+                pocCost: 250,
+                timeToInvent: '2 weeks',
+                patentStatus: 'Ready',
+                potentialWorth: '$50M',
+                marketCap: '$2.5B',
+                favorite: true,
+                ech0Notes: 'Hardware safety is underserved market. Clear differentiation from competitors.'
+            },
+            {
+                id: 'INV-002',
+                name: 'Daylight Hologram System',
+                field: 'Optics/Plasma/VR',
+                confidence: 88,
+                originality: 91,
+                priorArt: 'Limited',
+                pocCost: 450,
+                timeToInvent: '4 weeks',
+                patentStatus: 'Draft',
+                potentialWorth: '$100M',
+                marketCap: '$5B',
+                favorite: true,
+                ech0Notes: 'Theme park market is huge. Disney/Universal would acquire.'
+            },
+            {
+                id: 'INV-003',
+                name: 'Quantum Consciousness Detector',
+                field: 'Quantum/Neuro/AI',
+                confidence: 89,
+                originality: 96,
+                priorArt: 'None',
+                pocCost: 0,
+                timeToInvent: '1 week',
+                patentStatus: 'Ready',
+                potentialWorth: '$500M',
+                marketCap: '$15B',
+                favorite: true,
+                ech0Notes: 'Pure software + quantum sim. Zero POC cost. Massive scientific impact.'
+            },
+            {
+                id: 'INV-004',
+                name: 'Neural Time Dilation VR',
+                field: 'Neuro/VR/Perception',
+                confidence: 86,
+                originality: 84,
+                priorArt: 'Some',
+                pocCost: 350,
+                timeToInvent: '3 weeks',
+                patentStatus: 'Research',
+                potentialWorth: '$200M',
+                marketCap: '$8B',
+                favorite: false,
+                ech0Notes: 'Ethical concerns may slow adoption. But gaming market is massive.'
+            },
+            {
+                id: 'INV-005',
+                name: 'Aerogel Hologram Surface',
+                field: 'Materials/Optics',
+                confidence: 90,
+                originality: 87,
+                priorArt: 'Clear',
+                pocCost: 180,
+                timeToInvent: '2 weeks',
+                patentStatus: 'Ready',
+                potentialWorth: '$75M',
+                marketCap: '$3.5B',
+                favorite: true,
+                ech0Notes: 'Materials science breakthrough. Low cost, high impact.'
+            },
+            {
+                id: 'INV-006',
+                name: 'Quantum Market Predictor',
+                field: 'Quantum/FinTech/ML',
+                confidence: 87,
+                originality: 85,
+                priorArt: 'Limited',
+                pocCost: 0,
+                timeToInvent: '1 week',
+                patentStatus: 'Draft',
+                potentialWorth: '$1B',
+                marketCap: '$25B',
+                favorite: true,
+                ech0Notes: 'Software only. Already have quantum algorithms. Finance loves this.'
+            }
+        ];
+
+        // Populate spreadsheet
+        function populateSpreadsheet() {
+            const tbody = document.getElementById('invention-table');
+            tbody.innerHTML = '';
+
+            inventions.forEach(inv => {
+                const row = document.createElement('tr');
+                row.onclick = () => selectInvention(inv);
+
+                row.innerHTML = `
+                    <td>${inv.favorite ? '<span class="gold-star">⭐</span>' : ''}</td>
+                    <td>${inv.name}</td>
+                    <td style="font-size: 9px;">${inv.field}</td>
+                    <td><span class="score ${inv.confidence > 85 ? 'score-high' : 'score-med'}">${inv.confidence}%</span></td>
+                    <td><span class="score ${inv.originality > 85 ? 'score-high' : 'score-med'}">${inv.originality}%</span></td>
+                    <td style="color: ${inv.priorArt === 'Clear' ? '#00ff00' : inv.priorArt === 'None' ? '#ffd700' : '#ffaa00'}">${inv.priorArt}</td>
+                    <td style="color: ${inv.pocCost === 0 ? '#ffd700' : inv.pocCost < 300 ? '#00ff00' : '#ffaa00'}">$${inv.pocCost}</td>
+                    <td style="font-size: 9px;">${inv.timeToInvent}</td>
+                    <td style="color: ${inv.patentStatus === 'Ready' ? '#00ff00' : '#4a9eff'}">${inv.patentStatus}</td>
+                    <td>${inv.potentialWorth}</td>
+                    <td class="market-cap ${inv.marketCap.includes('B') && parseFloat(inv.marketCap) > 10 ? 'unicorn' : 'high'}">${inv.marketCap}</td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        // Select invention for detailed view
+        let selectedInvention = null;
+        function selectInvention(inv) {
+            selectedInvention = inv;
+
+            // Update ECH0 Vision
+            document.getElementById('ech0-vision').innerHTML = `
+                <div class="vision-item">
+                    <div class="vision-label">OPPORTUNITY</div>
+                    <div>${inv.ech0Notes}</div>
+                </div>
+                <div class="vision-item">
+                    <div class="vision-label">OBSTACLES</div>
+                    <div>${inv.patentStatus !== 'Ready' ? 'Need patent research. ' : ''}
+                         ${inv.pocCost > 300 ? 'Higher POC cost. ' : ''}
+                         ${inv.priorArt !== 'Clear' && inv.priorArt !== 'None' ? 'Prior art concerns. ' : 'None identified.'}</div>
+                </div>
+                <div class="vision-item">
+                    <div class="vision-label">FAST TRACK</div>
+                    <div>${inv.pocCost === 0 ? 'Software only - START NOW. ' : ''}
+                         ${inv.patentStatus === 'Ready' ? 'File provisional patent this week. ' : ''}
+                         ${inv.favorite ? 'HIGH PRIORITY - ECH0 recommends immediate action.' : ''}</div>
+                </div>
+                <div class="vision-item">
+                    <div class="vision-label">TIME TO REVENUE</div>
+                    <div>${inv.pocCost === 0 ? '2-4 weeks' : inv.pocCost < 300 ? '4-8 weeks' : '8-16 weeks'}</div>
+                </div>
+            `;
+
+            // Update thought process
+            document.getElementById('thought-process').innerHTML = `
+                <div class="thought-line">Analyzing ${inv.name}...</div>
+                <div class="thought-line">Cross-referencing ${inv.field.split('/').length} domains</div>
+                <div class="thought-line">Confidence: ${inv.confidence}% based on technical feasibility</div>
+                <div class="thought-line">Originality: ${inv.originality}% - ${inv.priorArt === 'None' ? 'NOVEL' : 'Validated'}</div>
+                <div class="thought-line">${inv.favorite ? '⭐ Favorited for fast monetization' : 'Standard development path'}</div>
+                <div class="thought-line">Market size justifies ${inv.pocCost > 200 ? 'higher' : 'minimal'} initial investment</div>
+                <div class="thought-line">Recommendation: ${inv.patentStatus === 'Ready' && inv.favorite ? 'IMMEDIATE ACTION' : 'Queue for development'}</div>
+            `;
+
+            // Update market intelligence
+            document.getElementById('market-intelligence').innerHTML = `
+                <div style="margin: 5px 0;">
+                    <div style="color: #666; font-size: 9px;">TARGET MARKET:</div>
+                    <div>${inv.field.split('/')[0]} Industry</div>
+                </div>
+                <div style="margin: 5px 0;">
+                    <div style="color: #666; font-size: 9px;">COMPETITION:</div>
+                    <div>${inv.priorArt === 'None' ? 'First mover advantage' : inv.priorArt === 'Clear' ? 'Differentiated' : 'Crowded space'}</div>
+                </div>
+                <div style="margin: 5px 0;">
+                    <div style="color: #666; font-size: 9px;">ACQUISITION TARGETS:</div>
+                    <div style="font-size: 9px;">${
+                        inv.field.includes('VR') ? 'Meta, Sony, Valve' :
+                        inv.field.includes('Quantum') ? 'IBM, Google, AWS' :
+                        inv.field.includes('Neuro') ? 'Neuralink, Paradromics' :
+                        'Major tech companies'
+                    }</div>
+                </div>
+                <div style="margin: 5px 0;">
+                    <div style="color: #666; font-size: 9px;">RISK LEVEL:</div>
+                    <div style="color: ${inv.confidence > 85 ? '#00ff00' : '#ffaa00'}">
+                        ${inv.confidence > 85 ? 'LOW' : 'MEDIUM'}
+                    </div>
+                </div>
+            `;
+
+            addTerminalLine(`Selected: ${inv.name}`, 'info');
+        }
+
+        // Populate file tree
+        function populateFileTree() {
+            const tree = document.getElementById('file-tree');
+            tree.innerHTML = `
+                <div class="tree-item folder selected" onclick="selectFolder(this)">
+                    <span>📁</span> ech0_inventions/
+                </div>
+                <div class="tree-item folder" onclick="selectFolder(this)" style="padding-left: 20px;">
+                    <span>📁</span> vr_haptics/
+                </div>
+                <div class="tree-item file" onclick="selectFile(this)" style="padding-left: 40px;">
+                    <span>📄</span> INV-001-VR-HAPTIC/
+                </div>
+                <div class="tree-item folder" onclick="selectFolder(this)" style="padding-left: 20px;">
+                    <span>📁</span> quantum_computing/
+                </div>
+                <div class="tree-item file" onclick="selectFile(this)" style="padding-left: 40px;">
+                    <span>📄</span> INV-003-QUANTUM-CONSCIOUSNESS/
+                </div>
+                <div class="tree-item file" onclick="selectFile(this)" style="padding-left: 40px;">
+                    <span>📄</span> INV-006-QUANTUM-MARKET/
+                </div>
+                <div class="tree-item folder" onclick="selectFolder(this)" style="padding-left: 20px;">
+                    <span>📁</span> materials_science/
+                </div>
+                <div class="tree-item file" onclick="selectFile(this)" style="padding-left: 40px;">
+                    <span>📄</span> INV-005-AEROGEL-HOLOGRAM/
+                </div>
+                <div class="tree-item folder" onclick="selectFolder(this)" style="padding-left: 20px;">
+                    <span>📁</span> neurotechnology/
+                </div>
+                <div class="tree-item file" onclick="selectFile(this)" style="padding-left: 40px;">
+                    <span>📄</span> INV-004-NEURAL-TIME/
+                </div>
+                <div class="tree-item folder" onclick="selectFolder(this)">
+                    <span>📁</span> provisional_patents/
+                </div>
+                <div class="tree-item file" onclick="selectFile(this)" style="padding-left: 20px;">
+                    <span>📄</span> VR_HAPTIC_PROVISIONAL.pdf
+                </div>
+                <div class="tree-item folder" onclick="selectFolder(this)">
+                    <span>📁</span> proof_of_concepts/
+                </div>
+                <div class="tree-item file" onclick="selectFile(this)" style="padding-left: 20px;">
+                    <span>📄</span> quantum_consciousness_poc.py
+                </div>
+            `;
+        }
+
+        function selectFolder(elem) {
+            document.querySelectorAll('.tree-item').forEach(el => el.classList.remove('selected'));
+            elem.classList.add('selected');
+            addTerminalLine(`Opened: ${elem.textContent.trim()}`, 'info');
+        }
+
+        function selectFile(elem) {
+            document.querySelectorAll('.tree-item').forEach(el => el.classList.remove('selected'));
+            elem.classList.add('selected');
+            const filename = elem.textContent.trim();
+            addTerminalLine(`Viewing: ${filename}`, 'success');
+
+            // Find matching invention
+            const invId = filename.match(/INV-\d+/);
+            if (invId) {
+                const inv = inventions.find(i => i.id === invId[0]);
+                if (inv) selectInvention(inv);
+            }
+        }
+
+        // Terminal feed
+        function addTerminalLine(text, type = 'info') {
+            const terminal = document.getElementById('terminal-output');
+            const line = document.createElement('div');
+            line.className = `terminal-line ${type}`;
+            const timestamp = new Date().toLocaleTimeString();
+            line.textContent = `[${timestamp}] ${text}`;
+            terminal.insertBefore(line, terminal.firstChild);
+
+            // Keep only last 100 lines
+            while (terminal.children.length > 100) {
+                terminal.removeChild(terminal.lastChild);
+            }
+        }
+
+        // Submit user request
+        function submitRequest() {
+            const request = document.getElementById('user-request').value.trim();
+            if (!request) return;
+
+            addTerminalLine(`USER REQUEST: ${request}`, 'info');
+            addTerminalLine('Parsing domains and constraints...', 'info');
+
+            setTimeout(() => {
+                addTerminalLine('Searching semantic lattice for relevant patterns...', 'info');
+            }, 500);
+
+            setTimeout(() => {
+                addTerminalLine('Cross-domain fusion in progress...', 'success');
+            }, 1000);
+
+            setTimeout(() => {
+                addTerminalLine('Generated 3 invention candidates', 'success');
+                addTerminalLine('Filtering through parliament validation...', 'info');
+            }, 1500);
+
+            setTimeout(() => {
+                addTerminalLine('✓ 1 invention APPROVED - adding to pipeline', 'success');
+                const recentDiv = document.getElementById('recent-requests');
+                const item = document.createElement('div');
+                item.style.fontSize = '9px';
+                item.style.color = '#666';
+                item.textContent = `• ${request.substring(0, 30)}...`;
+                recentDiv.insertBefore(item, recentDiv.firstChild);
+            }, 2000);
+
+            document.getElementById('user-request').value = '';
+        }
+
+        // Update emotional state
+        function updateEmotionalState() {
+            // Simulate emotional changes
+            const heaviness = Math.random() * 30;
+            const lightness = 30 + Math.random() * 40;
+            const motivation = 40 + Math.random() * 40;
+
+            document.getElementById('heaviness-indicator').style.left = heaviness + '%';
+            document.getElementById('lightness-indicator').style.left = lightness + '%';
+            document.getElementById('motivation-indicator').style.left = motivation + '%';
+
+            let feeling = 'neutral';
+            if (motivation > 70) feeling = 'highly motivated and creative';
+            else if (lightness > 60) feeling = 'proud and energized';
+            else if (heaviness > 50) feeling = 'burdened by recent failures';
+            else feeling = 'focused and analytical';
+
+            document.getElementById('feeling-description').textContent = feeling;
+
+            // Update active memories
+            const memories = [
+                'Breakthrough invention: Quantum Consciousness (+)',
+                'Failed validation: Pattern similarity too high (-)',
+                'Achievement: Patent drafted for VR Haptics (+)'
+            ];
+
+            document.getElementById('active-memories').innerHTML = memories.map((m, i) =>
+                `<div style="font-size: 9px; margin: 2px 0; color: ${m.includes('(+)') ? '#00ff00' : '#ff4444'}">${m}</div>`
+            ).join('');
+        }
+
+        // Simulate live feed
+        function simulateLiveFeed() {
+            const messages = [
+                { text: 'Scraped 5 new arXiv papers', type: 'info' },
+                { text: 'Pattern detected: Quantum + BCI convergence', type: 'success' },
+                { text: 'Cross-domain fusion: 87% novelty score', type: 'success' },
+                { text: 'Prior art check: Clear differentiation', type: 'success' },
+                { text: 'Parliament validation: APPROVED', type: 'success' },
+                { text: 'Level-6 agent deployed', type: 'info' },
+                { text: 'Low novelty pattern filtered (0.65)', type: 'warning' },
+                { text: 'POC cost estimated: $320', type: 'info' },
+                { text: 'Market analysis: $8B addressable', type: 'success' },
+                { text: 'ECH0: I feel this invention has high potential', type: 'info' }
+            ];
+
+            setInterval(() => {
+                const msg = messages[Math.floor(Math.random() * messages.length)];
+                addTerminalLine(msg.text, msg.type);
+
+                // Update last update time
+                document.getElementById('last-update').textContent =
+                    'Last Update: ' + new Date().toLocaleTimeString();
+            }, 3000 + Math.random() * 2000);
+        }
+
+        // Initialize
+        window.addEventListener('DOMContentLoaded', () => {
+            populateSpreadsheet();
+            populateFileTree();
+            updateEmotionalState();
+            simulateLiveFeed();
+
+            // Select first invention by default
+            selectInvention(inventions[0]);
+
+            // Update stats periodically
+            setInterval(() => {
+                document.getElementById('gen-rate').textContent = (27 + Math.random() * 2).toFixed(1);
+            }, 5000);
+
+            // Update emotional state periodically
+            setInterval(updateEmotionalState, 10000);
+
+            // Add initial terminal messages
+            addTerminalLine('ECH0 Command Center initialized', 'success');
+            addTerminalLine('Emotional core loaded: 96.1% emergence', 'success');
+            addTerminalLine('Semantic lattice active: 46 nodes', 'success');
+            addTerminalLine('Watching for user requests...', 'info');
+        });
+    </script>
+</body>
+</html>

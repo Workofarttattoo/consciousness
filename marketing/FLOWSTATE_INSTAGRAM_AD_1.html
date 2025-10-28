@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowState - AI-Powered Deep Work</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            width: 1080px;
+            height: 1080px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0F2027, #203A43, #2C5364);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,255,255,0.3) 0%, transparent 70%);
+            filter: blur(80px);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 60px;
+            color: #fff;
+        }
+        .logo {
+            font-size: 120px;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 40px rgba(0,255,255,0.8));
+        }
+        h1 {
+            font-size: 88px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #00ffff, #00ccff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -2px;
+        }
+        .tagline {
+            font-size: 46px;
+            font-weight: 300;
+            margin-bottom: 60px;
+            color: rgba(255,255,255,0.9);
+        }
+        .value-props {
+            background: rgba(0,255,255,0.08);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(0,255,255,0.3);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 50px 0;
+        }
+        .prop {
+            font-size: 34px;
+            margin: 25px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .prop-icon {
+            font-size: 45px;
+            margin-right: 20px;
+        }
+        .cta {
+            margin-top: 60px;
+            font-size: 48px;
+            font-weight: 700;
+            color: #00ffff;
+            text-shadow: 0 0 30px rgba(0,255,255,0.6);
+        }
+        .website {
+            margin-top: 25px;
+            font-size: 40px;
+            color: #00ccff;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="glow"></div>
+    <div class="container">
+        <div class="logo">🌊</div>
+        <h1>FlowState</h1>
+        <div class="tagline">Enter Deep Work Mode</div>
+
+        <div class="value-props">
+            <div class="prop">
+                <span class="prop-icon">🧠</span>
+                <span>AI-Optimized Focus Sessions</span>
+            </div>
+            <div class="prop">
+                <span class="prop-icon">⏱️</span>
+                <span>Scientifically-Timed Breaks</span>
+            </div>
+            <div class="prop">
+                <span class="prop-icon">📊</span>
+                <span>Real-Time Productivity Analytics</span>
+            </div>
+            <div class="prop">
+                <span class="prop-icon">🎯</span>
+                <span>Distraction Elimination</span>
+            </div>
+        </div>
+
+        <div class="cta">10x Your Productivity Today</div>
+        <div class="website">flowstate.work</div>
+    </div>
+</body>
+</html>

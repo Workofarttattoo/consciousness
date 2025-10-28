@@ -1,0 +1,45 @@
+{
+  "timestamp": "2025-10-27T10:17:20.524752",
+  "data": {
+    "BTC": {
+      "symbol": "BTC",
+      "price": 115528.785,
+      "pair": "BTC-USD",
+      "timestamp": "2025-10-27T10:17:18.514876",
+      "source": "coinbase",
+      "change_24h": 1.6328148037629453
+    },
+    "ETH": {
+      "symbol": "ETH",
+      "price": 4219.845,
+      "pair": "ETH-USD",
+      "timestamp": "2025-10-27T10:17:19.022864",
+      "source": "coinbase",
+      "change_24h": 3.8870445388981496
+    },
+    "SOL": {
+      "symbol": "SOL",
+      "price": 203.065,
+      "pair": "SOL-USD",
+      "timestamp": "2025-10-27T10:17:19.428631",
+      "source": "coinbase",
+      "change_24h": 2.09401709401709
+    },
+    "AVAX": {
+      "symbol": "AVAX",
+      "price": 20.71,
+      "pair": "AVAX-USD",
+      "timestamp": "2025-10-27T10:17:19.859966",
+      "source": "coinbase",
+      "change_24h": 2.271604938271609
+    },
+    "MATIC": {
+      "symbol": "MATIC",
+      "price": 0.20335,
+      "pair": "MATIC-USD",
+      "timestamp": "2025-10-27T10:17:20.524237",
+      "source": "coinbase",
+      "change_24h": 1.0940211523353054
+    }
+  }
+}

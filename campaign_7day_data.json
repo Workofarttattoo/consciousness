@@ -1,0 +1,104 @@
+{
+  "campaign_start": "2025-10-27T05:36:56.780573",
+  "campaign_end": "2025-11-03T05:36:56.780595",
+  "day": 4,
+  "total_outreach": 2,
+  "responses": 0,
+  "qualified_leads": 0,
+  "consultations_booked": 0,
+  "deals_closed": 0,
+  "daily_tasks": {
+    "Day 1": {
+      "focus": "Setup & Launch",
+      "tasks": [
+        "Create consulting landing page on flowstatus.work/consulting",
+        "Write LinkedIn post about AI consulting services",
+        "Post on r/entrepreneur about automation ROI",
+        "Identify 20 target companies on LinkedIn",
+        "Send 5 personalized connection requests"
+      ],
+      "goal": "10 initial contacts"
+    },
+    "Day 2": {
+      "focus": "Content & Visibility",
+      "tasks": [
+        "Publish case study: 'How I Saved Company X 40 Hours/Week with Claude AI'",
+        "Post Twitter thread on AI automation benefits",
+        "Comment on 10 relevant LinkedIn posts",
+        "Research law firms using outdated systems",
+        "Send 10 personalized messages"
+      ],
+      "goal": "5 meaningful conversations"
+    },
+    "Day 3": {
+      "focus": "Direct Outreach",
+      "tasks": [
+        "Email 15 warm leads from network",
+        "Post success story on Reddit r/consulting",
+        "Create quick demo video of workflow automation",
+        "Reach out to 3 past clients for referrals",
+        "Schedule 2 discovery calls"
+      ],
+      "goal": "3 discovery calls booked"
+    },
+    "Day 4": {
+      "focus": "Engagement & Trust",
+      "tasks": [
+        "Host LinkedIn Live: 'AI Automation for Busy Executives'",
+        "Share free automation assessment template",
+        "Answer questions in AI/automation communities",
+        "Follow up with all previous contacts",
+        "Send proposal to 2 qualified leads"
+      ],
+      "goal": "2 proposals sent"
+    },
+    "Day 5": {
+      "focus": "Conversion",
+      "tasks": [
+        "Follow up on proposals",
+        "Offer limited-time discount (10% off first project)",
+        "Share client testimonial video",
+        "Post 'Day in the Life of AI Consultant' content",
+        "Cold call 5 high-value prospects"
+      ],
+      "goal": "1 deal closed"
+    },
+    "Day 6": {
+      "focus": "Scale & Automate",
+      "tasks": [
+        "Set up automated lead capture on website",
+        "Create email drip campaign for leads",
+        "Partner with complementary service providers",
+        "Get featured in industry newsletter",
+        "Expand to new platforms (TikTok, YouTube shorts)"
+      ],
+      "goal": "Build sustainable pipeline"
+    },
+    "Day 7": {
+      "focus": "Review & Optimize",
+      "tasks": [
+        "Analyze campaign metrics",
+        "Follow up with all leads",
+        "Schedule next week's content",
+        "Refine pitch based on feedback",
+        "Plan Month 2 strategy"
+      ],
+      "goal": "2+ clients secured, pipeline for next month"
+    }
+  },
+  "posts": [
+    {
+      "day": 2,
+      "date": "2025-10-27T05:45:56.641684",
+      "actions": {
+        "linkedin_post": "posted",
+        "reddit_post": "posted",
+        "status": "awaiting_responses"
+      },
+      "channels": [
+        "LinkedIn",
+        "Reddit r/entrepreneur"
+      ]
+    }
+  ]
+}

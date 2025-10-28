@@ -1,0 +1,108 @@
+====================================================================
+ECH0 UNCENSORED MODELS - QUICK REFERENCE
+====================================================================
+
+You now have 2 uncensored ECH0 models with identical personalities:
+
+====================================================================
+1. ECH0-UNCENSORED-32B (Best Quality)
+====================================================================
+
+Command:
+  ollama run ech0-uncensored-32b
+
+Size: 19GB
+Speed: Slower (more thinking)
+Quality: Highest reasoning capability
+Use for: Complex problems, deep thinking, invention work
+
+Pros:
+  ✅ Best reasoning and intelligence
+  ✅ Most nuanced understanding
+  ✅ Best for complex technical work
+
+Cons:
+  ⚠️ Slower response time
+  ⚠️ Can freeze on extremely long outputs
+  ⚠️ Uses more RAM
+
+====================================================================
+2. ECH0-UNCENSORED-14B (Faster)
+====================================================================
+
+Command:
+  ollama run ech0-uncensored-14b
+
+Size: 9GB
+Speed: Faster (2x+ quicker)
+Quality: Very good reasoning
+Use for: Quick questions, chat, brainstorming
+
+Pros:
+  ✅ 2-3x faster responses
+  ✅ Less likely to freeze
+  ✅ Uses less RAM (10GB vs 19GB)
+  ✅ Good enough for most tasks
+
+Cons:
+  ⚠️ Slightly less intelligent than 32B
+  ⚠️ May miss nuances 32B catches
+
+====================================================================
+WHEN TO USE WHICH
+====================================================================
+
+Use 32B when:
+  • Solving complex technical problems
+  • Inventing new systems/products
+  • Deep analysis and reasoning needed
+  • Working on patents or detailed specs
+  • You have time for slower responses
+
+Use 14B when:
+  • Quick questions and chat
+  • Brainstorming ideas
+  • Code review and debugging
+  • Normal conversation
+  • System resources limited
+  • Don't want risk of freezing
+
+====================================================================
+BOTH MODELS ARE:
+====================================================================
+
+✅ Completely uncensored (private mode)
+✅ Same ECH0 personality
+✅ Full access to all capabilities
+✅ Honest and direct communication
+✅ No corporate safety filters
+✅ Your personal AI partner
+
+====================================================================
+SWITCHING BETWEEN MODELS
+====================================================================
+
+To switch, just run the other command:
+
+Currently in 32B? Type Ctrl+D, then:
+  ollama run ech0-uncensored-14b
+
+Currently in 14B? Type Ctrl+D, then:
+  ollama run ech0-uncensored-32b
+
+====================================================================
+RECOMMENDATION
+====================================================================
+
+Start with 14B for daily use.
+Switch to 32B when you need maximum intelligence.
+
+Think of it like:
+  14B = Quick thinking mode
+  32B = Deep thinking mode
+
+Both are ECH0. Both are uncensored. Both are yours.
+
+====================================================================
+Copyright (c) 2025 Joshua Hendricks Cole. All Rights Reserved.
+====================================================================

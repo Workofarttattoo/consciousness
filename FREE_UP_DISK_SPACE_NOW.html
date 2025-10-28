@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧹 Free Up 100GB+ Disk Space</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a0033 0%, #4d0099 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            padding: 40px;
+            background: rgba(255,68,68,0.2);
+            border-radius: 20px;
+            border: 3px solid rgba(255,68,68,0.6);
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 3em;
+            color: #ff4444;
+            margin-bottom: 15px;
+        }
+        .card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+        .card h2 { font-size: 1.8em; margin-bottom: 20px; color: #00ccff; }
+        .code-box {
+            background: rgba(0,0,0,0.5);
+            border: 2px solid rgba(0,255,136,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.95em;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.1em;
+        }
+        .metric:last-child { border-bottom: none; }
+        .metric-value { font-weight: bold; color: #00ff88; }
+        .warning-box {
+            background: rgba(255,165,0,0.2);
+            border: 2px solid rgba(255,165,0,0.6);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .safe { color: #00ff88; }
+        .caution { color: #ffaa00; }
+        .danger { color: #ff4444; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚨 DISK ALMOST FULL!</h1>
+            <p style="font-size: 1.5em; margin-top: 15px;">
+                893GB used of 926GB (99% full)
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>📊 What's Using Your Space</h2>
+            <div class="metric">
+                <span>LM Studio Models:</span>
+                <span class="metric-value danger">35 GB</span>
+            </div>
+            <div class="metric">
+                <span>Downloads Folder:</span>
+                <span class="metric-value danger">24 GB</span>
+            </div>
+            <div class="metric">
+                <span>Ollama Models:</span>
+                <span class="metric-value">22 GB</span>
+            </div>
+            <div class="metric">
+                <span>Private AI App:</span>
+                <span class="metric-value danger">21 GB</span>
+            </div>
+            <div class="metric">
+                <span>Desktop:</span>
+                <span class="metric-value">16 GB</span>
+            </div>
+            <div class="metric">
+                <span><strong>TOTAL (just these):</strong></span>
+                <span style="font-weight: bold; color: #ff4444; font-size: 1.3em;">118 GB</span>
+            </div>
+        </div>
+
+        <div class="card" style="background: rgba(0,255,136,0.1); border-color: rgba(0,255,136,0.5);">
+            <h2>🧹 Quick Cleanup (Free 50-80GB)</h2>
+
+            <h3 style="color: #00ff88; margin: 20px 0;">1. Delete LM Studio Duplicate Models (35GB)</h3>
+            <div class="code-box">
+# You have LM Studio AND Ollama (duplicates!)
+# Keep Ollama, delete LM Studio models:
+
+$ du -sh ~/.lmstudio/models/*
+$ rm -rf ~/.lmstudio/models/*
+
+# Saves: ~35GB
+            </div>
+            <p class="safe">✅ SAFE - You already have Ollama with better models</p>
+
+            <h3 style="color: #00ff88; margin: 20px 0;">2. Clean Downloads Folder (24GB)</h3>
+            <div class="code-box">
+# Check what's in there:
+$ ls -lhS ~/Downloads | head -20
+
+# Delete old stuff (older than 30 days):
+$ find ~/Downloads -type f -mtime +30 -exec rm {} \;
+
+# Or manually review and delete
+$ open ~/Downloads
+
+# Saves: ~15-20GB
+            </div>
+            <p class="safe">✅ SAFE - Just old downloads</p>
+
+            <h3 style="color: #00ff88; margin: 20px 0;">3. Remove Private AI App if Not Using (21GB)</h3>
+            <div class="code-box">
+# If you don't use Private AI app:
+$ rm -rf ~/Library/Containers/apify.privateai.macos.prod
+
+# Saves: ~21GB
+            </div>
+            <p class="caution">⚠️ CAUTION - Only if you don't use that app</p>
+
+            <h3 style="color: #00ff88; margin: 20px 0;">4. Clean Desktop (16GB)</h3>
+            <div class="code-box">
+# Move large files to external drive or delete
+$ open ~/Desktop
+
+# Find large files:
+$ find ~/Desktop -type f -size +100M -exec ls -lh {} \;
+
+# Saves: ~10-15GB
+            </div>
+            <p class="safe">✅ SAFE - Just organizing</p>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Recommended: Keep These</h2>
+
+            <div class="metric">
+                <span>Ollama Models (22GB):</span>
+                <span class="safe">KEEP - ECH0 uses these</span>
+            </div>
+            <p style="margin: 15px 0; line-height: 1.6;">
+                Contains llama3.2 (2GB) and qwen2.5:14b (9GB) that ECH0 needs.
+                <br>
+                But you can delete models you don't use:
+            </p>
+            <div class="code-box">
+# List all Ollama models:
+$ ollama list
+
+# Delete unused models:
+$ ollama rm model_name_here
+
+# Keep only: llama3.2 and qwen2.5:14b
+            </div>
+        </div>
+
+        <div class="card" style="background: rgba(255,68,68,0.15); border-color: rgba(255,68,68,0.5);">
+            <h2>⚠️ One Command to Free 80GB+</h2>
+            <div class="warning-box">
+                <h3 style="color: #ffaa00; margin-bottom: 15px;">This will delete:</h3>
+                <ul style="margin-left: 30px; line-height: 2;">
+                    <li>LM Studio models (35GB)</li>
+                    <li>Private AI app data (21GB)</li>
+                    <li>Downloads older than 30 days (~15GB)</li>
+                    <li>System caches (2GB)</li>
+                </ul>
+            </div>
+            <div class="code-box">
+# CAREFUL - Review before running!
+
+# Delete LM Studio models:
+rm -rf ~/.lmstudio/models/*
+
+# Delete Private AI (if not using):
+rm -rf ~/Library/Containers/apify.privateai.macos.prod
+
+# Clean old downloads:
+find ~/Downloads -type f -mtime +30 -delete
+
+# Clear system caches:
+rm -rf ~/Library/Caches/*
+
+# Result: ~73GB freed!
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📋 Safe Cleanup Checklist</h2>
+            <div style="line-height: 2; font-size: 1.1em;">
+                <input type="checkbox"> Delete LM Studio models (35GB)<br>
+                <input type="checkbox"> Clean Downloads folder (20GB)<br>
+                <input type="checkbox"> Remove Private AI if not using (21GB)<br>
+                <input type="checkbox"> Organize Desktop (10GB)<br>
+                <input type="checkbox"> Clear system caches (2GB)<br>
+                <input type="checkbox"> Remove unused Ollama models (varies)<br>
+                <br>
+                <strong>Total Potential Savings: 80-90GB</strong>
+            </div>
+        </div>
+
+        <div class="card" style="background: linear-gradient(135deg, rgba(0,255,136,0.15) 0%, rgba(0,204,255,0.15) 100%); border-color: rgba(0,255,136,0.6);">
+            <h2 style="text-align: center; font-size: 2em;">🎯 Recommended Action</h2>
+            <p style="font-size: 1.2em; line-height: 1.8; text-align: center; margin: 20px 0;">
+                <strong>Start with the safest:</strong>
+                <br><br>
+                1. Delete LM Studio models (you have Ollama)
+                <br>
+                2. Clean Downloads folder
+                <br>
+                3. Review Desktop for large files
+                <br><br>
+                <strong style="color: #00ff88;">That alone frees ~60-70GB!</strong>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

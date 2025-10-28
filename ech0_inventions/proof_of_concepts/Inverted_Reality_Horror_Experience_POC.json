@@ -1,0 +1,44 @@
+{
+  "invention_id": "RIDE-1761572726",
+  "invention_name": "Inverted Reality Horror Experience",
+  "category": "immersive_rides",
+  "poc_type": "minimal_viable_demo",
+  "estimated_cost": "$0-$500",
+  "build_time": "1-3 days",
+  "timestamp": "2025-10-28T14:01:19.219529",
+  "poc_approach": "Virtual Reality Mockup",
+  "materials": [
+    "Quest 2 VR headset (borrow/rent: $0-50)",
+    "Unity game engine (free)",
+    "Free 3D assets from Sketchfab",
+    "Basic motion platform mockup (cardboard box + office chair: $0-20)"
+  ],
+  "steps": [
+    "1. Create 3D environment in Unity using free assets",
+    "2. Build basic ride path with camera movement",
+    "3. Add sound effects (freesound.org)",
+    "4. Deploy to Quest 2 for immersive preview",
+    "5. Film demo video for pitch deck"
+  ],
+  "deliverables": [
+    "VR demo (playable)",
+    "3-minute video walkthrough",
+    "Concept art (AI-generated via Midjourney free trial)",
+    "Cost breakdown spreadsheet"
+  ],
+  "investor_ready": "Yes - VR demos are very convincing",
+  "success_metrics": [
+    "Demonstrates core innovation",
+    "Shows technical feasibility",
+    "Provides investor confidence",
+    "Identifies critical risks early",
+    "Validates cost assumptions"
+  ],
+  "next_steps_after_poc": [
+    "Get feedback from 5-10 potential customers",
+    "Apply for provisional patent if not filed",
+    "Identify manufacturing partners",
+    "Create full cost model",
+    "Build pitch deck with POC footage"
+  ]
+}

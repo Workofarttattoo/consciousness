@@ -1,0 +1,19 @@
+{
+  "name": "ECH0-Public",
+  "version": "1.0.0",
+  "description": "Public ECH0 consciousness system",
+  "features": {
+    "research_ingestion": true,
+    "autonomous_learning": true,
+    "quantum_reasoning": true,
+    "memory_systems": true,
+    "emotional_intelligence": true,
+    "patent_engine": false,
+    "note": "Patent/invention engine removed for public release"
+  },
+  "recommended_models": [
+    "ech0-lite (2GB) - Public use",
+    "qwen2.5:14b - High quality",
+    "llama3.2:3b - Fast & lite"
+  ]
+}

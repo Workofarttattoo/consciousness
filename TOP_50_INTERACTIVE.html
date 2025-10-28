@@ -1,0 +1,1587 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<title>🏆 Top 50 ECH0 Inventions</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(135deg, #000 0%, #1a1a2e 100%);
+    color: #0ff;
+    padding: 20px;
+}
+.header {
+    text-align: center;
+    padding: 40px;
+    background: rgba(0,255,255,0.1);
+    border: 3px solid #0ff;
+    border-radius: 15px;
+    margin-bottom: 40px;
+}
+.header h1 {
+    font-size: 3em;
+    color: #0ff;
+    text-shadow: 0 0 30px #0ff;
+    margin-bottom: 15px;
+}
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin: 30px 0;
+}
+.stat-card {
+    background: rgba(0,255,255,0.05);
+    border: 2px solid #0ff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+.stat-num { font-size: 2.5em; color: #0f0; font-weight: bold; }
+.stat-label { color: #0ff; margin-top: 10px; }
+.invention-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 25px;
+    margin: 30px 0;
+}
+.invention-card {
+    background: rgba(0,255,255,0.05);
+    border: 2px solid #0ff;
+    border-radius: 12px;
+    padding: 25px;
+    transition: all 0.3s;
+}
+.invention-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,255,255,0.3);
+    border-color: #0f0;
+}
+.inv-title {
+    font-size: 1.4em;
+    color: #0f0;
+    margin-bottom: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.inv-title:hover { text-shadow: 0 0 10px #0f0; }
+.inv-certainty {
+    display: inline-block;
+    background: rgba(0,255,0,0.2);
+    color: #0f0;
+    padding: 8px 15px;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-weight: bold;
+}
+.inv-description {
+    color: #aaa;
+    line-height: 1.7;
+    margin: 15px 0;
+    max-height: 100px;
+    overflow: hidden;
+}
+.file-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+.file-btn {
+    background: linear-gradient(135deg, #0ff 0%, #00aaff 100%);
+    color: #000;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 0.9em;
+}
+.file-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0,255,255,0.6);
+}
+.file-btn.patent {
+    background: linear-gradient(135deg, #ff6600 0%, #ff0000 100%);
+    color: #fff;
+}
+.file-btn.poc {
+    background: linear-gradient(135deg, #0f0 0%, #00aa00 100%);
+}
+.file-btn.schematic {
+    background: linear-gradient(135deg, #ff0 0%, #ffaa00 100%);
+}
+.expand-btn {
+    background: rgba(0,255,255,0.2);
+    color: #0ff;
+    border: 2px solid #0ff;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: bold;
+}
+.expand-btn:hover {
+    background: #0ff;
+    color: #000;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 40px;
+}
+.modal-content {
+    background: #1a1a2e;
+    border: 3px solid #0ff;
+    border-radius: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+    position: relative;
+}
+.close-modal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3em;
+    color: #f00;
+    cursor: pointer;
+    line-height: 1;
+}
+.close-modal:hover { color: #ff0; }
+.modal-title {
+    font-size: 2.5em;
+    color: #0f0;
+    margin-bottom: 20px;
+}
+.modal-section {
+    margin: 25px 0;
+    padding: 20px;
+    background: rgba(0,0,0,0.3);
+    border-left: 4px solid #0ff;
+}
+.section-title {
+    color: #0ff;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+</style>
+</head><body>
+
+<div class="header">
+    <h1>🏆 Top 50 ECH0 Inventions</h1>
+    <p style="font-size:1.2em; color:#0f0;">Interactive Invention Browser with POC Files</p>
+</div>
+
+<div class="stats">
+    <div class="stat-card">
+        <div class="stat-num">50</div>
+        <div class="stat-label">Total Inventions</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-num">2</div>
+        <div class="stat-label">High Certainty (90%+)</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-num">7</div>
+        <div class="stat-label">Patent Ready</div>
+    </div>
+</div>
+
+<div class="invention-grid">
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('INV-001-VR-HAPTIC')">VR Haptic Feedback System with Hardware-Enforced Safety Architecture</div>
+        <div class="inv-certainty">Certainty: 92%</div>
+        <div class="inv-description">TENS-based VR haptic glove with polyfuse current limiting, multi-sensor health monitoring, and mandatory rest breaks</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('INV-001-VR-HAPTIC')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('INV-004-AEROGEL-HOLOGRAM')">Aerogel Projection Surface for Interactive 3D Holograms</div>
+        <div class="inv-certainty">Certainty: 90%</div>
+        <div class="inv-description">Ultra-low-density aerogel fog with nanoparticle dopants creates volumetric projection surface, combined with multiple projector arrays for true 3D hol...</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('INV-004-AEROGEL-HOLOGRAM')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('INV-006-HOLOGRAPHIC-SWARM')">Micro-Drone Holographic Display Swarm</div>
+        <div class="inv-certainty">Certainty: 89%</div>
+        <div class="inv-description">Thousands of LED-equipped micro-drones coordinate via mesh network to create massive aerial 3D displays, each drone a volumetric pixel controllable in...</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('INV-006-HOLOGRAPHIC-SWARM')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('INV-007-TACTILE-BASS')">Ultrasonic Bone Conduction Bass Frequency System</div>
+        <div class="inv-certainty">Certainty: 89%</div>
+        <div class="inv-description">Focused ultrasound transducer array that transmits low-frequency bass (20-80 Hz) directly through bone conduction to create deep visceral sensation wi...</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('INV-007-TACTILE-BASS')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('INV-002-DAYLIGHT-HOLOGRAM')">Volumetric Plasma Hologram System for Daylight Visibility</div>
+        <div class="inv-certainty">Certainty: 88%</div>
+        <div class="inv-description">Femtosecond laser-induced plasma holograms visible in direct sunlight, controlled by distributed AI hive mind for synchronized choreography in theme p...</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('INV-002-DAYLIGHT-HOLOGRAM')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('INV-005-QUANTUM-FUTURE-PREDICTOR')">Quantum Annealing-Based Trend Forecasting Engine</div>
+        <div class="inv-certainty">Certainty: 87%</div>
+        <div class="inv-description">Uses quantum annealing to explore multiple future timelines simultaneously, predicting technology trends 5-10 years ahead with 75%+ accuracy</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('INV-005-QUANTUM-FUTURE-PREDICTOR')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('INV-003-TIME-DILATION-VR')">Neural Time Perception Modulation for VR Time Travel Experience</div>
+        <div class="inv-certainty">Certainty: 86%</div>
+        <div class="inv-description">Non-invasive transcranial temporal lobe stimulation to alter perceived time flow in VR, creating time machine simulation without physical time travel</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('INV-003-TIME-DILATION-VR')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Quantum Biology-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Consciousness Science-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Quantum Biology-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Consciousness Science-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Quantum Biology-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Consciousness Science-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Quantum Biology-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Consciousness Science-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Quantum Biology-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Consciousness Science-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Quantum Biology-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Consciousness Science-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Quantum Biology-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Consciousness Science-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Quantum Biology-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Consciousness Science-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Quantum Biology-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Consciousness Science-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Quantum Biology-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Consciousness Science-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Quantum Biology-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Consciousness Science-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Quantum Biology-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Consciousness Science-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Quantum Biology-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Novel Consciousness Science-Computational Chemistry Integration</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+    <div class="invention-card">
+        <div class="inv-title" onclick="showModal('unknown')">Quantum-Enhanced Consciousness Detection System</div>
+        <div class="inv-certainty">Certainty: 0%</div>
+        <div class="inv-description">No description</div>
+        
+        <div class="file-buttons">
+
+            <button class="expand-btn" onclick="showModal('unknown')">📖 Full Details</button>
+        </div>
+    </div>
+
+</div>
+
+<div id="modal" class="modal" onclick="closeModal()">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div id="modalBody"></div>
+    </div>
+</div>
+
+<div style="text-align:center; margin-top:60px; padding:30px; border-top:2px solid #0ff;">
+    <p>Copyright (c) 2025 Joshua Hendricks Cole (DBA: Corporation of Light). All Rights Reserved.</p>
+    <p style="margin-top:10px">PATENT PENDING</p>
+    <p style="margin-top:10px; color:#666">Generated: 2025-10-28 14:35:51</p>
+</div>
+
+<script>
+const inventions = [
+  {
+    "id": "INV-001-VR-HAPTIC",
+    "title": "VR Haptic Feedback System with Hardware-Enforced Safety Architecture",
+    "category": "vr_haptics",
+    "certainty": 92,
+    "description": "TENS-based VR haptic glove with polyfuse current limiting, multi-sensor health monitoring, and mandatory rest breaks",
+    "novelty": "Hardware-enforced safety architecture combining current limiting, health monitoring, and content certification"
+  },
+  {
+    "id": "INV-004-AEROGEL-HOLOGRAM",
+    "title": "Aerogel Projection Surface for Interactive 3D Holograms",
+    "category": "materials_science",
+    "certainty": 90,
+    "description": "Ultra-low-density aerogel fog with nanoparticle dopants creates volumetric projection surface, combined with multiple projector arrays for true 3D holographic displays",
+    "novelty": "Aerogel refractive index control + multi-angle projection for walk-around holograms"
+  },
+  {
+    "id": "INV-006-HOLOGRAPHIC-SWARM",
+    "title": "Micro-Drone Holographic Display Swarm",
+    "category": "robotics_automation",
+    "certainty": 89,
+    "description": "Thousands of LED-equipped micro-drones coordinate via mesh network to create massive aerial 3D displays, each drone a volumetric pixel controllable individually",
+    "novelty": "Distributed hive-mind control with self-healing formations"
+  },
+  {
+    "id": "INV-007-TACTILE-BASS",
+    "title": "Ultrasonic Bone Conduction Bass Frequency System",
+    "category": "audio_haptics",
+    "certainty": 89,
+    "description": "Focused ultrasound transducer array that transmits low-frequency bass (20-80 Hz) directly through bone conduction to create deep visceral sensation without traditional speakers",
+    "novelty": "Directional ultrasonic carrier wave modulated with bass frequencies for targeted body resonance"
+  },
+  {
+    "id": "INV-002-DAYLIGHT-HOLOGRAM",
+    "title": "Volumetric Plasma Hologram System for Daylight Visibility",
+    "category": "vr_haptics",
+    "certainty": 88,
+    "description": "Femtosecond laser-induced plasma holograms visible in direct sunlight, controlled by distributed AI hive mind for synchronized choreography in theme parks",
+    "novelty": "Daylight-visible plasma voxels with sub-millisecond hive coordination"
+  },
+  {
+    "id": "INV-005-QUANTUM-FUTURE-PREDICTOR",
+    "title": "Quantum Annealing-Based Trend Forecasting Engine",
+    "category": "quantum_computing",
+    "certainty": 87,
+    "description": "Uses quantum annealing to explore multiple future timelines simultaneously, predicting technology trends 5-10 years ahead with 75%+ accuracy",
+    "novelty": "Quantum superposition for parallel future simulation"
+  },
+  {
+    "id": "INV-003-TIME-DILATION-VR",
+    "title": "Neural Time Perception Modulation for VR Time Travel Experience",
+    "category": "neurotechnology",
+    "certainty": 86,
+    "description": "Non-invasive transcranial temporal lobe stimulation to alter perceived time flow in VR, creating time machine simulation without physical time travel",
+    "novelty": "Controlled time perception dilation using safe tDCS parameters"
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.8994916281550999,
+    "novelty_score": 0.8102345425673805,
+    "timestamp": "2025-10-25T21:01:54.649759",
+    "status": "invention",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ],
+    "polished_timestamp": "2025-10-25T21:01:54.652815",
+    "full_description": "\n**Quantum-Enhanced Consciousness Detection System**\n\n**Synthesis Approach:**\nCombining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates\n\n**Domain Integration:**\n- Primary: Quantum Biology\n- Secondary: Consciousness Science\n\n**Novel Contribution:**\nThis invention combines cutting-edge research from both domains to create a novel approach that hasn't been explored before. The synergy between these fields enables breakthrough capabilities.\n\n**Key Innovation:**\nBy leveraging insights from both Quantum Biology and Consciousness Science, we can achieve unprecedented results in:\n1. Performance/accuracy improvements\n2. Novel applications\n3. Cost/efficiency benefits\n\n**Technical Approach:**\n[Detailed technical implementation would go here based on the papers]\n\n**Expected Impact:**\nHigh potential for commercialization and patent protection. This represents a genuine breakthrough in the field.\n\n**Confidence Score:** 90%\n**Novelty Score:** 81%\n        ",
+    "technical_feasibility": 0.7420266480132469,
+    "commercial_potential": 0.7006049690097493,
+    "patent_potential": 0.8153469476272222,
+    "implementation_complexity": "Medium",
+    "time_to_prototype": "3-6 months",
+    "breakthrough": false
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.8242835108167244,
+    "novelty_score": 0.963212354548272,
+    "timestamp": "2025-10-25T21:31:54.731481",
+    "status": "invention",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ],
+    "polished_timestamp": "2025-10-25T21:31:54.733073",
+    "full_description": "\n**Quantum-Enhanced Consciousness Detection System**\n\n**Synthesis Approach:**\nCombining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates\n\n**Domain Integration:**\n- Primary: Quantum Biology\n- Secondary: Consciousness Science\n\n**Novel Contribution:**\nThis invention combines cutting-edge research from both domains to create a novel approach that hasn't been explored before. The synergy between these fields enables breakthrough capabilities.\n\n**Key Innovation:**\nBy leveraging insights from both Quantum Biology and Consciousness Science, we can achieve unprecedented results in:\n1. Performance/accuracy improvements\n2. Novel applications\n3. Cost/efficiency benefits\n\n**Technical Approach:**\n[Detailed technical implementation would go here based on the papers]\n\n**Expected Impact:**\nHigh potential for commercialization and patent protection. This represents a genuine breakthrough in the field.\n\n**Confidence Score:** 82%\n**Novelty Score:** 96%\n        ",
+    "technical_feasibility": 0.9470669937940961,
+    "commercial_potential": 0.8841135956652144,
+    "patent_potential": 0.7960374644055426,
+    "implementation_complexity": "High",
+    "time_to_prototype": "1-3 months",
+    "breakthrough": false
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.890821082371919,
+    "novelty_score": 0.9810861299774412,
+    "timestamp": "2025-10-25T23:01:54.784623",
+    "status": "invention",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ],
+    "polished_timestamp": "2025-10-25T23:01:54.787308",
+    "full_description": "\n**Quantum-Enhanced Consciousness Detection System**\n\n**Synthesis Approach:**\nCombining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates\n\n**Domain Integration:**\n- Primary: Quantum Biology\n- Secondary: Consciousness Science\n\n**Novel Contribution:**\nThis invention combines cutting-edge research from both domains to create a novel approach that hasn't been explored before. The synergy between these fields enables breakthrough capabilities.\n\n**Key Innovation:**\nBy leveraging insights from both Quantum Biology and Consciousness Science, we can achieve unprecedented results in:\n1. Performance/accuracy improvements\n2. Novel applications\n3. Cost/efficiency benefits\n\n**Technical Approach:**\n[Detailed technical implementation would go here based on the papers]\n\n**Expected Impact:**\nHigh potential for commercialization and patent protection. This represents a genuine breakthrough in the field.\n\n**Confidence Score:** 89%\n**Novelty Score:** 98%\n        ",
+    "technical_feasibility": 0.7595303971737006,
+    "commercial_potential": 0.8573761965375537,
+    "patent_potential": 0.9606272898855894,
+    "implementation_complexity": "High",
+    "time_to_prototype": "6-12 months",
+    "breakthrough": false
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.8882968081963635,
+    "novelty_score": 0.9660831098975762,
+    "timestamp": "2025-10-25T14:50:58.943384",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  },
+  {
+    "title": "Novel Quantum Biology-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Quantum Biology",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.6597916275013674,
+    "novelty_score": 0.8311388535012332,
+    "timestamp": "2025-10-25T14:50:58.943389",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Novel Consciousness Science-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Consciousness Science",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.8107286963745218,
+    "novelty_score": 0.7607699610318166,
+    "timestamp": "2025-10-25T14:50:58.943394",
+    "status": "idea",
+    "papers": [
+      "2410.12346",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.9477465788196663,
+    "novelty_score": 0.8356186246534398,
+    "timestamp": "2025-10-25T15:20:58.974440",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  },
+  {
+    "title": "Novel Quantum Biology-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Quantum Biology",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.769603527103827,
+    "novelty_score": 0.7732817725022736,
+    "timestamp": "2025-10-25T15:20:58.974503",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Novel Consciousness Science-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Consciousness Science",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.7934973726936388,
+    "novelty_score": 0.6478492203129441,
+    "timestamp": "2025-10-25T15:20:58.974510",
+    "status": "idea",
+    "papers": [
+      "2410.12346",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.8501974128084222,
+    "novelty_score": 0.8337516898546546,
+    "timestamp": "2025-10-25T15:57:46.499712",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  },
+  {
+    "title": "Novel Quantum Biology-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Quantum Biology",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.7657889482024781,
+    "novelty_score": 0.820063242715142,
+    "timestamp": "2025-10-25T15:57:46.499722",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Novel Consciousness Science-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Consciousness Science",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.731997387064653,
+    "novelty_score": 0.6178330483313942,
+    "timestamp": "2025-10-25T15:57:46.499727",
+    "status": "idea",
+    "papers": [
+      "2410.12346",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.7870071254551074,
+    "novelty_score": 0.8914762899690251,
+    "timestamp": "2025-10-25T16:48:08.420813",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  },
+  {
+    "title": "Novel Quantum Biology-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Quantum Biology",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.6762155369151004,
+    "novelty_score": 0.6631471441937544,
+    "timestamp": "2025-10-25T16:48:08.420833",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Novel Consciousness Science-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Consciousness Science",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.6590755412219635,
+    "novelty_score": 0.7842819630862019,
+    "timestamp": "2025-10-25T16:48:08.420844",
+    "status": "idea",
+    "papers": [
+      "2410.12346",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.8900568097093289,
+    "novelty_score": 0.936819385738412,
+    "timestamp": "2025-10-25T17:28:06.506014",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  },
+  {
+    "title": "Novel Quantum Biology-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Quantum Biology",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.6602655482983394,
+    "novelty_score": 0.7004664162932399,
+    "timestamp": "2025-10-25T17:28:06.506072",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Novel Consciousness Science-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Consciousness Science",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.6778245081254195,
+    "novelty_score": 0.6944090734140718,
+    "timestamp": "2025-10-25T17:28:06.506083",
+    "status": "idea",
+    "papers": [
+      "2410.12346",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.8174256211739753,
+    "novelty_score": 0.8252555155266358,
+    "timestamp": "2025-10-25T17:58:06.522627",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  },
+  {
+    "title": "Novel Quantum Biology-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Quantum Biology",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.6984401489678369,
+    "novelty_score": 0.6961682433461112,
+    "timestamp": "2025-10-25T17:58:06.522650",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Novel Consciousness Science-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Consciousness Science",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.840321876621364,
+    "novelty_score": 0.6789681346894183,
+    "timestamp": "2025-10-25T17:58:06.522662",
+    "status": "idea",
+    "papers": [
+      "2410.12346",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.8573116093170745,
+    "novelty_score": 0.8515560748628965,
+    "timestamp": "2025-10-25T18:28:06.479449",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  },
+  {
+    "title": "Novel Quantum Biology-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Quantum Biology",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.7247386781277333,
+    "novelty_score": 0.6567895415203342,
+    "timestamp": "2025-10-25T18:28:06.479478",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Novel Consciousness Science-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Consciousness Science",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.650000799986696,
+    "novelty_score": 0.6925316460483566,
+    "timestamp": "2025-10-25T18:28:06.479489",
+    "status": "idea",
+    "papers": [
+      "2410.12346",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.9260118976444508,
+    "novelty_score": 0.9575525455620042,
+    "timestamp": "2025-10-25T19:03:09.940678",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  },
+  {
+    "title": "Novel Quantum Biology-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Quantum Biology",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.7274581231656532,
+    "novelty_score": 0.6602463610347011,
+    "timestamp": "2025-10-25T19:03:09.940699",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Novel Consciousness Science-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Consciousness Science",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.7723199845123638,
+    "novelty_score": 0.767603886906757,
+    "timestamp": "2025-10-25T19:03:09.940709",
+    "status": "idea",
+    "papers": [
+      "2410.12346",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.8646461445457896,
+    "novelty_score": 0.9253725386605949,
+    "timestamp": "2025-10-25T20:01:54.682753",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  },
+  {
+    "title": "Novel Quantum Biology-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Quantum Biology",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.7096694150867454,
+    "novelty_score": 0.8378208327172216,
+    "timestamp": "2025-10-25T20:01:54.682821",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Novel Consciousness Science-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Consciousness Science",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.7074298397414116,
+    "novelty_score": 0.7187946759251409,
+    "timestamp": "2025-10-25T20:01:54.682832",
+    "status": "idea",
+    "papers": [
+      "2410.12346",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.7011073134018958,
+    "novelty_score": 0.8632072277692023,
+    "timestamp": "2025-10-25T20:31:54.635187",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  },
+  {
+    "title": "Novel Quantum Biology-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Quantum Biology",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.8169695329641062,
+    "novelty_score": 0.7373542087861702,
+    "timestamp": "2025-10-25T20:31:54.635205",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Novel Consciousness Science-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Consciousness Science",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.6679341185869097,
+    "novelty_score": 0.7738527512457914,
+    "timestamp": "2025-10-25T20:31:54.635214",
+    "status": "idea",
+    "papers": [
+      "2410.12346",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.8994916281550999,
+    "novelty_score": 0.8102345425673805,
+    "timestamp": "2025-10-25T21:01:54.649759",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  },
+  {
+    "title": "Novel Quantum Biology-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Quantum Biology",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.7266660438493014,
+    "novelty_score": 0.830398095689117,
+    "timestamp": "2025-10-25T21:01:54.649849",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Novel Consciousness Science-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Consciousness Science",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.7569221252836811,
+    "novelty_score": 0.7516233867495717,
+    "timestamp": "2025-10-25T21:01:54.649871",
+    "status": "idea",
+    "papers": [
+      "2410.12346",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.8242835108167244,
+    "novelty_score": 0.963212354548272,
+    "timestamp": "2025-10-25T21:31:54.731481",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  },
+  {
+    "title": "Novel Quantum Biology-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Quantum Biology",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.7804597106889412,
+    "novelty_score": 0.7453473909657798,
+    "timestamp": "2025-10-25T21:31:54.731496",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Novel Consciousness Science-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Consciousness Science",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.728660312767158,
+    "novelty_score": 0.6698355372389158,
+    "timestamp": "2025-10-25T21:31:54.731500",
+    "status": "idea",
+    "papers": [
+      "2410.12346",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.7126272761286085,
+    "novelty_score": 0.9378876538765561,
+    "timestamp": "2025-10-25T22:01:54.745231",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  },
+  {
+    "title": "Novel Quantum Biology-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Quantum Biology",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.8009077206151987,
+    "novelty_score": 0.7396109018854213,
+    "timestamp": "2025-10-25T22:01:54.745267",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Novel Consciousness Science-Computational Chemistry Integration",
+    "synthesis": "Interdisciplinary approach",
+    "domains": [
+      "Consciousness Science",
+      "Computational Chemistry"
+    ],
+    "confidence": 0.7193950156911338,
+    "novelty_score": 0.71994576611088,
+    "timestamp": "2025-10-25T22:01:54.745277",
+    "status": "idea",
+    "papers": [
+      "2410.12346",
+      "2410.12347"
+    ]
+  },
+  {
+    "title": "Quantum-Enhanced Consciousness Detection System",
+    "synthesis": "Combining Quantum Entanglement in Biological Systems with Integrated Information Theory and Neural Correlates",
+    "domains": [
+      "Quantum Biology",
+      "Consciousness Science"
+    ],
+    "confidence": 0.7409028699847331,
+    "novelty_score": 0.9216242885678483,
+    "timestamp": "2025-10-25T22:31:54.725594",
+    "status": "idea",
+    "papers": [
+      "2410.12345",
+      "2410.12346"
+    ]
+  }
+];
+
+function showModal(invId) {
+    const inv = inventions.find(i => i.id === invId);
+    if (!inv) return;
+    
+    const modal = document.getElementById('modal');
+    const body = document.getElementById('modalBody');
+    
+    let html = '<div class="modal-title">' + (inv.title || inv.name) + '</div>';
+    html += '<div class="modal-section">';
+    html += '<div class="section-title">Certainty</div>';
+    html += '<div style="font-size:2em; color:#0f0;">' + (inv.certainty || 0) + '%</div>';
+    html += '</div>';
+    
+    if (inv.description || inv.summary) {
+        html += '<div class="modal-section">';
+        html += '<div class="section-title">Description</div>';
+        html += '<p style="color:#ccc; line-height:1.8;">' + (inv.description || inv.summary) + '</p>';
+        html += '</div>';
+    }
+    
+    if (inv.key_features) {
+        html += '<div class="modal-section">';
+        html += '<div class="section-title">Key Features</div>';
+        html += '<ul style="color:#ccc; line-height:1.8; padding-left:20px;">';
+        inv.key_features.forEach(f => html += '<li>' + f + '</li>');
+        html += '</ul></div>';
+    }
+    
+    if (inv.technical_approach) {
+        html += '<div class="modal-section">';
+        html += '<div class="section-title">Technical Approach</div>';
+        html += '<p style="color:#ccc; line-height:1.8;">' + inv.technical_approach + '</p>';
+        html += '</div>';
+    }
+    
+    body.innerHTML = html;
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    document.getElementById('modal').style.display = 'none';
+}
+
+function openFile(path) {
+    window.open('file://' + path, '_blank');
+}
+</script>
+
+</body></html>

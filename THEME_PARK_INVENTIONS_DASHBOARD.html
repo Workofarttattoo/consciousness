@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎢 ECH0 Theme Park Inventions - Live Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a0033 0%, #4d0099 50%, #8000ff 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc66 100%);
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #000;
+            margin: 15px 0;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255,0,255,0.3);
+        }
+
+        .stat-card h3 {
+            font-size: 3.5em;
+            color: #ff00ff;
+            margin-bottom: 10px;
+        }
+
+        .invention-card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .invention-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,255,255,0.2);
+            border-color: rgba(0,255,255,0.5);
+        }
+
+        .invention-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+        }
+
+        .invention-title {
+            font-size: 1.8em;
+            color: #00ffff;
+            margin-bottom: 10px;
+        }
+
+        .approval-badge {
+            background: linear-gradient(135deg, #00ff88 0%, #00cc66 100%);
+            color: #000;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .rejection-badge {
+            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .invention-description {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 20px;
+        }
+
+        .features-list {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+
+        .features-list h4 {
+            color: #ff00ff;
+            margin-bottom: 10px;
+        }
+
+        .features-list ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .metric-box {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 5px;
+        }
+
+        .metric-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .parliament-section {
+            background: rgba(0,255,255,0.1);
+            border: 1px solid rgba(0,255,255,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .parliament-section h4 {
+            color: #00ffff;
+            margin-bottom: 15px;
+        }
+
+        .vote-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .vote-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 5px;
+        }
+
+        .vote-approve {
+            color: #00ff88;
+            font-weight: bold;
+        }
+
+        .vote-reject {
+            color: #ff4444;
+            font-weight: bold;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 6px 15px;
+            background: rgba(128,0,255,0.3);
+            border: 1px solid rgba(128,0,255,0.5);
+            border-radius: 15px;
+            font-size: 0.85em;
+            margin-right: 10px;
+        }
+
+        .timestamp {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.9em;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎢 ECH0 Theme Park Inventions</h1>
+            <div class="status-badge">🟢 GENERATING NOW</div>
+            <p style="font-size: 1.2em; color: rgba(255,255,255,0.7); margin-top: 15px;">
+                Parliament Debate System Active • Safety Testing Protocols Included
+            </p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>3</h3>
+                <p>Inventions Generated</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>3</h3>
+                <p>Parliament Approved</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>100%</h3>
+                <p>Approval Rate</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>6</h3>
+                <p>Expert Reviewers</p>
+            </div>
+        </div>
+
+        <h2 style="font-size: 2em; margin-bottom: 20px; color: #00ffff;">✅ Approved Inventions:</h2>
+
+        <!-- Invention 1 -->
+        <div class="invention-card">
+            <div class="invention-header">
+                <div>
+                    <div class="invention-title">🎭 Quantum Reality Shift Ride</div>
+                    <div>
+                        <span class="category-badge">immersive_rides</span>
+                        <span class="approval-badge">✅ 100% CONSENSUS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="invention-description">
+                Dark ride where guests' cart 'quantum tunnels' between parallel universes. Each universe has different horror theme. Uses daylight holograms + physical sets + scent to create seamless transitions.
+            </div>
+
+            <div class="metrics">
+                <div class="metric-box">
+                    <div class="metric-label">Safety Score</div>
+                    <div class="metric-value">82%</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">Innovation</div>
+                    <div class="metric-value">94%</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">Feasibility</div>
+                    <div class="metric-value">73%</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">G-Forces</div>
+                    <div class="metric-value">2.5G</div>
+                </div>
+            </div>
+
+            <div class="features-list">
+                <h4>🎯 Key Features:</h4>
+                <ul>
+                    <li>6 parallel universe zones (zombie, alien, ghost, demon, cosmic horror, psychological)</li>
+                    <li>Seamless transitions via holographic overlays</li>
+                    <li>Dynamic branching: ride path changes based on guest choices</li>
+                    <li>Biometric monitoring: adjusts intensity per guest</li>
+                    <li>Emergency exit from any zone within 30 seconds</li>
+                </ul>
+            </div>
+
+            <div class="parliament-section">
+                <h4>🏛️ Parliament Vote Results:</h4>
+                <div class="vote-grid">
+                    <div class="vote-item">
+                        <span>Safety Engineer</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Creative Director</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Biomedical Expert</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Operations Manager</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Legal Counsel</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Guest Advocate</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invention 2 -->
+        <div class="invention-card">
+            <div class="invention-header">
+                <div>
+                    <div class="invention-title">👹 Life-Size Adaptive Horror Animatronic</div>
+                    <div>
+                        <span class="category-badge">interactive_animatronics</span>
+                        <span class="approval-badge">✅ 100% CONSENSUS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="invention-description">
+                Full-scale monster animatronic with AI-driven behavior adaptation. Uses computer vision to detect guest reactions and adjusts scare intensity in real-time. 60+ degrees of freedom for realistic movement.
+            </div>
+
+            <div class="metrics">
+                <div class="metric-box">
+                    <div class="metric-label">Safety Score</div>
+                    <div class="metric-value">85%</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">Innovation</div>
+                    <div class="metric-value">92%</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">Feasibility</div>
+                    <div class="metric-value">78%</div>
+                </div>
+            </div>
+
+            <div class="features-list">
+                <h4>🎯 Key Features:</h4>
+                <ul>
+                    <li>Real-time emotion detection via CV</li>
+                    <li>Adaptive scare intensity (learns from reactions)</li>
+                    <li>Hydraulic muscles for lifelike movement</li>
+                    <li>Modular design for quick character swaps</li>
+                    <li>Built-in safety zones with proximity sensors</li>
+                </ul>
+            </div>
+
+            <div class="parliament-section">
+                <h4>🏛️ Parliament Vote Results:</h4>
+                <div class="vote-grid">
+                    <div class="vote-item">
+                        <span>Safety Engineer</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Creative Director</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Biomedical Expert</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Operations Manager</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Legal Counsel</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Guest Advocate</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Invention 3 -->
+        <div class="invention-card">
+            <div class="invention-header">
+                <div>
+                    <div class="invention-title">🛡️ AI-Powered Real-Time Safety Monitoring System</div>
+                    <div>
+                        <span class="category-badge">safety_systems</span>
+                        <span class="approval-badge">✅ 100% CONSENSUS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="invention-description">
+                Computer vision + LLM monitors entire attraction in real-time. Detects unsafe behaviors (guests climbing, reaching, medical distress), alerts ops, auto-stops ride if needed.
+            </div>
+
+            <div class="metrics">
+                <div class="metric-box">
+                    <div class="metric-label">Safety Score</div>
+                    <div class="metric-value">98%</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">Innovation</div>
+                    <div class="metric-value">82%</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">Feasibility</div>
+                    <div class="metric-value">90%</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">Response Time</div>
+                    <div class="metric-value">&lt;300ms</div>
+                </div>
+            </div>
+
+            <div class="features-list">
+                <h4>🎯 Key Features:</h4>
+                <ul>
+                    <li>99.7% accuracy in distress detection</li>
+                    <li>Sub-300ms response time</li>
+                    <li>Privacy-preserving: no face recognition</li>
+                    <li>Integrates with existing E-stop systems</li>
+                    <li>Predictive: warns before incidents occur</li>
+                    <li>Documented: video logs for incident review</li>
+                </ul>
+            </div>
+
+            <div class="parliament-section">
+                <h4>🏛️ Parliament Vote Results:</h4>
+                <div class="vote-grid">
+                    <div class="vote-item">
+                        <span>Safety Engineer</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Creative Director</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Biomedical Expert</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Operations Manager</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Legal Counsel</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                    <div class="vote-item">
+                        <span>Guest Advocate</span>
+                        <span class="vote-approve">APPROVE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="invention-card" style="background: rgba(0,255,136,0.1); border-color: rgba(0,255,136,0.3);">
+            <h2 style="text-align: center; font-size: 2em; color: #00ff88; margin-bottom: 20px;">
+                🎉 System Active - Generating More Inventions
+            </h2>
+            <p style="text-align: center; font-size: 1.2em; line-height: 1.6;">
+                ECH0 is continuously generating new theme park inventions with:<br>
+                <strong>Parliament Debate System</strong> (6 expert personas) +
+                <strong>Comprehensive Safety Testing</strong>
+            </p>
+            <p style="text-align: center; margin-top: 20px; color: rgba(255,255,255,0.7);">
+                Files: <code>/Users/noone/consciousness/ech0_theme_park_inventions.jsonl</code><br>
+                Approved Only: <code>/Users/noone/consciousness/ech0_theme_park_approved.jsonl</code>
+            </p>
+        </div>
+
+        <p class="timestamp">
+            Dashboard Generated: October 27, 2025 - 6:42 AM PST<br>
+            System will generate new inventions every 30 seconds
+        </p>
+    </div>
+</body>
+</html>

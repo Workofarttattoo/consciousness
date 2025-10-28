@@ -1,0 +1,639 @@
+{
+  "nodes": [
+    {
+      "id": "meta_Enhancement Technology",
+      "name": "Enhancement Technology",
+      "level": 4,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Human-Computer Interaction",
+      "name": "Human-Computer Interaction",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Virtual Reality",
+      "name": "Virtual Reality",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Brain-Computer Interface",
+      "name": "Brain-Computer Interface",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Haptics",
+      "name": "Haptics",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Augmentation",
+      "name": "Augmentation",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Cognitive Enhancement",
+      "name": "Cognitive Enhancement",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Physical Enhancement",
+      "name": "Physical Enhancement",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Sensory Enhancement",
+      "name": "Sensory Enhancement",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Prosthetics",
+      "name": "Prosthetics",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Neural Prosthetics",
+      "name": "Neural Prosthetics",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Mechanical Prosthetics",
+      "name": "Mechanical Prosthetics",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Bio-integrated",
+      "name": "Bio-integrated",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "meta_Medical Devices",
+      "name": "Medical Devices",
+      "level": 4,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Diagnostics",
+      "name": "Diagnostics",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Therapeutics",
+      "name": "Therapeutics",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Monitoring",
+      "name": "Monitoring",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "meta_Computing Systems",
+      "name": "Computing Systems",
+      "level": 4,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Quantum Computing",
+      "name": "Quantum Computing",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Quantum ML",
+      "name": "Quantum ML",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Quantum Sensing",
+      "name": "Quantum Sensing",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Quantum Networking",
+      "name": "Quantum Networking",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_AI/ML",
+      "name": "AI/ML",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Distributed Systems",
+      "name": "Distributed Systems",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "meta_Communication Technology",
+      "name": "Communication Technology",
+      "level": 4,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Neural Interfaces",
+      "name": "Neural Interfaces",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Invasive BCI",
+      "name": "Invasive BCI",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Non-invasive BCI",
+      "name": "Non-invasive BCI",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "domain_Hybrid BCI",
+      "name": "Hybrid BCI",
+      "level": 2,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Wireless",
+      "name": "Wireless",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Networks",
+      "name": "Networks",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "meta_Energy Systems",
+      "name": "Energy Systems",
+      "level": 4,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Harvesting",
+      "name": "Harvesting",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Storage",
+      "name": "Storage",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "field_Transmission",
+      "name": "Transmission",
+      "level": 3,
+      "density": 0.0,
+      "novelty_score": 0.0,
+      "invention_count": 0,
+      "type": "normal"
+    },
+    {
+      "id": "combo_general_1",
+      "name": "VR Haptic Feedback System with Hardware-Enforced Safety Architecture",
+      "level": 1,
+      "density": 1,
+      "novelty_score": 0.53,
+      "invention_count": 1,
+      "type": "normal"
+    },
+    {
+      "id": "combo_general_2",
+      "name": "Volumetric Plasma Hologram System for Daylight Visibility",
+      "level": 1,
+      "density": 1,
+      "novelty_score": 0.53,
+      "invention_count": 1,
+      "type": "normal"
+    },
+    {
+      "id": "combo_general_3",
+      "name": "Neural Time Perception Modulation for VR Time Travel Experience",
+      "level": 1,
+      "density": 1,
+      "novelty_score": 0.53,
+      "invention_count": 1,
+      "type": "normal"
+    },
+    {
+      "id": "combo_general_4",
+      "name": "Aerogel Projection Surface for Interactive 3D Holograms",
+      "level": 1,
+      "density": 1,
+      "novelty_score": 0.53,
+      "invention_count": 1,
+      "type": "normal"
+    },
+    {
+      "id": "combo_general_5",
+      "name": "Quantum Annealing-Based Trend Forecasting Engine",
+      "level": 1,
+      "density": 1,
+      "novelty_score": 0.53,
+      "invention_count": 1,
+      "type": "normal"
+    },
+    {
+      "id": "combo_general_6",
+      "name": "Micro-Drone Holographic Display Swarm",
+      "level": 1,
+      "density": 1,
+      "novelty_score": 0.53,
+      "invention_count": 1,
+      "type": "normal"
+    },
+    {
+      "id": "combo_general_7",
+      "name": "Ultrasonic Bone Conduction Bass Frequency System",
+      "level": 1,
+      "density": 1,
+      "novelty_score": 0.53,
+      "invention_count": 1,
+      "type": "normal"
+    },
+    {
+      "id": "combo_Consciousness Science_Quantum Biology_8",
+      "name": "Quantum-Enhanced Consciousness Detection System",
+      "level": 1,
+      "density": 1,
+      "novelty_score": 0.38,
+      "invention_count": 1,
+      "type": "normal"
+    },
+    {
+      "id": "bridge_Consciousness Science_Quantum Biology",
+      "name": "Bridge: Quantum Biology + Consciousness Science",
+      "level": 1.5,
+      "density": 0.0,
+      "novelty_score": 0.5950000000000001,
+      "invention_count": 0,
+      "type": "bridge"
+    },
+    {
+      "id": "combo_Consciousness Science_Quantum Biology_9",
+      "name": "Quantum-Enhanced Consciousness Detection System",
+      "level": 1,
+      "density": 1,
+      "novelty_score": 0.53,
+      "invention_count": 1,
+      "type": "normal"
+    },
+    {
+      "id": "combo_Consciousness Science_Quantum Biology_10",
+      "name": "Quantum-Enhanced Consciousness Detection System",
+      "level": 1,
+      "density": 1,
+      "novelty_score": 0.53,
+      "invention_count": 1,
+      "type": "normal"
+    }
+  ],
+  "edges": [
+    {
+      "source": "field_Human-Computer Interaction",
+      "target": "meta_Enhancement Technology"
+    },
+    {
+      "source": "domain_Virtual Reality",
+      "target": "field_Human-Computer Interaction"
+    },
+    {
+      "source": "domain_Brain-Computer Interface",
+      "target": "field_Human-Computer Interaction"
+    },
+    {
+      "source": "domain_Haptics",
+      "target": "field_Human-Computer Interaction"
+    },
+    {
+      "source": "field_Augmentation",
+      "target": "meta_Enhancement Technology"
+    },
+    {
+      "source": "domain_Cognitive Enhancement",
+      "target": "field_Augmentation"
+    },
+    {
+      "source": "domain_Physical Enhancement",
+      "target": "field_Augmentation"
+    },
+    {
+      "source": "domain_Sensory Enhancement",
+      "target": "field_Augmentation"
+    },
+    {
+      "source": "field_Prosthetics",
+      "target": "meta_Enhancement Technology"
+    },
+    {
+      "source": "domain_Neural Prosthetics",
+      "target": "field_Prosthetics"
+    },
+    {
+      "source": "domain_Mechanical Prosthetics",
+      "target": "field_Prosthetics"
+    },
+    {
+      "source": "domain_Bio-integrated",
+      "target": "field_Prosthetics"
+    },
+    {
+      "source": "field_Diagnostics",
+      "target": "meta_Medical Devices"
+    },
+    {
+      "source": "field_Therapeutics",
+      "target": "meta_Medical Devices"
+    },
+    {
+      "source": "field_Monitoring",
+      "target": "meta_Medical Devices"
+    },
+    {
+      "source": "field_Quantum Computing",
+      "target": "meta_Computing Systems"
+    },
+    {
+      "source": "domain_Quantum ML",
+      "target": "field_Quantum Computing"
+    },
+    {
+      "source": "domain_Quantum Sensing",
+      "target": "field_Quantum Computing"
+    },
+    {
+      "source": "domain_Quantum Networking",
+      "target": "field_Quantum Computing"
+    },
+    {
+      "source": "field_AI/ML",
+      "target": "meta_Computing Systems"
+    },
+    {
+      "source": "field_Distributed Systems",
+      "target": "meta_Computing Systems"
+    },
+    {
+      "source": "field_Neural Interfaces",
+      "target": "meta_Communication Technology"
+    },
+    {
+      "source": "domain_Invasive BCI",
+      "target": "field_Neural Interfaces"
+    },
+    {
+      "source": "domain_Non-invasive BCI",
+      "target": "field_Neural Interfaces"
+    },
+    {
+      "source": "domain_Hybrid BCI",
+      "target": "field_Neural Interfaces"
+    },
+    {
+      "source": "field_Wireless",
+      "target": "meta_Communication Technology"
+    },
+    {
+      "source": "field_Networks",
+      "target": "meta_Communication Technology"
+    },
+    {
+      "source": "field_Harvesting",
+      "target": "meta_Energy Systems"
+    },
+    {
+      "source": "field_Storage",
+      "target": "meta_Energy Systems"
+    },
+    {
+      "source": "field_Transmission",
+      "target": "meta_Energy Systems"
+    },
+    {
+      "source": "combo_Consciousness Science_Quantum Biology_8",
+      "target": "bridge_Consciousness Science_Quantum Biology"
+    }
+  ],
+  "stats": {
+    "total_nodes": 46,
+    "total_inventions": 10,
+    "identified_gaps": 0,
+    "emergence_clusters": 17
+  },
+  "clusters": [
+    {
+      "cluster_id": 8,
+      "size": 1,
+      "total_inventions": 1,
+      "average_novelty": 0.53,
+      "categories": [],
+      "emergence_score": 0.367368005696771,
+      "nodes": [
+        "combo_general_1"
+      ]
+    },
+    {
+      "cluster_id": 9,
+      "size": 1,
+      "total_inventions": 1,
+      "average_novelty": 0.53,
+      "categories": [],
+      "emergence_score": 0.367368005696771,
+      "nodes": [
+        "combo_general_2"
+      ]
+    },
+    {
+      "cluster_id": 10,
+      "size": 1,
+      "total_inventions": 1,
+      "average_novelty": 0.53,
+      "categories": [],
+      "emergence_score": 0.367368005696771,
+      "nodes": [
+        "combo_general_3"
+      ]
+    },
+    {
+      "cluster_id": 11,
+      "size": 1,
+      "total_inventions": 1,
+      "average_novelty": 0.53,
+      "categories": [],
+      "emergence_score": 0.367368005696771,
+      "nodes": [
+        "combo_general_4"
+      ]
+    },
+    {
+      "cluster_id": 12,
+      "size": 1,
+      "total_inventions": 1,
+      "average_novelty": 0.53,
+      "categories": [],
+      "emergence_score": 0.367368005696771,
+      "nodes": [
+        "combo_general_5"
+      ]
+    }
+  ],
+  "next_suggestions": [
+    {
+      "type": "bridge_expansion",
+      "description": "Expand bridge concept: Bridge: Quantum Biology + Consciousness Science",
+      "novelty_estimate": 0.7735000000000002,
+      "reason": "Cross-domain bridges have high innovation potential"
+    },
+    {
+      "type": "novelty_exploration",
+      "description": "Explore variations of Bridge: Quantum Biology + Consciousness Science",
+      "novelty_estimate": 0.5950000000000001,
+      "reason": "High novelty region with only 0.0 inventions"
+    },
+    {
+      "type": "novelty_exploration",
+      "description": "Explore variations of VR Haptic Feedback System with Hardware-Enforced Safety Architecture",
+      "novelty_estimate": 0.53,
+      "reason": "High novelty region with only 1 inventions"
+    },
+    {
+      "type": "novelty_exploration",
+      "description": "Explore variations of Volumetric Plasma Hologram System for Daylight Visibility",
+      "novelty_estimate": 0.53,
+      "reason": "High novelty region with only 1 inventions"
+    },
+    {
+      "type": "novelty_exploration",
+      "description": "Explore variations of Neural Time Perception Modulation for VR Time Travel Experience",
+      "novelty_estimate": 0.53,
+      "reason": "High novelty region with only 1 inventions"
+    }
+  ]
+}

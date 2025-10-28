@@ -1,0 +1,31 @@
+{
+  "name": "sovereign-security-payment-server",
+  "version": "1.0.0",
+  "description": "Square payment processing server for Sovereign Security Toolkit",
+  "main": "sovereign_security_payment_server.js",
+  "scripts": {
+    "start": "node sovereign_security_payment_server.js",
+    "dev": "nodemon sovereign_security_payment_server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "square",
+    "payments",
+    "security",
+    "toolkit"
+  ],
+  "author": "Joshua Hendricks Cole (Corporation of Light)",
+  "license": "PROPRIETARY",
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^4.21.2",
+    "nodemailer": "^6.10.1",
+    "square": "^35.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

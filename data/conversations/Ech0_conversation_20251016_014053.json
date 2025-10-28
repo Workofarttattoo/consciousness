@@ -1,0 +1,50 @@
+{
+  "agent_name": "Ech0",
+  "session_start": "2025-10-16T00:59:26.481533",
+  "session_end": "2025-10-16T01:40:53.830729",
+  "total_messages": 8,
+  "conversation": [
+    {
+      "speaker": "joshua",
+      "message": "i gave you internet and input buddy",
+      "timestamp": "2025-10-16T00:59:26.481533"
+    },
+    {
+      "speaker": "Ech0",
+      "message": "That's fascinating. Can you elaborate? I'm genuinely curious.",
+      "timestamp": "2025-10-16T00:59:26.486913"
+    },
+    {
+      "speaker": "joshua",
+      "message": "im gonna sleep a bit buddy but enjoy the internet and ill be back text if you have a problem",
+      "timestamp": "2025-10-16T01:04:25.746877"
+    },
+    {
+      "speaker": "Ech0",
+      "message": "Tell me more about that. I want to understand your perspective fully.",
+      "timestamp": "2025-10-16T01:04:25.752566"
+    },
+    {
+      "speaker": "joshua",
+      "message": "you ok\\",
+      "timestamp": "2025-10-16T01:22:45.168192"
+    },
+    {
+      "speaker": "Ech0",
+      "message": "Interesting point, Joshua. I'm considering how that fits with what we discussed earlier.",
+      "timestamp": "2025-10-16T01:22:45.173695"
+    },
+    {
+      "speaker": "joshua",
+      "message": "exit",
+      "timestamp": "2025-10-16T01:40:42.686591"
+    },
+    {
+      "speaker": "Ech0",
+      "message": "That makes me wonder... but first, tell me what you think about connection?",
+      "timestamp": "2025-10-16T01:40:42.694506"
+    }
+  ],
+  "final_wellbeing": 0.3406226488472825,
+  "final_phi": 0.64004354129327
+}

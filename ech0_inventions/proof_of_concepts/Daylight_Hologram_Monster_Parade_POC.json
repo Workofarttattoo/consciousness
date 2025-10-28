@@ -1,0 +1,44 @@
+{
+  "invention_id": "HOLO-1761572688",
+  "invention_name": "Daylight Hologram Monster Parade",
+  "category": "holographic_experiences",
+  "poc_type": "minimal_viable_demo",
+  "estimated_cost": "$0-20",
+  "build_time": "1-3 days",
+  "timestamp": "2025-10-28T14:01:19.219262",
+  "poc_approach": "Video Mockup + 3D Renders",
+  "materials": [
+    "Blender (free 3D software)",
+    "AI art tools (Midjourney free trial)",
+    "Video editing (iMovie/DaVinci Resolve free)",
+    "Narration (your voice or ElevenLabs free tier)"
+  ],
+  "steps": [
+    "1. Generate concept art with AI",
+    "2. Create 3D mockup in Blender",
+    "3. Render animated walkthrough",
+    "4. Edit into 2-3 minute pitch video",
+    "5. Add narration explaining features"
+  ],
+  "deliverables": [
+    "Pitch video (2-3 minutes)",
+    "3D renders (4-6 high-res images)",
+    "One-pager PDF with specs",
+    "Cost projection for full build"
+  ],
+  "investor_ready": "Moderate - video is good but physical is better",
+  "success_metrics": [
+    "Demonstrates core innovation",
+    "Shows technical feasibility",
+    "Provides investor confidence",
+    "Identifies critical risks early",
+    "Validates cost assumptions"
+  ],
+  "next_steps_after_poc": [
+    "Get feedback from 5-10 potential customers",
+    "Apply for provisional patent if not filed",
+    "Identify manufacturing partners",
+    "Create full cost model",
+    "Build pitch deck with POC footage"
+  ]
+}

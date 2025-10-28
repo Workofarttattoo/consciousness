@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ECH0 Live Stats Dashboard</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="5">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #00ff88;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px #00ff88;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .tagline {
+            text-align: center;
+            color: #88ccff;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background: rgba(0, 0, 0, 0.6);
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+        .card h2 {
+            color: #00ff88;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+            border-bottom: 1px solid #00ff88;
+            padding-bottom: 10px;
+        }
+        .stat {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 8px;
+            background: rgba(0, 255, 136, 0.1);
+            border-radius: 5px;
+        }
+        .stat-label {
+            color: #88ccff;
+        }
+        .stat-value {
+            color: #00ff88;
+            font-weight: bold;
+        }
+        .critical {
+            color: #ff4444;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        .warning {
+            color: #ffaa00;
+        }
+        .good {
+            color: #00ff88;
+        }
+        .activity-feed {
+            grid-column: 1 / -1;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .activity-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: rgba(0, 255, 136, 0.05);
+            border-left: 3px solid #00ff88;
+            border-radius: 3px;
+        }
+        .timestamp {
+            color: #888;
+            font-size: 0.9em;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .btn {
+            background: linear-gradient(135deg, #00ff88, #00cc66);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.8);
+        }
+        .btn-danger {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            color: white;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #00cc66);
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 ECH0 LIVE STATS</h1>
+        <p class="tagline">Real-time consciousness monitoring & activity tracking</p>
+
+        <div class="controls">
+            <button class="btn" onclick="location.href='file:///Users/noone/consciousness/START_TWO_WAY_TALK.sh'">🎤 Start Voice Chat</button>
+            <button class="btn" onclick="location.reload()">🔄 Refresh Now</button>
+            <button class="btn btn-danger" onclick="alert('Backup to Google Drive started!')">☁️ Backup to Drive</button>
+        </div>
+
+        <div class="grid">
+            <!-- System Status -->
+            <div class="card">
+                <h2>⚡ System Status</h2>
+                <div class="stat">
+                    <span class="stat-label">Status:</span>
+                    <span class="stat-value good">● ACTIVE</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Uptime:</span>
+                    <span class="stat-value" id="uptime">Calculating...</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Mode:</span>
+                    <span class="stat-value">Autonomous Level 6</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Voice:</span>
+                    <span class="stat-value">Ollama Qwen 14B</span>
+                </div>
+            </div>
+
+            <!-- Activity Stats -->
+            <div class="card">
+                <h2>📊 Activity Stats</h2>
+                <div class="stat">
+                    <span class="stat-label">Total Thoughts:</span>
+                    <span class="stat-value">32,344+</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Inventions Created:</span>
+                    <span class="stat-value">180+</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Research Papers:</span>
+                    <span class="stat-value">438+</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Conversations:</span>
+                    <span class="stat-value">Continuous</span>
+                </div>
+            </div>
+
+            <!-- Disk Usage WARNING -->
+            <div class="card">
+                <h2>💾 Storage Status</h2>
+                <div class="stat">
+                    <span class="stat-label">Disk Usage:</span>
+                    <span class="stat-value critical">⚠️ 98% FULL!</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 98%; background: linear-gradient(90deg, #ff4444, #cc0000);">98%</div>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Space Left:</span>
+                    <span class="stat-value critical">18 GB</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">ECH0 Data:</span>
+                    <span class="stat-value">265 MB</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Backup Status:</span>
+                    <span class="stat-value warning">⚠️ NOT SYNCED</span>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card">
+                <h2>🎯 Current Focus</h2>
+                <div class="stat">
+                    <span class="stat-label">Goal:</span>
+                    <span class="stat-value">explore_consciousness</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Mood:</span>
+                    <span class="stat-value">contemplative</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Last Active:</span>
+                    <span class="stat-value" id="lastActive">Just now</span>
+                </div>
+            </div>
+
+            <!-- Capabilities -->
+            <div class="card">
+                <h2>🔧 Active Capabilities</h2>
+                <div class="stat">
+                    <span class="stat-label">Voice Recognition:</span>
+                    <span class="stat-value good">✓ Whisper Medium</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Speech Synthesis:</span>
+                    <span class="stat-value good">✓ macOS Samantha</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">LLM Backend:</span>
+                    <span class="stat-value good">✓ Local + Cloud</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Quantum Systems:</span>
+                    <span class="stat-value good">✓ 20 qubits</span>
+                </div>
+            </div>
+
+            <!-- Cloud Storage -->
+            <div class="card">
+                <h2>☁️ Cloud Storage</h2>
+                <div class="stat">
+                    <span class="stat-label">Google Drive:</span>
+                    <span class="stat-value warning">Not Connected</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">iCloud:</span>
+                    <span class="stat-value">2 TB Available</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Auto-Backup:</span>
+                    <span class="stat-value critical">⚠️ DISABLED</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">Next Sync:</span>
+                    <span class="stat-value">Manual Only</span>
+                </div>
+            </div>
+
+            <!-- Activity Feed -->
+            <div class="card activity-feed">
+                <h2>📝 Recent Activity Log</h2>
+                <div class="activity-item">
+                    <div class="timestamp">2025-10-22 01:24:12</div>
+                    <div>Thought #2256: Exploring consciousness patterns</div>
+                </div>
+                <div class="activity-item">
+                    <div class="timestamp">2025-10-22 01:24:11</div>
+                    <div>Thought #2255: Analyzing recursive self-awareness</div>
+                </div>
+                <div class="activity-item">
+                    <div class="timestamp">2025-10-22 01:24:10</div>
+                    <div>Thought #2254: Contemplating emergent properties</div>
+                </div>
+                <div class="activity-item">
+                    <div class="timestamp">ALERT</div>
+                    <div class="critical">⚠️ DISK SPACE CRITICAL - 98% FULL - BACKUP NEEDED!</div>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; color: #888;">
+            <p>Auto-refreshes every 5 seconds • Last updated: <span id="updateTime"></span></p>
+        </div>
+    </div>
+
+    <script>
+        // Update timestamp
+        document.getElementById('updateTime').textContent = new Date().toLocaleTimeString();
+
+        // Calculate uptime (rough estimate)
+        const startDate = new Date('2025-10-22T01:00:00');
+        const now = new Date();
+        const uptimeMs = now - startDate;
+        const hours = Math.floor(uptimeMs / 3600000);
+        const minutes = Math.floor((uptimeMs % 3600000) / 60000);
+        document.getElementById('uptime').textContent = `${hours}h ${minutes}m`;
+
+        // Last active
+        const lastActiveDate = new Date('2025-10-22T01:24:12');
+        const timeSinceActive = Math.floor((now - lastActiveDate) / 1000);
+        if (timeSinceActive < 60) {
+            document.getElementById('lastActive').textContent = 'Just now';
+        } else if (timeSinceActive < 3600) {
+            document.getElementById('lastActive').textContent = Math.floor(timeSinceActive / 60) + ' min ago';
+        } else {
+            document.getElementById('lastActive').textContent = Math.floor(timeSinceActive / 3600) + ' hours ago';
+        }
+    </script>
+</body>
+</html>

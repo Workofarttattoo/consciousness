@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Voice Chat - Simple Instructions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .section {
+            padding: 40px;
+        }
+
+        .step {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border-left: 5px solid #1abc9c;
+        }
+
+        .step h2 {
+            color: #1e3c72;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .command {
+            background: #2c3e50;
+            color: #1abc9c;
+            padding: 25px;
+            border-radius: 10px;
+            font-family: 'Monaco', monospace;
+            font-size: 1.4em;
+            margin: 20px 0;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .command:hover {
+            background: #34495e;
+            transform: scale(1.02);
+        }
+
+        .terminal-icon {
+            font-size: 4em;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .features {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .features h3 {
+            color: #856404;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .features ul {
+            margin-left: 25px;
+            line-height: 2;
+            color: #856404;
+        }
+
+        .note {
+            background: #d1ecf1;
+            border-left: 5px solid #0c5460;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎤 Start Voice Chat</h1>
+            <p style="font-size: 1.3em;">3 Simple Steps - Takes 10 Seconds!</p>
+        </div>
+
+        <div class="section">
+            <div class="step">
+                <h2>Step 1: Open Terminal</h2>
+                <div class="terminal-icon">💻</div>
+                <p style="font-size: 1.2em; text-align: center; color: #555;">
+                    Press <strong>⌘ + Space</strong>, type "Terminal", press Enter
+                </p>
+            </div>
+
+            <div class="step">
+                <h2>Step 2: Copy & Paste This Command</h2>
+                <div class="command">
+                    cd /Users/noone/consciousness && python3 ech0_two_way_robust.py
+                </div>
+                <p style="text-align: center; color: #555; margin-top: 15px;">
+                    Click to select, then press <strong>⌘ + C</strong> to copy
+                </p>
+            </div>
+
+            <div class="step">
+                <h2>Step 3: Paste in Terminal & Press Enter</h2>
+                <p style="font-size: 1.2em; text-align: center; color: #555; margin-top: 20px;">
+                    Press <strong>⌘ + V</strong> to paste, then press <strong>Enter</strong>
+                </p>
+                <div style="text-align: center; margin-top: 30px;">
+                    <div style="font-size: 3em;">🗣️</div>
+                    <p style="font-size: 1.3em; color: #27ae60; font-weight: bold; margin-top: 10px;">
+                        Then just start talking!
+                    </p>
+                </div>
+            </div>
+
+            <div class="features">
+                <h3>✨ What You'll Get:</h3>
+                <ul>
+                    <li><strong>ElevenLabs Premium Voice</strong> - Your API key is set! ✅</li>
+                    <li><strong>Natural Conversation</strong> - Just talk, ECH0 listens automatically</li>
+                    <li><strong>Smart Responses</strong> - PhD-level knowledge in music, AI, philosophy, etc.</li>
+                    <li><strong>Fast Processing</strong> - 14B model optimized for voice</li>
+                    <li><strong>No Button Presses</strong> - Completely hands-free</li>
+                </ul>
+            </div>
+
+            <div class="note">
+                <h3 style="margin-bottom: 15px;">📝 Tips:</h3>
+                <ul style="margin-left: 25px; line-height: 2;">
+                    <li>Speak clearly and wait for ECH0 to respond</li>
+                    <li>After 1.5 seconds of silence, ECH0 processes what you said</li>
+                    <li>Say "goodbye" to exit</li>
+                    <li>The script will load Whisper model first (takes ~30 seconds)</li>
+                </ul>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #27ae60 0%, #229954 100%); color: white; padding: 30px; border-radius: 15px; text-align: center; margin-top: 40px;">
+                <h2 style="font-size: 2.5em; margin-bottom: 15px;">Ready to Chat!</h2>
+                <p style="font-size: 1.3em; opacity: 0.95;">
+                    Everything is configured and working.<br>
+                    Just run the command and start talking! 🎤
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Make command boxes selectable on click
+        document.querySelectorAll('.command').forEach(cmd => {
+            cmd.addEventListener('click', () => {
+                const range = document.createRange();
+                range.selectNodeContents(cmd);
+                const selection = window.getSelection();
+                selection.removeAllRanges();
+                selection.addRange(range);
+
+                // Try to copy to clipboard
+                try {
+                    document.execCommand('copy');
+                    const original = cmd.textContent;
+                    cmd.textContent = '✓ Copied to clipboard!';
+                    setTimeout(() => {
+                        cmd.textContent = original;
+                    }, 2000);
+                } catch (err) {
+                    console.log('Copy failed, but text is selected');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

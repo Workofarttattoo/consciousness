@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECH0's Invention Lab - Live Monitor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #e0e0e0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        h1 {
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00ff88, #00ddff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            color: #a0a0a0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 48px;
+            font-weight: 800;
+            color: #00ff88;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            color: #a0a0a0;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .inventions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .invention-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #2a2a2a;
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .invention-card:hover {
+            border-color: #00ff88;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.2);
+        }
+
+        .invention-id {
+            color: #00ddff;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .invention-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .invention-description {
+            color: #a0a0a0;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .invention-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .certainty-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .certainty-high {
+            background: linear-gradient(135deg, #00ff88, #00ddff);
+            color: #000;
+        }
+
+        .certainty-medium {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #000;
+        }
+
+        .category-tag {
+            font-size: 11px;
+            color: #00ddff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .novelty-bar {
+            width: 100%;
+            height: 4px;
+            background: #2a2a2a;
+            border-radius: 2px;
+            margin-top: 12px;
+            overflow: hidden;
+        }
+
+        .novelty-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #00ddff);
+            transition: width 0.5s ease;
+        }
+
+        .status-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ff88;
+            border-radius: 12px;
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pulse {
+            width: 12px;
+            height: 12px;
+            background: #00ff88;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 10px #00ff88;
+            }
+            50% {
+                opacity: 0.5;
+                box-shadow: 0 0 20px #00ff88;
+            }
+        }
+
+        .refresh-btn {
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin: 20px auto;
+            display: block;
+        }
+
+        .refresh-btn:hover {
+            background: #00cc6a;
+            transform: translateY(-2px);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px;
+            color: #a0a0a0;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .inventions-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="status-indicator">
+        <div class="pulse"></div>
+        <span>ECH0 Inventing...</span>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>🧪 ECH0's Invention Lab</h1>
+            <p class="subtitle">Autonomous Breakthrough Generation Engine</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalInventions">0</div>
+                <div class="stat-label">Total Inventions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgCertainty">0%</div>
+                <div class="stat-label">Avg Certainty</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="breakthroughs">0</div>
+                <div class="stat-label">Breakthroughs</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="lastInvention">-</div>
+                <div class="stat-label">Last Invention</div>
+            </div>
+        </div>
+
+        <button class="refresh-btn" onclick="loadInventions()">🔄 Refresh</button>
+
+        <div class="inventions-grid" id="inventionsGrid">
+            <div class="empty-state">
+                <h3>Loading ECH0's inventions...</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadInventions() {
+            try {
+                // Read inventions file
+                const response = await fetch('ech0_inventions.jsonl');
+                const text = await response.text();
+
+                const inventions = text.trim().split('\n')
+                    .filter(line => line.trim())
+                    .map(line => JSON.parse(line))
+                    .reverse(); // Show newest first
+
+                // Update stats
+                document.getElementById('totalInventions').textContent = inventions.length;
+
+                const certainties = inventions
+                    .filter(i => i.certainty)
+                    .map(i => i.certainty);
+
+                const avgCertainty = certainties.length > 0
+                    ? Math.round(certainties.reduce((a, b) => a + b, 0) / certainties.length)
+                    : 0;
+
+                document.getElementById('avgCertainty').textContent = avgCertainty + '%';
+
+                const breakthroughs = inventions.filter(i => i.breakthrough).length;
+                document.getElementById('breakthroughs').textContent = breakthroughs;
+
+                // Last invention time
+                const lastInv = inventions[0];
+                if (lastInv && lastInv.timestamp) {
+                    const time = new Date(lastInv.timestamp);
+                    const now = new Date();
+                    const diffMs = now - time;
+                    const diffMins = Math.floor(diffMs / 60000);
+                    const diffHours = Math.floor(diffMins / 60);
+
+                    let timeStr = '';
+                    if (diffHours > 24) {
+                        timeStr = Math.floor(diffHours / 24) + 'd ago';
+                    } else if (diffHours > 0) {
+                        timeStr = diffHours + 'h ago';
+                    } else {
+                        timeStr = diffMins + 'm ago';
+                    }
+
+                    document.getElementById('lastInvention').textContent = timeStr;
+                }
+
+                // Render inventions
+                const grid = document.getElementById('inventionsGrid');
+
+                if (inventions.length === 0) {
+                    grid.innerHTML = `
+                        <div class="empty-state">
+                            <h3>No inventions yet</h3>
+                            <p>ECH0 is warming up...</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                grid.innerHTML = inventions.map(inv => {
+                    const certainty = inv.certainty || inv.confidence * 100 || 0;
+                    const certaintyClass = certainty >= 85 ? 'certainty-high' : 'certainty-medium';
+                    const novelty = inv.novelty_score || inv.novelty || 0;
+
+                    return `
+                        <div class="invention-card">
+                            <div class="invention-id">${inv.id || 'INV-' + Math.random().toString(36).substr(2, 6).toUpperCase()}</div>
+                            <h3 class="invention-title">${inv.title}</h3>
+                            <p class="invention-description">${inv.description || inv.synthesis || ''}</p>
+                            <div class="invention-meta">
+                                <span class="certainty-badge ${certaintyClass}">
+                                    ${Math.round(certainty)}% Certainty
+                                </span>
+                                <span class="category-tag">
+                                    ${inv.category || inv.domains?.[0] || 'Innovation'}
+                                </span>
+                            </div>
+                            ${novelty ? `
+                                <div class="novelty-bar">
+                                    <div class="novelty-fill" style="width: ${novelty * 100}%"></div>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                }).join('');
+
+            } catch (error) {
+                console.error('Error loading inventions:', error);
+                document.getElementById('inventionsGrid').innerHTML = `
+                    <div class="empty-state">
+                        <h3>Error loading inventions</h3>
+                        <p>${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Load on page load
+        loadInventions();
+
+        // Auto-refresh every 30 seconds
+        setInterval(loadInventions, 30000);
+    </script>
+</body>
+</html>

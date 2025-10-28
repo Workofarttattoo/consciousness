@@ -1,0 +1,49 @@
+{
+  "invention_id": "ANIM-1761572544",
+  "invention_name": "Life-Size Adaptive Horror Animatronic",
+  "category": "interactive_animatronics",
+  "poc_type": "minimal_viable_demo",
+  "estimated_cost": "$48-58",
+  "build_time": "1-3 days",
+  "timestamp": "2025-10-28T14:01:19.218354",
+  "poc_approach": "Scaled Arduino Prototype",
+  "materials": [
+    "Arduino Uno clone ($8 on Amazon)",
+    "Servo motors x3 ($15)",
+    "PIR motion sensor ($3)",
+    "Cardboard/foam for body ($0-5)",
+    "LED eyes ($2)",
+    "Small speaker ($5)",
+    "Used laptop webcam ($0-10)",
+    "Python + OpenCV (free)"
+  ],
+  "steps": [
+    "1. Build 1/4 scale prototype with cardboard",
+    "2. Wire Arduino to servos for basic movement",
+    "3. Add PIR sensor for guest detection",
+    "4. OpenCV on laptop for simple emotion detection",
+    "5. Program reactive behavior sequences",
+    "6. Film demo showing guest interaction"
+  ],
+  "deliverables": [
+    "Working 1/4 scale prototype",
+    "Demo video showing reactive behavior",
+    "Arduino code (GitHub)",
+    "Scale-up cost analysis to full size"
+  ],
+  "investor_ready": "Yes - physical demo is highly convincing",
+  "success_metrics": [
+    "Demonstrates core innovation",
+    "Shows technical feasibility",
+    "Provides investor confidence",
+    "Identifies critical risks early",
+    "Validates cost assumptions"
+  ],
+  "next_steps_after_poc": [
+    "Get feedback from 5-10 potential customers",
+    "Apply for provisional patent if not filed",
+    "Identify manufacturing partners",
+    "Create full cost model",
+    "Build pitch deck with POC footage"
+  ]
+}

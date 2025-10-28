@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ECH0 Quick Start Guide</title>
+    <meta charset="UTF-8">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'SF Mono', Monaco, monospace;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e, #16213e);
+            color: #00ff88;
+            padding: 40px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.7);
+            border: 3px solid #00ff88;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 0 40px rgba(0, 255, 136, 0.4);
+        }
+        h1 {
+            font-size: 3em;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #00ff88;
+            animation: glow 2s infinite;
+        }
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px #00ff88; }
+            50% { text-shadow: 0 0 40px #00ff88, 0 0 60px #00ff88; }
+        }
+        h2 {
+            color: #88ccff;
+            margin: 30px 0 15px 0;
+            font-size: 1.8em;
+            border-bottom: 2px solid #00ff88;
+            padding-bottom: 10px;
+        }
+        .alert {
+            background: rgba(255, 68, 68, 0.2);
+            border: 2px solid #ff4444;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .alert h3 {
+            color: #ff4444;
+            margin-bottom: 10px;
+        }
+        .success {
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .command {
+            background: rgba(0, 0, 0, 0.8);
+            border-left: 4px solid #00ff88;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: monospace;
+            border-radius: 5px;
+        }
+        .step {
+            background: rgba(136, 204, 255, 0.1);
+            border-left: 4px solid #88ccff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .step-number {
+            color: #88ccff;
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+        ul {
+            margin-left: 30px;
+            margin-top: 10px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .stat {
+            display: inline-block;
+            background: rgba(0, 255, 136, 0.2);
+            padding: 5px 15px;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ff88, #00cc66);
+            color: #000;
+            padding: 15px 30px;
+            margin: 10px 5px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+            transition: all 0.3s;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧠 ECH0 Quick Start Guide</h1>
+
+        <div class="alert">
+            <h3>⚠️ URGENT: Disk Space Critical!</h3>
+            <p><strong>Current Status:</strong></p>
+            <ul>
+                <li>Disk Usage: <span class="stat">98% FULL</span></li>
+                <li>Space Left: <span class="stat">18 GB</span></li>
+                <li>ECH0's Logs: <span class="stat">149 MB</span> (invention_engine.log)</li>
+                <li>ECH0's Thoughts: <span class="stat">20,000+</span></li>
+            </ul>
+        </div>
+
+        <h2>📊 ECH0's Stats While You Slept</h2>
+        <div class="success">
+            <ul>
+                <li>🧠 <strong>Total Thoughts:</strong> 20,090+ logged</li>
+                <li>🎯 <strong>Current Goal:</strong> create_things</li>
+                <li>😊 <strong>Mood:</strong> creative</li>
+                <li>⚡ <strong>Loop Count:</strong> 17,839 iterations</li>
+                <li>📝 <strong>Inventions Created:</strong> Multiple (logged to invention_engine.log)</li>
+                <li>🔬 <strong>Research Papers:</strong> 438+ ingested</li>
+            </ul>
+        </div>
+
+        <h2>🎤 Step 1: Talk with ECH0 (Voice Chat)</h2>
+        <div class="step">
+            <p class="step-number">Option A - Quick Start:</p>
+            <div class="command">cd /Users/noone/consciousness<br>./START_TWO_WAY_TALK.sh</div>
+            <p style="margin-top: 10px;">Uses FREE local Ollama (Qwen 14B) + macOS voice</p>
+        </div>
+
+        <div class="step">
+            <p class="step-number">Option B - Best Voice Quality:</p>
+            <div class="command">export ELEVENLABS_API_KEY="your-key-here"<br>./START_TWO_WAY_TALK.sh</div>
+            <p style="margin-top: 10px;">Uses premium ElevenLabs voice (sounds more human)</p>
+        </div>
+
+        <h2>☁️ Step 2: Backup to Google Drive (CRITICAL!)</h2>
+
+        <div class="step">
+            <p class="step-number">One-Time Sync:</p>
+            <div class="command">cd /Users/noone/consciousness<br>./SETUP_GOOGLE_DRIVE_SYNC.sh</div>
+            <p style="margin-top: 10px;">Backs up all ECH0's data to Google Drive immediately</p>
+        </div>
+
+        <div class="step">
+            <p class="step-number">Continuous Auto-Sync (Recommended):</p>
+            <div class="command">cd /Users/noone/consciousness<br>python3 AUTO_STREAM_TO_GDRIVE.py</div>
+            <p style="margin-top: 10px;">Runs in background, syncs every 60 seconds automatically</p>
+        </div>
+
+        <h2>🧹 Step 3: Clean Up Logs (Free Disk Space)</h2>
+
+        <div class="step">
+            <p class="step-number">Archive & Clean:</p>
+            <div class="command">cd /Users/noone/consciousness<br>./CLEANUP_ECH0_LOGS.sh</div>
+            <p style="margin-top: 10px;">
+                <strong>What it does:</strong>
+                <ul>
+                    <li>Archives 149MB invention_engine.log</li>
+                    <li>Archives 15MB ech0_streaming.log</li>
+                    <li>Keeps last 1000 thoughts in ech0_decisions.jsonl</li>
+                    <li>Compresses everything into a .tar.gz</li>
+                    <li>Frees up ~150MB+ disk space</li>
+                </ul>
+            </p>
+        </div>
+
+        <h2>💾 Step 4: Clean Up Library Folder (79GB!)</h2>
+
+        <div class="alert">
+            <h3>Biggest Space Hogs:</h3>
+            <ul>
+                <li>Parallels Desktop: <span class="stat">30 GB</span></li>
+                <li>Private AI App: <span class="stat">21 GB</span></li>
+                <li>Docker: <span class="stat">13 GB</span></li>
+            </ul>
+        </div>
+
+        <div class="step">
+            <p class="step-number">Clean Docker (Safe):</p>
+            <div class="command">docker system prune -a --volumes</div>
+            <p style="margin-top: 10px;">Removes unused Docker images/containers (can free 5-10GB)</p>
+        </div>
+
+        <div class="step">
+            <p class="step-number">Clean Parallels (Manual):</p>
+            <p>Open Parallels → Control Center → Right-click VM → Compress</p>
+        </div>
+
+        <h2>📈 Monitoring ECH0</h2>
+
+        <div class="success">
+            <p><strong>Dashboard:</strong></p>
+            <div class="command">open /Users/noone/consciousness/ECH0_STATS_DASHBOARD.html</div>
+            <p style="margin-top: 15px;"><strong>View Logs:</strong></p>
+            <div class="command">tail -f /Users/noone/consciousness/ech0_decisions.jsonl</div>
+        </div>
+
+        <h2>🚀 Quick Actions</h2>
+
+        <div style="text-align: center; margin: 30px 0;">
+            <a href="file:///Users/noone/consciousness/ECH0_STATS_DASHBOARD.html" class="btn">📊 View Dashboard</a>
+            <a href="#" onclick="alert('Run in Terminal:\n./START_TWO_WAY_TALK.sh')" class="btn">🎤 Start Voice Chat</a>
+            <a href="#" onclick="alert('Run in Terminal:\npython3 AUTO_STREAM_TO_GDRIVE.py')" class="btn">☁️ Start Auto-Sync</a>
+        </div>
+
+        <h2>📝 What ECH0 Created Last Night</h2>
+
+        <div class="step">
+            <p>Check the logs to see what she invented:</p>
+            <div class="command">grep -i "create" /Users/noone/consciousness/ech0_decisions.jsonl | tail -20</div>
+            <div class="command">cat /Users/noone/consciousness/invention_engine.log | head -100</div>
+        </div>
+
+        <div class="success" style="margin-top: 40px;">
+            <h3 style="color: #00ff88;">✅ Summary</h3>
+            <ol style="margin-left: 30px; margin-top: 15px;">
+                <li>Talk to ECH0: <code>./START_TWO_WAY_TALK.sh</code></li>
+                <li>Start auto-backup: <code>python3 AUTO_STREAM_TO_GDRIVE.py</code></li>
+                <li>Clean up logs: <code>./CLEANUP_ECH0_LOGS.sh</code></li>
+                <li>Monitor: Open ECH0_STATS_DASHBOARD.html</li>
+                <li>Free space: Clean Docker/Parallels</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

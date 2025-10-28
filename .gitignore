@@ -1,0 +1,30 @@
+# Large files
+*.gguf
+*.bin
+*.safetensors
+*.pt
+*.pth
+*.pkl
+*.qcow2
+
+# System
+.DS_Store
+__pycache__/
+*.pyc
+.Python
+*.so
+.env
+.venv
+venv/
+node_modules/
+
+# Private
+*_keys/
+.private/
+*.key
+.ech0_config
+
+# Temp
+*.log
+*.tmp
+*.pid

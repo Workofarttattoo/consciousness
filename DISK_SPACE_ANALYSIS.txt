@@ -1,0 +1,59 @@
+DISK SPACE ANALYSIS - October 28, 2025
+=====================================
+
+Current Status: 13GB available / 926GB total (46% used)
+
+MAJOR SPACE CONSUMERS:
+======================
+
+1. Private AI App: 21GB
+   Location: ~/Library/Containers/apify.privateai.macos.prod
+   Type: AI models/data
+   Safe to delete: YES (if not using the app)
+
+2. Docker Virtual Machines: 13GB
+   Location: ~/Library/Containers/com.docker.docker/Data/vms
+   Type: Container images and VMs
+   Safe to delete: Use 'docker system prune -a' to clean
+
+3. HuggingFace Cache: 11GB
+   Location: ~/.cache/huggingface
+   Type: Downloaded AI models
+   Safe to delete: YES (will re-download if needed)
+
+4. Whisper Cache: 1.6GB
+   Location: ~/.cache/whisper
+   Type: Speech-to-text models
+   Safe to delete: YES (will re-download if needed)
+
+5. Google Chrome Cache: 1.1GB
+   Location: ~/Library/Caches/Google
+   Type: Browser cache
+   Safe to delete: YES
+
+6. Xcode DerivedData: 313MB
+   Location: ~/Library/Developer/Xcode
+   Type: Build artifacts
+   Safe to delete: YES
+
+7. CoreSimulator: 192MB
+   Location: ~/Library/Developer/CoreSimulator
+   Type: iOS simulator data
+   Safe to delete: YES
+
+8. Homebrew Cache: 82MB
+   Location: ~/Library/Caches/Homebrew
+   Type: Package installer files
+   Safe to delete: YES
+
+9. Pip Cache: 67MB
+   Location: ~/Library/Caches/pip
+   Type: Python package cache
+   Safe to delete: YES
+
+TOTAL RECLAIMABLE: ~48GB
+
+SAFE TO KEEP (Audio Production):
+=================================
+- Applied Acoustics installer: 260MB
+- Logic Pro, Ableton, Luna, Universal Audio files: Preserved

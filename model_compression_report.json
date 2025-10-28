@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-10-27T07:17:31.757823",
+  "found_models": [
+    {
+      "path": "/Users/noone/Library/Containers/apify.privateai.macos.prod/Data/Library/Application Support/GGUFModels/d302df94a467806e3c02ef6cf24bb98051d247dba69b10e998c4711c56caf89c/d302df94a467806e3c02ef6cf24bb98051d247dba69b10e998c4711c56caf89c.gguf",
+      "size_gb": 18.487997204065323,
+      "type": "gguf"
+    },
+    {
+      "path": "/Users/noone/.lmstudio/models/DavidAU/OpenAi-GPT-oss-20b-abliterated-uncensored-NEO-Imatrix-gguf/OpenAI-20B-NEO-CODEPlus-Uncensored-Q5_1.gguf",
+      "size_gb": 14.648697465658188,
+      "type": "gguf"
+    }
+  ],
+  "compression_plan": {},
+  "recommendations": []
+}

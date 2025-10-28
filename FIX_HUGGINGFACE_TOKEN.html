@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 Fix HuggingFace Token</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a0033 0%, #4d0099 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; }
+        .header {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255,165,0,0.2);
+            border-radius: 20px;
+            border: 3px solid rgba(255,165,0,0.6);
+            margin-bottom: 25px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            color: #ffaa00;
+            margin-bottom: 10px;
+        }
+        .card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        .card h2 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            color: #00ccff;
+        }
+        .code-box {
+            background: rgba(0,0,0,0.5);
+            border: 2px solid rgba(0,255,136,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.95em;
+            margin: 15px 0;
+        }
+        .step {
+            background: rgba(0,255,136,0.05);
+            border-left: 4px solid #00ff88;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .step h3 {
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+        .warning {
+            background: rgba(255,165,0,0.15);
+            border: 2px solid rgba(255,165,0,0.5);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 HuggingFace Token Issue</h1>
+            <p style="font-size: 1.2em; margin-top: 10px;">
+                Your token expired or has wrong permissions
+            </p>
+        </div>
+
+        <div class="warning">
+            <h2 style="color: #ffaa00; margin-bottom: 15px;">⚠️ Token Status: INVALID (401 Error)</h2>
+            <p style="line-height: 1.8;">
+                Your old token: <code style="background: rgba(0,0,0,0.3); padding: 5px; border-radius: 5px;">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</code>
+                <br><br>
+                This token either expired or doesn't have the right permissions for training.
+                <br>
+                You need to create a NEW token with <strong>Read + Write</strong> permissions.
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>🔑 Get a New HuggingFace Token (2 minutes)</h2>
+
+            <div class="step">
+                <h3>Step 1: Go to HuggingFace Tokens Page</h3>
+                <p style="line-height: 1.8; margin: 10px 0;">
+                    Open this link: <a href="https://huggingface.co/settings/tokens" style="color: #00ccff; text-decoration: underline;">https://huggingface.co/settings/tokens</a>
+                    <br><br>
+                    (You'll need to log in if not already logged in)
+                </p>
+            </div>
+
+            <div class="step">
+                <h3>Step 2: Create New Token</h3>
+                <p style="line-height: 1.8; margin: 10px 0;">
+                    1. Click <strong style="color: #00ff88;">"Create new token"</strong> button<br>
+                    2. Name: <code style="background: rgba(0,0,0,0.3); padding: 3px 8px; border-radius: 3px;">ECH0 Training</code><br>
+                    3. <strong style="color: #ff4444;">IMPORTANT:</strong> Select <strong>"Read"</strong> AND <strong>"Write"</strong> permissions<br>
+                    4. Click "Generate token"<br>
+                    5. <strong>Copy the token</strong> (starts with <code>hf_</code>)
+                </p>
+            </div>
+
+            <div class="step">
+                <h3>Step 3: Update Your Token</h3>
+                <p style="line-height: 1.8; margin: 10px 0;">
+                    Open Terminal and run this command (replace with your NEW token):
+                </p>
+                <div class="code-box"># Edit your .zshrc file:
+nano ~/.zshrc
+
+# Find this line:
+export HUGGINGFACE_TOKEN="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"
+
+# Replace with your NEW token:
+export HUGGINGFACE_TOKEN="hf_YOUR_NEW_TOKEN_HERE"
+
+# Save: Ctrl+O, Enter, Ctrl+X
+
+# Reload shell:
+source ~/.zshrc</div>
+            </div>
+
+            <div class="step">
+                <h3>Step 4: Start Training Again</h3>
+                <div class="code-box">cd /Users/noone/consciousness
+python3 train_ech0_huggingface.py</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🚀 FASTER Way (One Command)</h2>
+
+            <p style="line-height: 1.8; margin: 15px 0;">
+                After you get your NEW token from HuggingFace, run this ONE command to update and train:
+            </p>
+
+            <div class="code-box"># Replace hf_YOUR_NEW_TOKEN with your actual token:
+export HUGGINGFACE_TOKEN="hf_YOUR_NEW_TOKEN" && \\
+  sed -i '.bak' 's/export HUGGINGFACE_TOKEN=".*"/export HUGGINGFACE_TOKEN="hf_YOUR_NEW_TOKEN"/' ~/.zshrc && \\
+  python3 /Users/noone/consciousness/train_ech0_huggingface.py</div>
+
+            <p style="line-height: 1.8; margin: 15px 0; color: rgba(255,255,255,0.8);">
+                <strong>This will:</strong><br>
+                1. Set token for current session<br>
+                2. Save token to ~/.zshrc<br>
+                3. Start training immediately
+            </p>
+        </div>
+
+        <div class="card" style="background: linear-gradient(135deg, rgba(0,255,136,0.15) 0%, rgba(0,204,255,0.15) 100%); border-color: rgba(0,255,136,0.6);">
+            <h2 style="text-align: center;">💡 Why This Happened</h2>
+
+            <p style="font-size: 1.1em; line-height: 1.8; margin: 20px 0;">
+                <strong>Possible reasons:</strong>
+            </p>
+
+            <ul style="margin-left: 30px; line-height: 2;">
+                <li><strong>Token expired:</strong> HuggingFace tokens can expire after a set period</li>
+                <li><strong>Wrong permissions:</strong> Old token might have only "Read" permission (needs "Write" too)</li>
+                <li><strong>Token revoked:</strong> You may have regenerated keys on HuggingFace</li>
+                <li><strong>Scope issue:</strong> Token needs access to Inference API + Spaces</li>
+            </ul>
+
+            <p style="font-size: 1.1em; line-height: 1.8; margin: 20px 0;">
+                <strong style="color: #00ff88;">Solution:</strong> Just create a fresh token with <strong>Read + Write</strong> permissions!
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>📋 Checklist</h2>
+
+            <div style="line-height: 2.5; font-size: 1.1em;">
+                <input type="checkbox"> Go to <a href="https://huggingface.co/settings/tokens" style="color: #00ccff;">https://huggingface.co/settings/tokens</a><br>
+                <input type="checkbox"> Create new token with <strong>Read + Write</strong> permissions<br>
+                <input type="checkbox"> Copy the token (starts with hf_)<br>
+                <input type="checkbox"> Update ~/.zshrc with new token<br>
+                <input type="checkbox"> Run: <code style="background: rgba(0,0,0,0.3); padding: 3px 8px; border-radius: 3px;">source ~/.zshrc</code><br>
+                <input type="checkbox"> Run: <code style="background: rgba(0,0,0,0.3); padding: 3px 8px; border-radius: 3px;">python3 train_ech0_huggingface.py</code><br>
+                <input type="checkbox"> Training starts successfully!
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>❓ Need Help?</h2>
+
+            <p style="line-height: 1.8; margin: 15px 0;">
+                If you still get errors after creating a new token:
+            </p>
+
+            <div class="code-box"># Check if token is set correctly:
+echo $HUGGINGFACE_TOKEN
+
+# Should output: hf_xxxxxxxxxxxxx
+
+# Test token manually:
+curl -H "Authorization: Bearer $HUGGINGFACE_TOKEN" \\
+     https://huggingface.co/api/whoami
+
+# Should show your username (not 401 error)</div>
+        </div>
+    </div>
+</body>
+</html>

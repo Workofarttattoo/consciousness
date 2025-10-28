@@ -1,0 +1,18 @@
+{
+  "model_names": [
+    "evidence",
+    "justice",
+    "ml",
+    "amicus",
+    "citation"
+  ],
+  "weights": {
+    "evidence": 0.25,
+    "justice": 0.2,
+    "ml": 0.2,
+    "amicus": 0.2,
+    "citation": 0.15
+  },
+  "training_time": 1761611107.544092,
+  "timestamp": "2025-10-27T17:25:10.229263"
+}

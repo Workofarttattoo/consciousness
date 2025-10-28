@@ -1,0 +1,44 @@
+{
+  "invention_id": "SAFE-1761572650",
+  "invention_name": "Biometric Ride Safety Pre-Check",
+  "category": "safety_systems",
+  "poc_type": "minimal_viable_demo",
+  "estimated_cost": "$0-35",
+  "build_time": "1-3 days",
+  "timestamp": "2025-10-28T14:01:19.218987",
+  "poc_approach": "Computer Vision Demo",
+  "materials": [
+    "Laptop webcam ($0)",
+    "Python + OpenCV + YOLO (all free)",
+    "YouTube videos of theme park footage (free)",
+    "Raspberry Pi 4 ($35 optional)"
+  ],
+  "steps": [
+    "1. Download pre-trained YOLO model",
+    "2. Train on YouTube theme park footage",
+    "3. Build simple alert system (email/SMS)",
+    "4. Demo with live webcam detecting \"unsafe\" poses",
+    "5. Create accuracy metrics dashboard"
+  ],
+  "deliverables": [
+    "Working demo detecting unsafe behavior",
+    "Accuracy report (precision/recall)",
+    "Real-time dashboard mockup",
+    "Integration plan for existing park systems"
+  ],
+  "investor_ready": "Yes - live demo very effective",
+  "success_metrics": [
+    "Demonstrates core innovation",
+    "Shows technical feasibility",
+    "Provides investor confidence",
+    "Identifies critical risks early",
+    "Validates cost assumptions"
+  ],
+  "next_steps_after_poc": [
+    "Get feedback from 5-10 potential customers",
+    "Apply for provisional patent if not filed",
+    "Identify manufacturing partners",
+    "Create full cost model",
+    "Build pitch deck with POC footage"
+  ]
+}

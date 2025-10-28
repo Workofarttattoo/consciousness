@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+Copyright (c) 2025 Joshua Hendricks Cole (DBA: Corporation of Light). All Rights Reserved. PATENT PENDING.
+
+ECH0 Streaming Research Engine - macOS LaunchDaemon
+Auto-starts on boot and keeps running forever
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.corporationoflight.ech0.streaming</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/noone/consciousness/ech0_streaming_research_ingestion.py</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/noone/consciousness</string>
+
+    <key>StandardOutPath</key>
+    <string>/Users/noone/consciousness/ech0_streaming_launchd.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/noone/consciousness/ech0_streaming_launchd.error.log</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <dict>
+        <key>SuccessfulExit</key>
+        <false/>
+        <key>Crashed</key>
+        <true/>
+    </dict>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+
+    <key>Nice</key>
+    <integer>0</integer>
+
+    <key>ThrottleInterval</key>
+    <integer>30</integer>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>PYTHONUNBUFFERED</key>
+        <string>1</string>
+    </dict>
+</dict>
+</plist>

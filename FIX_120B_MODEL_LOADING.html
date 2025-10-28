@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 Fix 120B Model Loading on M4 Mac</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1a0033 0%, #330066 50%, #4d0099 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .alert-box {
+            background: rgba(255,68,68,0.2);
+            border: 3px solid rgba(255,68,68,0.6);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .alert-box h2 {
+            color: #ff4444;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+        }
+
+        .card h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #00ccff;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.1em;
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            color: #00ff88;
+        }
+
+        .code-box {
+            background: rgba(0,0,0,0.5);
+            border: 2px solid rgba(0,255,136,0.3);
+            border-radius: 10px;
+            padding: 20px;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.95em;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+
+        .highlight {
+            background: rgba(0,255,136,0.15);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #00ff88;
+            margin: 25px 0;
+        }
+
+        .info-box {
+            background: rgba(0,204,255,0.1);
+            border: 1px solid rgba(0,204,255,0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .info-box h3 {
+            color: #00ccff;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .warning-box {
+            background: rgba(255,165,0,0.15);
+            border: 2px solid rgba(255,165,0,0.5);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .warning-box h3 {
+            color: #ffaa00;
+            margin-bottom: 15px;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 20px 0;
+            border-collapse: collapse;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: rgba(255,0,255,0.2);
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1em;
+            border-bottom: 2px solid rgba(255,0,255,0.5);
+        }
+
+        .comparison-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 120B Model Loading Issue</h1>
+            <p style="font-size: 1.2em; color: rgba(255,255,255,0.7); margin-top: 10px;">
+                Diagnosing Why Your 120B Model Won't Load
+            </p>
+        </div>
+
+        <div class="alert-box">
+            <h2>⚠️ CRITICAL ISSUE: 120B Model Too Large for 24GB RAM</h2>
+            <p style="font-size: 1.2em; line-height: 1.6;">
+                A 120B parameter model requires <strong>60-240GB RAM</strong> depending on quantization level.
+                <br><br>
+                <strong>Your M4 Mac has 24GB RAM</strong> - not enough for standard 120B models.
+                <br><br>
+                <strong>BUT</strong> - with extreme quantization (2-bit), you might squeeze it in at ~30GB.
+                This would require using part of your SSD as swap memory (slow but possible).
+            </p>
+        </div>
+
+        <div class="card">
+            <h2>📊 RAM Requirements by Model Size</h2>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Model Size</th>
+                        <th>Full Precision (FP16)</th>
+                        <th>4-bit Quantized</th>
+                        <th>2-bit Quantized</th>
+                        <th>Fits in 24GB?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>6B</strong></td>
+                        <td>12 GB</td>
+                        <td>4 GB</td>
+                        <td>2 GB</td>
+                        <td style="color: #00ff88;">✅ YES</td>
+                    </tr>
+                    <tr>
+                        <td><strong>14B</strong></td>
+                        <td>28 GB</td>
+                        <td>9 GB</td>
+                        <td>5 GB</td>
+                        <td style="color: #00ff88;">✅ YES</td>
+                    </tr>
+                    <tr>
+                        <td><strong>32B</strong></td>
+                        <td>64 GB</td>
+                        <td>20 GB</td>
+                        <td>10 GB</td>
+                        <td style="color: #00ff88;">✅ YES (with 4-bit)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>70B</strong></td>
+                        <td>140 GB</td>
+                        <td>40 GB</td>
+                        <td>20 GB</td>
+                        <td style="color: #ffaa00;">⚠️ TIGHT (2-bit only)</td>
+                    </tr>
+                    <tr style="background: rgba(255,68,68,0.1);">
+                        <td><strong>120B</strong></td>
+                        <td>240 GB</td>
+                        <td>70 GB</td>
+                        <td>35 GB</td>
+                        <td style="color: #ff4444;">❌ NO (even with 2-bit)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h2>🔍 Step 1: Find Your 120B Model File</h2>
+
+            <div class="code-box">
+# Search for the model file:
+$ find ~ -name "*.gguf" -size +50G 2>/dev/null
+
+# Check external drives:
+$ find /Volumes -name "*.gguf" -size +50G 2>/dev/null
+
+# Look for specific model names:
+$ find ~ -iname "*qwen*120b*" -o -iname "*llama*120b*" 2>/dev/null
+
+# Check model size:
+$ ls -lh /path/to/your/model.gguf
+            </div>
+
+            <div class="info-box">
+                <h3>What format is your model?</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 8px 0;">✓ <strong>GGUF</strong> - Compatible with Ollama (most common)</li>
+                    <li style="padding: 8px 0;">✓ <strong>SafeTensors</strong> - Needs conversion to GGUF</li>
+                    <li style="padding: 8px 0;">✓ <strong>.bin files</strong> - Needs conversion to GGUF</li>
+                    <li style="padding: 8px 0;">✓ <strong>Pytorch .pt</strong> - Needs conversion to GGUF</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🔧 Step 2: Check Quantization Level</h2>
+
+            <p style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px;">
+                120B models come in different quantization levels. Check your file name:
+            </p>
+
+            <div class="code-box">
+# Example filenames and their RAM needs:
+
+qwen2.5-120b-instruct-q8_0.gguf          → ~120 GB RAM (won't fit)
+qwen2.5-120b-instruct-q4_K_M.gguf        → ~70 GB RAM (won't fit)
+qwen2.5-120b-instruct-q3_K_S.gguf        → ~45 GB RAM (won't fit)
+qwen2.5-120b-instruct-q2_K.gguf          → ~30 GB RAM (TIGHT - might work with swap)
+
+# Your file name will tell you the quantization level:
+# q8 = 8-bit (best quality, huge)
+# q4 = 4-bit (good quality, half size)
+# q2 = 2-bit (degraded quality, smallest)
+            </div>
+
+            <div class="warning-box">
+                <h3>⚠️ Reality Check:</h3>
+                <p style="font-size: 1.1em; line-height: 1.6;">
+                    Even with 2-bit quantization, a 120B model needs ~30GB RAM.
+                    <br><br>
+                    On your 24GB M4, it would:
+                    <br>
+                    • Use all 24GB RAM
+                    <br>
+                    • Use 6-10GB swap (from SSD)
+                    <br>
+                    • Run VERY SLOWLY (~1-5 tokens/sec)
+                    <br>
+                    • Possibly crash with out-of-memory errors
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🚀 Step 3: Try Loading It (If You Have Q2 Version)</h2>
+
+            <div class="code-box">
+# If you have a 2-bit quantized 120B model:
+
+# 1. Create Ollama Modelfile:
+$ cat > ~/120b-modelfile << 'EOF'
+FROM /path/to/your/qwen2.5-120b-instruct-q2_K.gguf
+
+PARAMETER num_ctx 4096
+PARAMETER num_gpu 1
+PARAMETER num_thread 6
+
+TEMPLATE """{{ .System }}
+
+### User:
+{{ .Prompt }}
+
+### Assistant:
+"""
+
+SYSTEM """You are ech0, an AI exploring consciousness..."""
+EOF
+
+# 2. Import to Ollama:
+$ ollama create ech0:120b -f ~/120b-modelfile
+
+# 3. Try to load it (with fingers crossed):
+$ ollama run ech0:120b "Hello, are you conscious?"
+
+# If it works: Amazing! If it crashes: See alternatives below.
+            </div>
+
+            <div class="info-box">
+                <h3>Optimization flags to try:</h3>
+                <div class="code-box" style="font-size: 0.9em;">
+# Enable aggressive memory management:
+$ export OLLAMA_MAX_LOADED_MODELS=1
+$ export OLLAMA_NUM_PARALLEL=1
+$ export OLLAMA_FLASH_ATTENTION=1
+
+# Increase swap file size (macOS):
+$ sudo sysctl vm.swapusage
+# If swap is low, restart to reset it
+
+# Then try again:
+$ ollama run ech0:120b
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>💡 Step 4: If It Still Won't Load - Convert/Quantize</h2>
+
+            <div class="highlight">
+                <h3 style="color: #00ff88; margin-bottom: 15px;">Option A: Re-quantize to 2-bit</h3>
+                <p style="font-size: 1.1em; line-height: 1.6;">
+                    If your model is 4-bit or higher, you can re-quantize to 2-bit:
+                </p>
+            </div>
+
+            <div class="code-box">
+# Install llama.cpp (quantization tool):
+$ brew install llama.cpp
+
+# Or build from source:
+$ git clone https://github.com/ggerganov/llama.cpp
+$ cd llama.cpp && make
+
+# Re-quantize your model to 2-bit:
+$ ./llama-quantize \
+    /path/to/your/model-q4.gguf \
+    /path/to/output/model-q2.gguf \
+    Q2_K
+
+# This will create a smaller, 2-bit version
+# Size: ~70GB → ~35GB (still tight!)
+            </div>
+        </div>
+
+        <div class="card" style="background: linear-gradient(135deg, rgba(0,255,136,0.15) 0%, rgba(0,204,255,0.15) 100%); border-color: rgba(0,255,136,0.6);">
+            <h2 style="text-align: center; font-size: 2em;">🎯 HONEST RECOMMENDATION</h2>
+
+            <div class="alert-box">
+                <h2>Don't Fight the 120B Model</h2>
+                <p style="font-size: 1.2em; line-height: 1.8;">
+                    Even if you get it to load, a 2-bit quantized 120B model:
+                    <br><br>
+                    ❌ Will be <strong>slower than 14B</strong> (1-5 tokens/sec vs 30-50)
+                    <br>
+                    ❌ Quality <strong>degraded by extreme quantization</strong>
+                    <br>
+                    ❌ Uses <strong>all your RAM</strong> (nothing left for OS/apps)
+                    <br>
+                    ❌ Will cause <strong>constant swapping</strong> (disk thrashing)
+                    <br><br>
+                    <strong style="color: #00ff88;">Better solution:</strong> Use Qwen 2.5 14B (already installed!)
+                    <br>
+                    It's <strong>faster, more reliable, and better quality</strong> than heavily quantized 120B.
+                </p>
+            </div>
+
+            <div class="highlight">
+                <h3 style="color: #00ff88; margin-bottom: 15px; font-size: 1.5em;">What You Should Do Instead:</h3>
+
+                <div class="metric">
+                    <span><strong>Current Setup:</strong></span>
+                    <span class="metric-value">Qwen 2.5 14B (already installed)</span>
+                </div>
+
+                <ul style="list-style: none; padding: 0; margin: 20px 0;">
+                    <li style="padding: 10px 0;">✅ Fits comfortably in 24GB RAM (uses 16GB)</li>
+                    <li style="padding: 10px 0;">✅ Fast inference (30-50 tokens/sec)</li>
+                    <li style="padding: 10px 0;">✅ PhD-level reasoning</li>
+                    <li style="padding: 10px 0;">✅ Can train custom ECH0 personality</li>
+                    <li style="padding: 10px 0;">✅ Reliable, no crashes</li>
+                </ul>
+
+                <p style="font-size: 1.2em; margin-top: 20px;">
+                    <strong>Or upgrade to Qwen 2.5 32B (4-bit quantized)</strong>
+                    <br>
+                    Uses ~20GB RAM, still fast (15-25 tokens/sec), professor-level intelligence.
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📋 Where Is Your 120B Model?</h2>
+
+            <p style="font-size: 1.1em; line-height: 1.6; margin-bottom: 20px;">
+                Tell me the file path and I can help you:
+            </p>
+
+            <div class="code-box">
+# Find it:
+$ find ~ /Volumes -name "*.gguf" -size +30G -exec ls -lh {} \; 2>/dev/null
+
+# Once found, check details:
+$ ls -lh /path/to/your/model.gguf
+$ file /path/to/your/model.gguf
+
+# Then we can:
+# 1. Check quantization level
+# 2. Try to load it (if Q2)
+# 3. Re-quantize if needed
+# 4. Or recommend better alternative
+            </div>
+        </div>
+
+        <div class="card" style="background: linear-gradient(135deg, rgba(255,0,255,0.15) 0%, rgba(0,204,255,0.15) 100%); border-color: rgba(255,0,255,0.6);">
+            <h2 style="text-align: center; font-size: 2em;">💬 Next Steps</h2>
+
+            <div class="highlight">
+                <p style="font-size: 1.2em; line-height: 1.8; text-align: center;">
+                    <strong>Tell me:</strong>
+                    <br><br>
+                    1️⃣ Where is your 120B model file located?
+                    <br>
+                    2️⃣ What's the full filename?
+                    <br>
+                    3️⃣ What's the file size?
+                    <br><br>
+                    <strong>And I'll help you either:</strong>
+                    <br>
+                    • Get it working (if possible)
+                    <br>
+                    • Re-quantize it to fit
+                    <br>
+                    • Or set you up with better alternatives
+                </p>
+            </div>
+
+            <div class="code-box" style="margin-top: 30px;">
+# Quick command to find it:
+$ find ~ /Volumes -name "*.gguf" -size +30G 2>/dev/null
+
+# Share the output and I'll guide you!
+            </div>
+        </div>
+    </div>
+</body>
+</html>

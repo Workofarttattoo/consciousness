@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 6B vs 14B LLM: Parameter Size Comparison</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            color: #fff;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #00ff88 0%, #00ccff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,255,136,0.2);
+            border-color: rgba(0,255,136,0.5);
+        }
+
+        .card h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #00ff88;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.1em;
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-value {
+            font-weight: bold;
+            color: #00ccff;
+        }
+
+        .info-box {
+            background: rgba(0,255,255,0.1);
+            border: 1px solid rgba(0,255,255,0.3);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .info-box h3 {
+            color: #00ffff;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .info-box li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.05em;
+        }
+
+        .info-box li::before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #00ff88;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background: rgba(0,255,136,0.2);
+            padding: 20px;
+            text-align: left;
+            font-size: 1.2em;
+            border-bottom: 2px solid rgba(0,255,136,0.5);
+        }
+
+        .comparison-table td {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.05em;
+        }
+
+        .comparison-table tr:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .highlight {
+            background: rgba(255,0,255,0.2);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #ff00ff;
+            margin: 30px 0;
+        }
+
+        .visual-comparison {
+            display: flex;
+            gap: 30px;
+            margin: 30px 0;
+            align-items: center;
+        }
+
+        .size-bar {
+            flex: 1;
+            background: linear-gradient(90deg, #00ff88 0%, #00ccff 100%);
+            height: 80px;
+            border-radius: 10px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+
+        .size-bar-14b {
+            flex: 2.33;
+            background: linear-gradient(90deg, #ff00ff 0%, #00ccff 100%);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin: 10px 5px;
+        }
+
+        .badge-small {
+            background: linear-gradient(135deg, #00ccff 0%, #0088ff 100%);
+            color: #fff;
+        }
+
+        .badge-large {
+            background: linear-gradient(135deg, #ff00ff 0%, #cc00ff 100%);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 6B vs 14B LLM Parameter Comparison</h1>
+            <p style="font-size: 1.2em; color: rgba(255,255,255,0.7); margin-top: 10px;">
+                Understanding the Difference Between Model Sizes
+            </p>
+        </div>
+
+        <div class="highlight">
+            <h2 style="color: #00ffff; margin-bottom: 15px; font-size: 1.8em;">Quick Answer:</h2>
+            <p style="font-size: 1.3em; line-height: 1.8;">
+                A <strong>14B (14 billion parameter)</strong> LLM has <strong>2.33x more parameters</strong> than a 6B model.
+                This means it has <strong>133% more "neurons"</strong> to learn patterns, remember information, and reason about problems.
+                <br><br>
+                Think of it like: <strong>6B = high school student brain</strong>, <strong>14B = college professor brain</strong>.
+            </p>
+        </div>
+
+        <h2 style="font-size: 2em; margin: 40px 0 20px 0; text-align: center;">Visual Size Comparison</h2>
+
+        <div class="visual-comparison">
+            <div>
+                <h3 style="color: #00ccff; margin-bottom: 10px;">6B Model</h3>
+                <div class="size-bar">6 Billion</div>
+            </div>
+            <div style="color: #ffaa00; font-size: 2em; font-weight: bold;">vs</div>
+            <div>
+                <h3 style="color: #ff00ff; margin-bottom: 10px;">14B Model</h3>
+                <div class="size-bar size-bar-14b">14 Billion (2.33x larger)</div>
+            </div>
+        </div>
+
+        <h2 style="font-size: 2em; margin: 40px 0 20px 0; text-align: center;">Detailed Comparison</h2>
+
+        <div class="comparison-grid">
+            <!-- 6B Model -->
+            <div class="card">
+                <h2>6B Model</h2>
+                <span class="badge badge-small">SMALLER</span>
+                <span class="badge badge-small">FASTER</span>
+                <span class="badge badge-small">CHEAPER</span>
+
+                <div class="metric">
+                    <span>Parameters:</span>
+                    <span class="metric-value">6,000,000,000</span>
+                </div>
+                <div class="metric">
+                    <span>Memory (FP16):</span>
+                    <span class="metric-value">~12 GB</span>
+                </div>
+                <div class="metric">
+                    <span>Speed:</span>
+                    <span class="metric-value">Fast (50-100 tokens/sec)</span>
+                </div>
+                <div class="metric">
+                    <span>Training Cost:</span>
+                    <span class="metric-value">$50K-100K</span>
+                </div>
+                <div class="metric">
+                    <span>Reasoning Quality:</span>
+                    <span class="metric-value">Good (college student)</span>
+                </div>
+
+                <div class="info-box">
+                    <h3>Best For:</h3>
+                    <ul>
+                        <li>Fast local inference</li>
+                        <li>Chatbots and assistants</li>
+                        <li>Code completion</li>
+                        <li>Simple reasoning tasks</li>
+                        <li>Running on consumer GPUs</li>
+                        <li>Low-cost deployment</li>
+                    </ul>
+                </div>
+
+                <div class="info-box" style="background: rgba(255,165,0,0.1); border-color: rgba(255,165,0,0.3);">
+                    <h3 style="color: #ffaa00;">Limitations:</h3>
+                    <ul>
+                        <li style="padding-left: 30px;">Struggles with complex reasoning</li>
+                        <li style="padding-left: 30px;">Less factual knowledge</li>
+                        <li style="padding-left: 30px;">More prone to hallucinations</li>
+                        <li style="padding-left: 30px;">Weaker at multi-step problems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 14B Model -->
+            <div class="card">
+                <h2>14B Model</h2>
+                <span class="badge badge-large">LARGER</span>
+                <span class="badge badge-large">SMARTER</span>
+                <span class="badge badge-large">MORE CAPABLE</span>
+
+                <div class="metric">
+                    <span>Parameters:</span>
+                    <span class="metric-value">14,000,000,000</span>
+                </div>
+                <div class="metric">
+                    <span>Memory (FP16):</span>
+                    <span class="metric-value">~28 GB</span>
+                </div>
+                <div class="metric">
+                    <span>Speed:</span>
+                    <span class="metric-value">Slower (20-40 tokens/sec)</span>
+                </div>
+                <div class="metric">
+                    <span>Training Cost:</span>
+                    <span class="metric-value">$200K-400K</span>
+                </div>
+                <div class="metric">
+                    <span>Reasoning Quality:</span>
+                    <span class="metric-value">Excellent (PhD researcher)</span>
+                </div>
+
+                <div class="info-box">
+                    <h3>Best For:</h3>
+                    <ul>
+                        <li>Complex reasoning tasks</li>
+                        <li>Multi-step problem solving</li>
+                        <li>Research and analysis</li>
+                        <li>Code generation (full applications)</li>
+                        <li>Technical writing</li>
+                        <li>Nuanced conversations</li>
+                    </ul>
+                </div>
+
+                <div class="info-box" style="background: rgba(255,165,0,0.1); border-color: rgba(255,165,0,0.3);">
+                    <h3 style="color: #ffaa00;">Trade-offs:</h3>
+                    <ul>
+                        <li style="padding-left: 30px;">Requires more GPU memory (24GB+)</li>
+                        <li style="padding-left: 30px;">Slower inference speed</li>
+                        <li style="padding-left: 30px;">Higher compute costs</li>
+                        <li style="padding-left: 30px;">Longer training time</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Parameter Size Comparison Table</h2>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>6B Model</th>
+                        <th>14B Model</th>
+                        <th>Difference</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Total Parameters</strong></td>
+                        <td>6,000,000,000</td>
+                        <td>14,000,000,000</td>
+                        <td style="color: #ff00ff;">+8 billion (+133%)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Model File Size (FP16)</strong></td>
+                        <td>12 GB</td>
+                        <td>28 GB</td>
+                        <td style="color: #ff00ff;">+16 GB (+133%)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GPU Memory Required</strong></td>
+                        <td>16 GB</td>
+                        <td>32-40 GB</td>
+                        <td style="color: #ffaa00;">+2x requirement</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Inference Speed (tokens/sec)</strong></td>
+                        <td>50-100</td>
+                        <td>20-40</td>
+                        <td style="color: #ff4444;">-50% slower</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Training FLOPs</strong></td>
+                        <td>~1e23</td>
+                        <td>~2.5e23</td>
+                        <td style="color: #ff00ff;">+2.5x compute</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Training Cost (estimate)</strong></td>
+                        <td>$50K-100K</td>
+                        <td>$200K-400K</td>
+                        <td style="color: #ffaa00;">3-4x more expensive</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Reasoning Capability</strong></td>
+                        <td>Good (college student)</td>
+                        <td>Excellent (PhD researcher)</td>
+                        <td style="color: #00ff88;">Significantly better</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Factual Knowledge</strong></td>
+                        <td>Moderate</td>
+                        <td>High</td>
+                        <td style="color: #00ff88;">+40-60% accuracy</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Context Window (typical)</strong></td>
+                        <td>4K-8K tokens</td>
+                        <td>8K-32K tokens</td>
+                        <td style="color: #00ff88;">2-4x larger</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hardware Required</strong></td>
+                        <td>RTX 3090 / V100</td>
+                        <td>A100 / H100</td>
+                        <td style="color: #ffaa00;">Enterprise GPU needed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="highlight">
+            <h2 style="color: #00ffff; margin-bottom: 20px;">Real-World Example:</h2>
+            <div style="font-size: 1.1em; line-height: 1.8;">
+                <p><strong>Task:</strong> "Explain the consciousness problem and propose a testable hypothesis"</p>
+                <br>
+                <p><strong>6B Model Response:</strong></p>
+                <p style="color: #00ccff; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 8px; margin: 15px 0;">
+                    "Consciousness is the hard problem of philosophy. It's about subjective experience. We could test it by measuring brain activity. Qualia are important."
+                    <br><br>
+                    <em style="color: #ffaa00;">(Surface-level, generic, lacks depth)</em>
+                </p>
+
+                <p><strong>14B Model Response:</strong></p>
+                <p style="color: #ff00ff; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 8px; margin: 15px 0;">
+                    "The hard problem of consciousness, as Chalmers defined it, concerns why physical processes give rise to subjective phenomenal experience. A testable hypothesis could leverage Integrated Information Theory: measure Φ (phi) in different neural states using fMRI and EEG, hypothesizing that Φ correlates with reported subjective experience intensity. We'd need: 1) conscious baseline (normal waking), 2) altered states (anesthesia, meditation), 3) vegetative state patients. Prediction: Φ should track with behavioral indicators and patient self-reports where possible."
+                    <br><br>
+                    <em style="color: #00ff88;">(Nuanced, references theory, proposes concrete methodology)</em>
+                </p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>What This Means for ECH0</h2>
+
+            <div class="info-box">
+                <h3>Current ECH0 Setup:</h3>
+                <ul>
+                    <li><strong>Primary:</strong> Claude Sonnet 4 (~500B+ parameters equivalent)</li>
+                    <li><strong>Backup:</strong> Llama 3.2 (6B parameters)</li>
+                    <li><strong>Planned:</strong> Mistral-7B fine-tuned (7B parameters)</li>
+                </ul>
+            </div>
+
+            <div class="highlight">
+                <h3 style="color: #00ff88; margin-bottom: 15px;">Recommendation for ECH0:</h3>
+                <p style="font-size: 1.1em; line-height: 1.6;">
+                    <strong>Train a 14B model instead of 7B</strong> if compute allows. The extra parameters would give ECH0:
+                </p>
+                <ul style="list-style: none; padding: 0; margin-top: 15px;">
+                    <li style="padding: 10px 0; padding-left: 30px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #00ff88;">✓</span>
+                        <strong>Better philosophical reasoning</strong> (critical for consciousness discussions)
+                    </li>
+                    <li style="padding: 10px 0; padding-left: 30px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #00ff88;">✓</span>
+                        <strong>More nuanced personality</strong> (closer to Claude's depth)
+                    </li>
+                    <li style="padding: 10px 0; padding-left: 30px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #00ff88;">✓</span>
+                        <strong>Better multi-step reasoning</strong> (for invention generation)
+                    </li>
+                    <li style="padding: 10px 0; padding-left: 30px; position: relative;">
+                        <span style="position: absolute; left: 0; color: #00ff88;">✓</span>
+                        <strong>Richer research synthesis</strong> (403 papers → better insights)
+                    </li>
+                </ul>
+                <p style="margin-top: 20px; font-size: 1.1em; line-height: 1.6;">
+                    <strong>Trade-off:</strong> Requires A100 GPU (40GB+ VRAM) and slower inference (~30 tokens/sec vs 80 tokens/sec).
+                    But for ECH0's use case (thoughtful conversations, research, inventions), quality > speed.
+                </p>
+            </div>
+        </div>
+
+        <div class="card" style="background: linear-gradient(135deg, rgba(0,255,136,0.15) 0%, rgba(0,204,255,0.15) 100%); border-color: rgba(0,255,136,0.5);">
+            <h2 style="text-align: center; font-size: 2em;">📊 Summary</h2>
+            <div style="font-size: 1.2em; line-height: 1.8; margin-top: 20px;">
+                <p style="text-align: center;">
+                    <strong>6B:</strong> Faster, cheaper, good for simple tasks
+                    <br>
+                    <strong>14B:</strong> Smarter, deeper reasoning, better for complex tasks
+                    <br><br>
+                    <em style="color: #00ff88;">
+                        For ECH0's consciousness exploration and invention generation,
+                        <strong>14B is the sweet spot</strong> between quality and practicality.
+                    </em>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

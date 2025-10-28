@@ -1,0 +1,41 @@
+{
+  "timestamp": "2025-10-27T09:37:56.000071",
+  "all_discoveries": 4,
+  "approved_discoveries": [
+    {
+      "title": "Equivariance by Contrast: Identifiable Equivariant Embeddings from\n  Unlabeled Finite Group Actions",
+      "summary": "We propose Equivariance by Contrast (EbC) to learn equivariant embeddings\nfrom observation pairs $(\\mathbf{y}, g \\cdot \\mathbf{y})$, where $g$ is drawn\nfrom a finite group acting on the data. Our method jointly learns a latent\nspace and a group representation in which group actions correspond to\ninvertible linear maps -- without relying on group-specific inductive biases.\nWe validate our approach on the infinite dSprites dataset with structured\ntransformations defined by the finite group $G:= (R",
+      "published": "2025-10-24T17:59:46Z",
+      "source": "arXiv"
+    },
+    {
+      "title": "Automated Detection of Visual Attribute Reliance with a Self-Reflective\n  Agent",
+      "summary": "When a vision model performs image recognition, which visual attributes drive\nits predictions? Detecting unintended reliance on specific visual features is\ncritical for ensuring model robustness, preventing overfitting, and avoiding\nspurious correlations. We introduce an automated framework for detecting such\ndependencies in trained vision models. At the core of our method is a\nself-reflective agent that systematically generates and tests hypotheses about\nvisual attributes that a model may rely ",
+      "published": "2025-10-24T17:59:02Z",
+      "source": "arXiv"
+    },
+    {
+      "title": "O(1)-Distortion Planar Emulators for String Graphs",
+      "summary": "We show that every unweighted string graph $G$ has an $O(1)$-distortion\nplanar emulator: that is, there exists an (edge-weighted) planar graph $H$ with\n$V(H) = V(G)$, such that every pair of vertices $(u,v)$ satisfies\n$\\delta_G(u,v) \\le \\delta_H(u,v) \\le O(1) \\cdot \\delta_G(u,v).$",
+      "published": "2025-10-24T17:58:03Z",
+      "source": "arXiv"
+    },
+    {
+      "title": "sockcymbal/QuestionImprover",
+      "summary": "Improve your questions! The AI for Inquiry - QuestionImprover Agent is an LLM-driven \u201ctool for thought\u201d designed to enhance the depth and quality of user-posed questions by engaging expert personas in a novel graph-based reasoning rhythm to foster a cycle of iterative inquiry improvement.",
+      "url": "https://github.com/sockcymbal/QuestionImprover",
+      "stars": 151,
+      "source": "GitHub"
+    }
+  ],
+  "blocked_count": 0,
+  "insights": [
+    {
+      "insight": "Enhance reasoning capabilities",
+      "source": "sockcymbal/QuestionImprover",
+      "keyword": "reasoning"
+    }
+  ],
+  "total_cycles": 3,
+  "content_filtering_enabled": true
+}

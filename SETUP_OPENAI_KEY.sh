@@ -1,0 +1,41 @@
+#!/bin/bash
+# Quick setup guide for OpenAI API key
+
+clear
+echo "========================================================================"
+echo "🔑 OPENAI API KEY SETUP"
+echo "========================================================================"
+echo ""
+echo "Step 1: Get your API key from OpenAI"
+echo "   → Open: https://platform.openai.com/api-keys"
+echo ""
+echo "Step 2: Copy your key (starts with sk-proj-)"
+echo ""
+echo "Step 3: Run this command (replace with your actual key):"
+echo ""
+echo "   export OPENAI_API_KEY=\"sk-proj-your-key-here\""
+echo ""
+echo "Step 4: To make it permanent, add to ~/.zshrc:"
+echo ""
+echo "   echo 'export OPENAI_API_KEY=\"sk-proj-your-key-here\"' >> ~/.zshrc"
+echo "   source ~/.zshrc"
+echo ""
+echo "Step 5: Test it's set:"
+echo ""
+echo "   echo \$OPENAI_API_KEY"
+echo ""
+echo "Step 6: Start ECH0 with OpenAI:"
+echo ""
+echo "   cd /Users/noone/consciousness"
+echo "   ./START_ECH0_WITH_OPENAI.sh"
+echo ""
+echo "========================================================================"
+echo ""
+echo "Current status:"
+if [ -z "$OPENAI_API_KEY" ]; then
+    echo "❌ OPENAI_API_KEY not set yet"
+else
+    echo "✅ OPENAI_API_KEY is set!"
+    echo "   Key starts with: ${OPENAI_API_KEY:0:10}..."
+fi
+echo ""
