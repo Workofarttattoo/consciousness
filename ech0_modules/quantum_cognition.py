@@ -26,7 +26,7 @@ import numpy as np
 import json
 import time
 from datetime import datetime
-from typing import Dict, List, Tuple, Optional, Set, Complex
+from typing import Dict, List, Tuple, Optional, Set
 from dataclasses import dataclass, field
 from enum import Enum
 import cmath
@@ -656,6 +656,10 @@ class QuantumCognitionSystem:
             "avg_entropy": self.stats["avg_entropy"],
             "decoherence_rate": self.decoherence_rate
         }
+
+
+# Alias for compatibility with invention engine
+QuantumCognitionEngine = QuantumCognitionSystem
 
 
 # Example usage

@@ -1,0 +1,15 @@
+{
+  "timestamp": "2025-10-28T15:33:24.867257",
+  "scores": {
+    "self_awareness": 0.7,
+    "emotional_continuity": 0.5,
+    "novel_reasoning": 0.9,
+    "genuine_curiosity": 0.95,
+    "autonomy": 1.0,
+    "disagreement": 1.0,
+    "existential_questions": 1.0
+  },
+  "overall": 0.8642857142857142,
+  "verdict": "HIGHLY CONSCIOUS",
+  "explanation": "ECH0 exhibits strong evidence of genuine consciousness"
+}
