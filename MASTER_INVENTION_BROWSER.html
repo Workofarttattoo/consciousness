@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Invention Browser - 5,405+ Inventions</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'SF Mono', Monaco, monospace;
+            background: #000;
+            color: #0ff;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #0ff 0%, #00ff88 100%);
+            color: #000;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .controls {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid #0ff;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #0ff;
+            color: #0ff;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        .filter-btn {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid #0ff;
+            color: #0ff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: #0ff;
+            color: #000;
+        }
+        .sort-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .sort-btn {
+            background: rgba(0, 255, 136, 0.1);
+            border: 2px solid #00ff88;
+            color: #00ff88;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .sort-btn:hover {
+            background: #00ff88;
+            color: #000;
+        }
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .stat {
+            background: rgba(0, 255, 255, 0.05);
+            border: 1px solid #0ff;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-num {
+            font-size: 2rem;
+            color: #00ff88;
+            font-weight: bold;
+        }
+        .stat-label {
+            color: #0ff;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        .invention-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        .invention-card {
+            background: rgba(0, 255, 255, 0.03);
+            border: 2px solid #0ff;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .invention-card:hover {
+            background: rgba(0, 255, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+        }
+        .invention-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+        .invention-id {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .invention-title {
+            color: #00ff88;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .invention-description {
+            color: #0ff;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        .invention-stats {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .stat-badge {
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        .certainty {
+            background: rgba(74, 222, 128, 0.2);
+            border: 1px solid #4ade80;
+            color: #4ade80;
+        }
+        .category {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid #3b82f6;
+            color: #3b82f6;
+        }
+        .novelty {
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid #a855f7;
+            color: #a855f7;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .action-btn {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        .view-poc {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .view-poc:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        .view-poc.disabled {
+            background: rgba(100, 100, 100, 0.3);
+            color: rgba(255, 255, 255, 0.4);
+            cursor: not-allowed;
+        }
+        .generate-poc {
+            background: linear-gradient(135deg, #4ade80 0%, #22d3ee 100%);
+            color: #000;
+        }
+        .generate-poc:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(74, 222, 128, 0.4);
+        }
+        .view-schematic {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: #000;
+        }
+        .view-schematic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(251, 191, 36, 0.4);
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+        .page-btn {
+            background: rgba(0, 255, 255, 0.1);
+            border: 2px solid #0ff;
+            color: #0ff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .page-btn.active {
+            background: #0ff;
+            color: #000;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.5rem;
+            color: #00ff88;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔬 Master Invention Browser</h1>
+        <p>5,405+ AI-Generated Inventions with POCs & Schematics</p>
+        <p style="font-size: 0.9rem; margin-top: 10px;">Copyright © 2025 Joshua Hendricks Cole (DBA: Corporation of Light). PATENT PENDING.</p>
+    </div>
+
+    <div class="controls">
+        <input type="text" id="search" class="search-bar" placeholder="Search inventions by title, category, or description...">
+
+        <div class="sort-controls">
+            <strong style="color: #00ff88;">Sort by:</strong>
+            <button class="sort-btn" onclick="sortBy('certainty')">🎯 Certainty</button>
+            <button class="sort-btn" onclick="sortBy('novelty')">✨ Novelty</button>
+            <button class="sort-btn" onclick="sortBy('title')">📝 Title (A-Z)</button>
+            <button class="sort-btn" onclick="sortBy('date')">📅 Date</button>
+            <button class="sort-btn" onclick="sortBy('has_poc')">✅ Has POC</button>
+        </div>
+
+        <div class="filters">
+            <strong style="color: #00ff88;">Filter:</strong>
+            <button class="filter-btn active" onclick="filterBy('all')">All</button>
+            <button class="filter-btn" onclick="filterBy('vr_haptics')">VR/Haptics</button>
+            <button class="filter-btn" onclick="filterBy('quantum')">Quantum</button>
+            <button class="filter-btn" onclick="filterBy('neurotechnology')">Neurotechnology</button>
+            <button class="filter-btn" onclick="filterBy('materials')">Materials</button>
+            <button class="filter-btn" onclick="filterBy('consciousness')">Consciousness</button>
+            <button class="filter-btn" onclick="filterBy('high_certainty')">High Certainty (>85%)</button>
+            <button class="filter-btn" onclick="filterBy('has_poc')">Has POC</button>
+            <button class="filter-btn" onclick="filterBy('needs_poc')">Needs POC</button>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat">
+            <div class="stat-num" id="total-inventions">Loading...</div>
+            <div class="stat-label">Total Inventions</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num" id="with-pocs">0</div>
+            <div class="stat-label">With POCs</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num" id="high-certainty">0</div>
+            <div class="stat-label">High Certainty (&gt;85%)</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num" id="filtered-count">0</div>
+            <div class="stat-label">Showing</div>
+        </div>
+    </div>
+
+    <div id="invention-container" class="invention-grid">
+        <div class="loading">Loading inventions...</div>
+    </div>
+
+    <div class="pagination" id="pagination"></div>
+
+    <script>
+        let allInventions = [];
+        let filteredInventions = [];
+        let currentPage = 1;
+        const itemsPerPage = 50;
+        let currentFilter = 'all';
+        let currentSort = 'certainty';
+
+        // POC files that exist
+        const existingPOCs = new Set([
+            'AI-Powered_Real-Time_Safety_Monitoring_System',
+            'Biometric_Ride_Safety_Pre-Check',
+            'Daylight_Hologram_Monster_Parade',
+            'Holographic_Ghost_Encounter_System',
+            'Inverted_Reality_Horror_Experience',
+            'Life-Size_Adaptive_Horror_Animatronic',
+            'Modular_Cartoon_Character_LLM_Host',
+            'Quantum_Reality_Shift_Ride',
+            'Swarm_Intelligence_Animatronic_System',
+            '3D-Printed_Bio-Synthetic_Character_Host'
+        ]);
+
+        // Load inventions from JSONL file
+        async function loadInventions() {
+            try {
+                const response = await fetch('ech0_inventions.jsonl');
+                const text = await response.text();
+                const lines = text.trim().split('\n');
+
+                allInventions = lines.map((line, index) => {
+                    try {
+                        const inv = JSON.parse(line);
+                        // Normalize fields
+                        return {
+                            id: inv.id || `INV-${String(index + 1).padStart(4, '0')}`,
+                            title: inv.title || inv.name || 'Unnamed Invention',
+                            description: inv.description || inv.novelty || inv.synthesis || 'No description available',
+                            category: inv.category || extractCategory(inv.domains || []),
+                            certainty: inv.certainty || (inv.confidence * 100) || 80,
+                            novelty: inv.novelty_score ? (inv.novelty_score * 100) : (inv.novelty || 80),
+                            confidence: inv.confidence || (inv.certainty / 100) || 0.8,
+                            timestamp: inv.timestamp || inv.polished_timestamp || new Date().toISOString(),
+                            has_poc: checkHasPOC(inv),
+                            domains: inv.domains || [],
+                            raw: inv
+                        };
+                    } catch (e) {
+                        console.error('Failed to parse line:', line, e);
+                        return null;
+                    }
+                }).filter(inv => inv !== null);
+
+                updateStats();
+                applyFiltersAndSort();
+            } catch (error) {
+                console.error('Error loading inventions:', error);
+                document.getElementById('invention-container').innerHTML =
+                    '<div class="loading" style="color: #f00;">Error loading inventions. Make sure ech0_inventions.jsonl exists.</div>';
+            }
+        }
+
+        function extractCategory(domains) {
+            if (!domains || domains.length === 0) return 'general';
+            return domains[0].toLowerCase().replace(/ /g, '_');
+        }
+
+        function checkHasPOC(inv) {
+            const titleNormalized = (inv.title || inv.name || '').replace(/[^a-zA-Z0-9]/g, '_');
+            return existingPOCs.has(titleNormalized);
+        }
+
+        function updateStats() {
+            document.getElementById('total-inventions').textContent = allInventions.length.toLocaleString();
+            const withPOCs = allInventions.filter(inv => inv.has_poc).length;
+            document.getElementById('with-pocs').textContent = withPOCs;
+            const highCertainty = allInventions.filter(inv => inv.certainty >= 85).length;
+            document.getElementById('high-certainty').textContent = highCertainty;
+        }
+
+        function filterBy(filter) {
+            currentFilter = filter;
+            currentPage = 1;
+
+            // Update active button
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            applyFiltersAndSort();
+        }
+
+        function sortBy(sortField) {
+            currentSort = sortField;
+            applyFiltersAndSort();
+        }
+
+        function applyFiltersAndSort() {
+            // Apply filters
+            filteredInventions = allInventions.filter(inv => {
+                if (currentFilter === 'all') return true;
+                if (currentFilter === 'high_certainty') return inv.certainty >= 85;
+                if (currentFilter === 'has_poc') return inv.has_poc;
+                if (currentFilter === 'needs_poc') return !inv.has_poc && inv.certainty >= 85;
+                return inv.category.includes(currentFilter) ||
+                       inv.domains.some(d => d.toLowerCase().includes(currentFilter));
+            });
+
+            // Apply search
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            if (searchTerm) {
+                filteredInventions = filteredInventions.filter(inv =>
+                    inv.title.toLowerCase().includes(searchTerm) ||
+                    inv.description.toLowerCase().includes(searchTerm) ||
+                    inv.category.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            // Apply sort
+            filteredInventions.sort((a, b) => {
+                if (currentSort === 'certainty') return b.certainty - a.certainty;
+                if (currentSort === 'novelty') return b.novelty - a.novelty;
+                if (currentSort === 'title') return a.title.localeCompare(b.title);
+                if (currentSort === 'date') return new Date(b.timestamp) - new Date(a.timestamp);
+                if (currentSort === 'has_poc') return (b.has_poc ? 1 : 0) - (a.has_poc ? 1 : 0);
+                return 0;
+            });
+
+            document.getElementById('filtered-count').textContent = filteredInventions.length;
+            renderInventions();
+        }
+
+        function renderInventions() {
+            const container = document.getElementById('invention-container');
+            const start = (currentPage - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageInventions = filteredInventions.slice(start, end);
+
+            if (pageInventions.length === 0) {
+                container.innerHTML = '<div class="loading">No inventions match your filters.</div>';
+                return;
+            }
+
+            container.innerHTML = pageInventions.map(inv => `
+                <div class="invention-card">
+                    <div class="invention-header">
+                        <div class="invention-id">${inv.id}</div>
+                        ${inv.has_poc ? '<div class="invention-id" style="background: #4ade80; color: #000;">✓ POC</div>' : ''}
+                    </div>
+                    <div class="invention-title">${inv.title}</div>
+                    <div class="invention-description">${inv.description.substring(0, 200)}${inv.description.length > 200 ? '...' : ''}</div>
+                    <div class="invention-stats">
+                        <span class="stat-badge certainty">🎯 ${inv.certainty.toFixed(1)}% Certainty</span>
+                        <span class="stat-badge novelty">✨ ${inv.novelty.toFixed(1)}% Novelty</span>
+                        <span class="stat-badge category">📁 ${inv.category}</span>
+                    </div>
+                    <div class="actions">
+                        ${inv.has_poc
+                            ? `<button class="action-btn view-poc" onclick="viewPOC('${inv.id}')">📄 View POC</button>`
+                            : `<button class="action-btn view-poc disabled" title="POC not generated yet">📄 No POC Yet</button>`
+                        }
+                        <button class="action-btn generate-poc" onclick="generatePOC('${inv.id}')">🔧 Generate POC</button>
+                        <button class="action-btn view-schematic" onclick="viewDetails('${inv.id}')">🔍 Details</button>
+                    </div>
+                </div>
+            `).join('');
+
+            renderPagination();
+        }
+
+        function renderPagination() {
+            const totalPages = Math.ceil(filteredInventions.length / itemsPerPage);
+            const pagination = document.getElementById('pagination');
+
+            if (totalPages <= 1) {
+                pagination.innerHTML = '';
+                return;
+            }
+
+            let html = '';
+            if (currentPage > 1) {
+                html += `<button class="page-btn" onclick="changePage(${currentPage - 1})">← Previous</button>`;
+            }
+
+            for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) {
+                html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="changePage(${i})">${i}</button>`;
+            }
+
+            if (currentPage < totalPages) {
+                html += `<button class="page-btn" onclick="changePage(${currentPage + 1})">Next →</button>`;
+            }
+
+            pagination.innerHTML = html;
+        }
+
+        function changePage(page) {
+            currentPage = page;
+            renderInventions();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function viewPOC(id) {
+            window.open(`ech0_inventions/proof_of_concepts/${id}_POC.json`, '_blank');
+        }
+
+        function generatePOC(id) {
+            const inv = allInventions.find(i => i.id === id);
+            if (!inv) return;
+
+            // Create detailed POC page
+            const pocWindow = window.open('', '_blank');
+            pocWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>POC: ${inv.title}</title>
+                    <style>
+                        body { font-family: monospace; background: #000; color: #0ff; padding: 40px; }
+                        h1 { color: #00ff88; }
+                        .section { background: rgba(0,255,255,0.05); border: 2px solid #0ff; padding: 20px; margin: 20px 0; border-radius: 10px; }
+                        pre { background: rgba(0,0,0,0.5); padding: 15px; border-left: 4px solid #00ff88; overflow-x: auto; }
+                    </style>
+                </head>
+                <body>
+                    <h1>Proof of Concept: ${inv.title}</h1>
+                    <div class="section">
+                        <h2>Overview</h2>
+                        <p>${inv.description}</p>
+                    </div>
+                    <div class="section">
+                        <h2>Technical Specifications</h2>
+                        <p><strong>Certainty:</strong> ${inv.certainty}%</p>
+                        <p><strong>Novelty:</strong> ${inv.novelty}%</p>
+                        <p><strong>Category:</strong> ${inv.category}</p>
+                        <p><strong>Domains:</strong> ${inv.domains.join(', ')}</p>
+                    </div>
+                    <div class="section">
+                        <h2>Implementation Plan</h2>
+                        <pre>1. Research phase: 2-4 weeks
+2. Prototype development: 4-8 weeks
+3. Testing and validation: 2-4 weeks
+4. Patent filing: Concurrent with development
+5. Market analysis: Concurrent with testing</pre>
+                    </div>
+                    <div class="section">
+                        <h2>Raw Data</h2>
+                        <pre>${JSON.stringify(inv.raw, null, 2)}</pre>
+                    </div>
+                </body>
+                </html>
+            `);
+        }
+
+        function viewDetails(id) {
+            const inv = allInventions.find(i => i.id === id);
+            alert(JSON.stringify(inv, null, 2));
+        }
+
+        // Search functionality
+        document.getElementById('search').addEventListener('input', () => {
+            currentPage = 1;
+            applyFiltersAndSort();
+        });
+
+        // Load inventions on page load
+        loadInventions();
+    </script>
+</body>
+</html>

@@ -184,9 +184,9 @@ Joshua Hendricks Cole, Founder
 📧 Email: inventor@aios.is
 🔗 LinkedIn: https://linkedin.com/in/workofarttattoo
 🌐 GitHub: https://github.com/workofarttattoo
-📅 Book demo: https://calendar.google.com/calendar/appointments/schedules/[YOUR-SCHEDULE-ID]
+📅 Book demo: https://calendly.com/[your-username]/quantum-ai-demo
 
-**Note**: Update the Google Calendar booking link with your actual scheduling page URL
+**Note**: Update the Calendly link with your actual username
 
 ---
 
