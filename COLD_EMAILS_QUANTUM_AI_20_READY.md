@@ -29,7 +29,7 @@ What if your team could explore 12.54x more drug candidates in the same time?
 
 **ROI**: One FDA-approved drug = $1B+ revenue. Finding candidates 12.54x faster = priceless.
 
-Book 30-min demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Book 30-min demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Hendricks Cole
 Corporation of Light
@@ -60,7 +60,7 @@ Series A investors want to see compound candidates. Fast.
 - One successful candidate discovery = 10-100x ROI
 - Impress investors with quantum-enhanced R&D
 
-Demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -92,7 +92,7 @@ Publishing computational drug discovery research that stands out?
 
 **Grant-friendly**: Cite as "quantum-enhanced computational platform" in proposals
 
-Demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Hendricks Cole
 inventor@aios.is
@@ -111,7 +111,7 @@ Your pharma clients demand faster results. Deliver them.
 **Quantum AI Enterprise**: White-label quantum drug discovery platform. Your branding, our 12.54x speedup.
 
 **72-hour pre-sale**: $50,000/year (normally $75,000)
-- Unlimited qubit simulation
+- Up to 30-qubit quantum simulation (M4 Mac optimized)
 - White-label deployment
 - Dedicated support (4h SLA)
 
@@ -120,7 +120,7 @@ Your pharma clients demand faster results. Deliver them.
 - Deliver results 12.54x faster
 - Win more contracts
 
-Book partnership call: https://calendly.com/workofarttattoo/quantum-ai-demo
+Book partnership call: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 Corporation of Light
@@ -153,7 +153,7 @@ Sick of quantum platforms requiring specialized hardware?
 
 **Security**: On-prem deployment = your data never leaves
 
-Demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -178,7 +178,7 @@ Synthesizing compounds is expensive. Predict binding affinity first.
 
 **ROI**: Skip 10 failed synthesis attempts = $100K+ saved >> $3K/month
 
-Book demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Book demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -208,7 +208,7 @@ Give your portfolio companies a quantum edge.
 - Better demo days = higher valuations
 - Differentiation: "quantum-enhanced portfolio"
 
-Partnership call: https://calendly.com/workofarttattoo/quantum-ai-demo
+Partnership call: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -227,7 +227,7 @@ Your team explores thousands of compounds. Most fail. Prioritize better.
 **Quantum AI Enterprise**: 12.54x faster design space exploration + monthly strategy calls with inventor.
 
 **72-hour pre-sale**: $50,000/year (normally $75,000)
-- Unlimited qubit simulation (scales to 40-50 qubits)
+- Up to 30-qubit quantum simulation (M4 Mac optimized, scalable architecture)
 - Custom feature development (2 features/year)
 - Monthly calls: optimize your workflow
 
@@ -236,7 +236,7 @@ Your team explores thousands of compounds. Most fail. Prioritize better.
 - 1TB+ knowledge graph storage
 - Dedicated support (4h SLA)
 
-Demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -266,7 +266,7 @@ Multiple universities, one platform. Shared quantum AI infrastructure.
 - Pooled computational resources
 - Co-authored papers with quantum methods
 
-Contact: inventor@aios.is or book call at https://calendly.com/workofarttattoo/quantum-ai-demo
+Contact: inventor@aios.is or book call at https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 Corporation of Light
@@ -294,7 +294,7 @@ Your innovation team explores moonshot technologies. Quantum drug discovery is h
 - Pilot projects complete in weeks
 - Measurable impact (12.54x faster)
 
-Demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -328,7 +328,7 @@ Exploring 1000s of portfolio allocations to find optimal Sharpe ratio?
 
 **ROI**: 1% annual alpha improvement on $100M AUM = $1M >> $36K/year cost
 
-Demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Hendricks Cole
 Corporation of Light
@@ -357,7 +357,7 @@ Backtesting strategies on limited historical scenarios?
 - Faster strategy iteration
 - Discover hidden correlations
 
-Book demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Book demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -387,7 +387,7 @@ Monte Carlo simulations for exotic derivatives taking too long?
 - CVA/DVA calculations
 - XVA risk metrics
 
-Demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -415,7 +415,7 @@ Managing $XXM across 100+ positions? Optimize allocations quantum-fast.
 - Multi-generational constraints
 - ESG overlay integration
 
-Demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -445,7 +445,7 @@ Scanning for arbitrage across Binance, Coinbase, Kraken, etc.?
 - Triangular arb across 1000+ pairs
 - MEV opportunity discovery
 
-Demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -473,7 +473,7 @@ Stress testing portfolios against limited historical scenarios?
 - Faster quarterly stress tests
 - Better drawdown prediction
 
-Demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -501,7 +501,7 @@ Your clients pay for alpha. Deliver quantum-enhanced signals.
 - Charge premium for "quantum signals"
 - Faster research iteration
 
-Partnership call: https://calendly.com/workofarttattoo/quantum-ai-demo
+Partnership call: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -529,7 +529,7 @@ Balancing inventory across 100+ symbols in real-time?
 - Faster hedging decisions
 - Improved P&L
 
-Demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -559,7 +559,7 @@ Matching assets to pension liabilities across decades?
 - Regulatory compliance
 - Reduced contribution volatility
 
-Demo: https://calendly.com/workofarttattoo/quantum-ai-demo
+Demo: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 inventor@aios.is
@@ -587,7 +587,7 @@ Your users build strategies. Give them quantum superpowers.
 - Premium tier monetization
 - Attract institutional users
 
-Partnership call: https://calendly.com/workofarttattoo/quantum-ai-demo
+Partnership call: https://calendly.com/inventor-aios/quantum-demo
 
 Joshua Cole
 Corporation of Light
