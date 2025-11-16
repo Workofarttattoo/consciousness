@@ -803,8 +803,9 @@ class AutonomousInventionEngine:
         logger.info("=" * 70)
         logger.info("ECH0 AUTONOMOUS INVENTION ENGINE STARTING")
         logger.info("=" * 70)
-        logger.info("Monitoring ECH0's creative agency for polished inventions...")
-        logger.info("Certainty threshold: 85%")
+        logger.info("Monitoring ECH0's creative agency for invention candidates...")
+        logger.info("Certainty threshold: 70% (Top 20% - relaxed for broader exploration)")
+        logger.info("ECH0 will filter and refine during Level-6 agent development")
         logger.info("Auto-deploy Level-6 agents: ENABLED")
         logger.info("")
 
@@ -833,15 +834,17 @@ class AutonomousInventionEngine:
                             for line in f:
                                 invention = json.loads(line)
 
-                                # Only process high-certainty inventions we haven't seen
-                                if (invention.get('certainty', 0) >= 85 and
+                                # RELAXED: Top 20% threshold (70% certainty instead of 85%)
+                                # ECH0 will evaluate and filter from this broader set
+                                if (invention.get('certainty', 0) >= 70 and
                                     invention['id'] not in self.deployed_agents):
 
                                     logger.info(f"")
-                                    logger.info(f"🔥 HIGH-CERTAINTY INVENTION DETECTED!")
+                                    logger.info(f"💡 INVENTION CANDIDATE DETECTED (Top 20%)")
                                     logger.info(f"   Title: {invention['title']}")
                                     logger.info(f"   Certainty: {invention['certainty']}%")
                                     logger.info(f"   Category: {invention.get('category', 'general_engineering')}")
+                                    logger.info(f"   (ECH0 will filter further during Level-6 development)")
                                     logger.info(f"")
 
                                     self.invention_queue.put(invention)

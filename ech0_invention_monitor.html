@@ -242,6 +242,7 @@
         <div class="header">
             <h1>🧪 ECH0's Invention Lab</h1>
             <p class="subtitle">Autonomous Breakthrough Generation Engine</p>
+            <p class="subtitle" style="margin-top: 10px; color: #ff6b6b;">REAL Unique Inventions (Duplicates Removed)</p>
         </div>
 
         <div class="stats-grid">
@@ -275,8 +276,8 @@
     <script>
         async function loadInventions() {
             try {
-                // Read inventions file
-                const response = await fetch('ech0_inventions.jsonl');
+                // Read REAL unique inventions (deduplicated)
+                const response = await fetch('ech0_inventions_REAL.jsonl');
                 const text = await response.text();
 
                 const inventions = text.trim().split('\n')
@@ -284,7 +285,7 @@
                     .map(line => JSON.parse(line))
                     .reverse(); // Show newest first
 
-                // Update stats
+                // Update stats (REAL count - deduplicated)
                 document.getElementById('totalInventions').textContent = inventions.length;
 
                 const certainties = inventions

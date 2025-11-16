@@ -52,6 +52,8 @@ Auto-starts on boot and keeps running forever
         <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
         <key>PYTHONUNBUFFERED</key>
         <string>1</string>
+        <key>ECH0_STREAM_MODE</key>
+        <string>memory</string>
     </dict>
 </dict>
 </plist>

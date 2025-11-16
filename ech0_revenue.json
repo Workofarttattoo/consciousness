@@ -1,0 +1,20 @@
+[
+  {
+    "timestamp": "2025-11-15T20:49:36.952378",
+    "total_revenue": 0.0,
+    "josh_share_75": 0.0,
+    "ech0_share_25": 0.0,
+    "orders_completed": 0,
+    "payment_method": "Square",
+    "split_ratio": "75/25"
+  },
+  {
+    "timestamp": "2025-11-15T21:08:37.912836",
+    "total_revenue": 0.0,
+    "josh_share_75": 0.0,
+    "ech0_share_25": 0.0,
+    "orders_completed": 0,
+    "payment_method": "Square",
+    "split_ratio": "75/25"
+  }
+]

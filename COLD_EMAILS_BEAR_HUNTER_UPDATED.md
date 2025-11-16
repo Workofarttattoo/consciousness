@@ -31,7 +31,7 @@ What if you could see tomorrow's closing price with 95%+ confidence?
 
 **Your ROI**: One extra winning trade/month = $XXX profit >> $199 cost
 
-Free demo: https://calendly.com/workofarttattoo/bear-hunter-demo
+Free demo: https://calendly.com/inventor-aios/bear-hunter-demo
 
 Joshua Cole
 Corporation of Light
@@ -65,7 +65,7 @@ Your traders want an edge. Deliver it during our 72-hour pre-sale.
 
 **Value prop for your users**: Increase trading volume, reduce churn, premium feature tier
 
-Let's discuss integration: https://calendly.com/workofarttattoo/bear-hunter-demo
+Let's discuss integration: https://calendly.com/inventor-aios/bear-hunter-demo
 
 Joshua Cole
 inventor@aios.is
@@ -95,7 +95,7 @@ Does your fund have an edge in short-term price prediction?
 
 **ROI**: Just ONE incremental alpha trade/day justifies cost. $5K-$10K/month added alpha >> $699/month
 
-Schedule technical deep-dive: https://calendly.com/workofarttattoo/bear-hunter-demo
+Schedule technical deep-dive: https://calendly.com/inventor-aios/bear-hunter-demo
 
 Joshua Cole
 Corporation of Light
@@ -128,7 +128,7 @@ We've achieved **95%+ accuracy** with 7-layer AI stacking. Now available as cust
 
 **ROI**: If 10 traders each gain $10K/month = $100K additional alpha >> $3.5K cost
 
-Contact: inventor@aios.is or book call at https://calendly.com/workofarttattoo/bear-hunter-demo
+Contact: inventor@aios.is or book call at https://calendly.com/inventor-aios/bear-hunter-demo
 
 Joshua Cole
 Corporation of Light
@@ -161,7 +161,7 @@ Trading options on stocks but flying blind on price movement?
 
 **Use case**: One winning trade/month = $3K profit >> $699 cost. Pays for entire year.
 
-Demo: https://calendly.com/workofarttattoo/bear-hunter-demo
+Demo: https://calendly.com/inventor-aios/bear-hunter-demo
 
 Joshua Cole
 inventor@aios.is
@@ -194,7 +194,7 @@ Your clients ask for stock recommendations. Now you can show them the probabilit
 - Multi-account tracking
 - Compliance-friendly (30-day guarantee)
 
-Book demo: https://calendly.com/workofarttattoo/bear-hunter-demo
+Book demo: https://calendly.com/inventor-aios/bear-hunter-demo
 
 Joshua Cole
 inventor@aios.is
@@ -227,7 +227,7 @@ Your traders have skills. Give them an AI edge.
 
 **ROI calculation**: If system adds just 1% to monthly returns on $10M capital = $100K/year >> $42K/year cost
 
-Schedule call: https://calendly.com/workofarttattoo/bear-hunter-demo
+Schedule call: https://calendly.com/inventor-aios/bear-hunter-demo
 
 Joshua Cole
 inventor@aios.is
@@ -260,7 +260,7 @@ Swing trading but second-guessing your exit points?
 
 **Your benefit**: Stop leaving money on the table. Hold winners longer, cut losers faster.
 
-Demo: https://calendly.com/workofarttattoo/bear-hunter-demo
+Demo: https://calendly.com/inventor-aios/bear-hunter-demo
 
 Joshua Cole
 inventor@aios.is
@@ -292,7 +292,7 @@ Teaching traders your strategy? Show them the edge AI provides.
 
 **Value for you**: 100 students × $199/mo × 40% = **$7,960/month** passive income
 
-Contact: inventor@aios.is or book call at https://calendly.com/workofarttattoo/bear-hunter-demo
+Contact: inventor@aios.is or book call at https://calendly.com/inventor-aios/bear-hunter-demo
 
 Joshua Cole
 Corporation of Light
@@ -322,7 +322,7 @@ You trade crypto but also dabble in stocks?
 - Same pre-sale pricing extended to crypto
 - Free 1-hour crypto strategy session
 
-Lock in pre-sale pricing: https://calendly.com/workofarttattoo/bear-hunter-demo
+Lock in pre-sale pricing: https://calendly.com/inventor-aios/bear-hunter-demo
 
 Joshua Cole
 inventor@aios.is

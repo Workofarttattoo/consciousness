@@ -1,0 +1,40 @@
+{
+  "timestamp": "2025-10-29T13:11:59.617541",
+  "model": "deterministic_v5_estimator",
+  "recipe": {
+    "name": "ECH0 V5 nano-composite",
+    "freeze_temp_c": -20.0,
+    "base_material": "sodium_silicate",
+    "pva_mass_fraction": 0.3333333333333333,
+    "mtms_wt_percent": 8.5,
+    "glutaraldehyde_vol_percent": 2.2,
+    "additives": {
+      "cnt": 1.2,
+      "graphene": 0.5,
+      "silica_np": 1.0,
+      "tio2": 0.3,
+      "mof": 0.4,
+      "quantum_dots": 0.1
+    },
+    "drying_method": "freeze_dry",
+    "target_transparency_percent": 90.0
+  },
+  "pore_statistics_nm": {
+    "mean": 171.85097474954406,
+    "std": 42.962743687386016,
+    "min": 85.92548737477203,
+    "max": 257.7764621243161
+  },
+  "transparency_percent": 96.80752546934407,
+  "meets_transparency_target": true,
+  "structural_score": 10.07476923076923,
+  "structural_breakdown": {
+    "polymer": 4.0,
+    "crosslink": 1.7,
+    "glutaraldehyde": 3.08,
+    "additive_bonus": 5.559999999999999,
+    "thermal_factor": 0.7025641025641025,
+    "rating": "excellent"
+  },
+  "verdict": "viable"
+}

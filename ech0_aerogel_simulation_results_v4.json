@@ -1,0 +1,35 @@
+{
+  "timestamp": "2025-10-29T13:11:49.424460",
+  "model": "deterministic_v4_estimator",
+  "recipe": {
+    "name": "ECH0 V4 ultra-strong",
+    "freeze_temp_c": -80.0,
+    "base_material": "sodium_silicate",
+    "pva_mass_fraction": 0.3333333333333333,
+    "mtms_wt_percent": 8.0,
+    "glutaraldehyde_vol_percent": 2.0,
+    "additives": {
+      "cnt": 1.0
+    },
+    "drying_method": "supercritical",
+    "target_transparency_percent": 90.0
+  },
+  "pore_statistics_nm": {
+    "mean": 41.82055816364713,
+    "std": 10.455139540911782,
+    "min": 20.910279081823564,
+    "max": 62.730837245470696
+  },
+  "transparency_percent": 98.68332388092097,
+  "meets_transparency_target": true,
+  "structural_score": 11.879999999999999,
+  "structural_breakdown": {
+    "polymer": 4.0,
+    "crosslink": 1.6,
+    "glutaraldehyde": 2.8,
+    "additive_bonus": 2.4,
+    "thermal_factor": 1.1,
+    "rating": "excellent"
+  },
+  "verdict": "viable"
+}

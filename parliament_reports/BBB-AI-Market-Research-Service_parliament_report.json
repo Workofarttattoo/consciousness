@@ -1,0 +1,73 @@
+{
+  "invention_id": "BBB-AI-Market-Research-Service",
+  "title": "AI Market Research Service",
+  "parliament_status": "NEEDS_REFINEMENT",
+  "scores": {
+    "initial_confidence": 0.79,
+    "prime_score": 0.45963855421686745,
+    "semantic_novelty": 0.53,
+    "final_approval": 0.6203915662650602
+  },
+  "pathways": [
+    {
+      "name": "Rapid Prototype",
+      "timeline": "1-3 months",
+      "cost": "Low ($1K-10K)",
+      "risk": "Medium",
+      "approach": "Quick POC with off-the-shelf components",
+      "success_probability": 0.5,
+      "potential_roi": 66.0,
+      "key_milestones": [
+        "Week 1: Order components",
+        "Week 2-4: Build basic POC",
+        "Week 5-6: Test and iterate",
+        "Week 7-8: Demo to stakeholders",
+        "Month 3: Decide on next phase"
+      ],
+      "required_expertise": []
+    },
+    {
+      "name": "Research Grade",
+      "timeline": "6-12 months",
+      "cost": "Medium ($10K-100K)",
+      "risk": "Low",
+      "approach": "Rigorous academic validation with publications",
+      "success_probability": 0.5,
+      "potential_roi": 330.0,
+      "key_milestones": [
+        "Month 1-2: Literature review and IRB",
+        "Month 3-6: Build research prototype",
+        "Month 7-9: Conduct studies",
+        "Month 10-11: Analyze data",
+        "Month 12: Publish results"
+      ],
+      "required_expertise": [
+        "Research scientist",
+        "Statistician"
+      ]
+    }
+  ],
+  "lattice_position": {
+    "node_id": "combo_Data Services_19",
+    "level": 1,
+    "density": 1,
+    "connections": 0
+  },
+  "safety_guarantees": {
+    "hardware_failsafe": true,
+    "redundant_shutoffs": 3,
+    "continuous_monitoring": true,
+    "ethical_constraints": [
+      "no_harm",
+      "user_consent",
+      "data_privacy"
+    ]
+  },
+  "patent_claims": [
+    "A method for AI Market Research Service comprising cross-domain synthesis",
+    "A system implementing 1 integrated domains",
+    "A non-transitory computer-readable medium storing instructions"
+  ],
+  "next_steps": [],
+  "timestamp": "2025-11-13T11:33:37.907533"
+}

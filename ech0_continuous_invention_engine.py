@@ -22,6 +22,7 @@ Live stats tracked:
 import json
 import time
 import random
+import hashlib
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Any
@@ -196,9 +197,25 @@ class ContinuousInventionEngine:
     def polish_invention(self, idea: Dict) -> Dict:
         """Polish a high-confidence idea into a full invention"""
 
-        # Only polish high-confidence, high-novelty ideas
-        if idea['confidence'] < 0.80 or idea['novelty_score'] < 0.75:
+        # RELAXED THRESHOLDS: Top 20% pass through (50% confidence, 60% novelty)
+        # ECH0 will filter further from this broader set
+        if idea['confidence'] < 0.50 or idea['novelty_score'] < 0.60:
             return None
+
+        # DEDUPLICATION: Check if we've already made this invention
+        title_hash = hashlib.md5(idea['title'].encode()).hexdigest()
+        if self.inventions_file.exists():
+            with open(self.inventions_file, 'r') as f:
+                for line in f:
+                    try:
+                        existing = json.loads(line)
+                        existing_hash = hashlib.md5(existing['title'].encode()).hexdigest()
+                        # Skip if exact duplicate (allow slight variations)
+                        if title_hash == existing_hash:
+                            print(f"      ⏭️  Skipping duplicate: {idea['title']}")
+                            return None
+                    except:
+                        pass
 
         invention = {
             **idea,

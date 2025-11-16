@@ -1,0 +1,69 @@
+
+ECH0 AEROGEL - SUPPLIER QUICK REFERENCE
+========================================
+
+PRIORITY 1 - CRITICAL COMPONENTS (order first):
+------------------------------------------------
+1. tert-Butanol (1L, ≥99%)
+   → Sigma-Aldrich: https://www.sigmaaldrich.com/US/en/product/aldrich/360538
+   → Cost: $60
+   → WHY CRITICAL: This is what makes ambient-pressure sublimation work
+
+2. TEOS (100 mL, ≥99%)
+   → Sigma-Aldrich: https://www.sigmaaldrich.com/US/en/product/aldrich/131903
+   → Amazon alternative: Search "TEOS 99%" (RnD Labs)
+   → Cost: $75
+
+3. PEG 4000 (100g)
+   → Amazon: Search "PEG 4000" (cosmetic grade is fine)
+   → Cost: $15
+   → WHY CRITICAL: MW 4000 specifically - not 2000, not 6000!
+
+PRIORITY 2 - SOLVENTS (hardware store):
+----------------------------------------
+4. Denatured ethanol (3L)
+   → Hardware store: Klean-Strip or Crown brand
+   → Cost: $30
+
+5. Hydrochloric acid (muriatic acid, 100mL)
+   → Hardware store
+   → Cost: $10
+
+6. Ammonia solution (100mL, clear not sudsy)
+   → Hardware store
+   → Cost: $8
+
+PRIORITY 3 - EQUIPMENT (rental vs purchase):
+---------------------------------------------
+7. Vacuum pump (2-stage, 3 CFM)
+   → RENTAL: Tool rental store - $100/week (recommended)
+   → PURCHASE: Amazon "VIVOHOME vacuum pump 3.5 CFM" - $150
+
+8. Vacuum chamber (12"×12" polycarbonate)
+   → Amazon: Search "BACOENG vacuum chamber"
+   → Cost: $80
+
+9. Dry ice (25 lbs)
+   → Grocery store (Safeway, Kroger) - buy day-of-freeze
+   → Cost: $35
+
+PRIORITY 4 - OPTIONAL BUT RECOMMENDED:
+---------------------------------------
+10. HMDS (50 mL)
+    → Amazon: Search "HMDS silane"
+    → Cost: $25
+    → Adds 2-3% transparency (94% → 96%)
+
+TOTAL: $488 (within $500 budget)
+
+Quick shopping list for copy-paste:
+- tert-Butanol 1L
+- TEOS 100mL
+- PEG 4000 100g
+- Denatured ethanol 3L
+- Muriatic acid
+- Clear ammonia
+- Vacuum chamber 12"
+- Vacuum pump rental
+- Dry ice 25 lbs
+- HMDS 50mL (optional)

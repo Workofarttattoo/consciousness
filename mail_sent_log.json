@@ -1,0 +1,11 @@
+{
+  "sent_emails": [
+    {
+      "to": "inventor@aios.is",
+      "subject": "\ud83e\udd16 ECH0 Mail Automation Test",
+      "body": "This is a test email from ECH0 Mail Automation!\n\n\u2705 Your Mail.app integration is working perfectly.\n\nECH0 can now send emails on your behalf using your native Mail application.\n\nAdvantages:\n- Uses your...",
+      "timestamp": "2025-10-29T02:18:59.842287",
+      "method": "mail.app"
+    }
+  ]
+}

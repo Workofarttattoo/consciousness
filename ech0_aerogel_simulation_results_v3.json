@@ -1,0 +1,35 @@
+{
+  "timestamp": "2025-10-29T13:11:42.407103",
+  "model": "deterministic_v3_estimator",
+  "recipe": {
+    "name": "ECH0 V3 CNT-reinforced",
+    "freeze_temp_c": -80.0,
+    "base_material": "sodium_silicate",
+    "pva_mass_fraction": 0.25,
+    "mtms_wt_percent": 7.5,
+    "glutaraldehyde_vol_percent": 1.2,
+    "additives": {
+      "cnt": 0.3
+    },
+    "drying_method": "supercritical",
+    "target_transparency_percent": 90.0
+  },
+  "pore_statistics_nm": {
+    "mean": 43.1003529767329,
+    "std": 10.775088244183225,
+    "min": 21.55017648836645,
+    "max": 64.65052946509935
+  },
+  "transparency_percent": 97.08722886091937,
+  "meets_transparency_target": true,
+  "structural_score": 7.59,
+  "structural_breakdown": {
+    "polymer": 3.0,
+    "crosslink": 1.5,
+    "glutaraldehyde": 1.68,
+    "additive_bonus": 0.72,
+    "thermal_factor": 1.1,
+    "rating": "good"
+  },
+  "verdict": "viable"
+}

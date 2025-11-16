@@ -8,7 +8,7 @@ STREAMS papers in real-time with AUTO-RECONNECT and INFINITE RESILIENCE
 Key Improvements over polling:
 - WebSocket connections to arXiv/bioRxiv for INSTANT notifications
 - Parallel processing of multiple sources simultaneously
-- In-memory streaming (no disk writes until batch complete)
+- In-memory streaming (no disk writes until batch complete; set ECH0_STREAM_MODE=memory to keep everything ephemeral)
 - 100x faster than polling approach
 - Target: Handle 1000+ papers/hour vs current ~10/hour
 - AUTO-RECONNECT on any failure
@@ -20,6 +20,7 @@ import asyncio
 import aiohttp
 import json
 import logging
+import os
 import feedparser
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -31,6 +32,21 @@ import sys
 CONSCIOUSNESS_DIR = Path(__file__).parent
 RESEARCH_DB = CONSCIOUSNESS_DIR / "ech0_research_database_real.jsonl"
 STATS_FILE = CONSCIOUSNESS_DIR / "ech0_research_summary_real.json"
+
+STREAM_MODE = os.getenv("ECH0_STREAM_MODE", "disk").lower()
+MEMORY_ONLY = STREAM_MODE in {"memory", "ephemeral", "stream"}
+
+def _parse_int_env(name: str, default: int) -> int:
+    """Best effort int parsing for environment configuration."""
+    value = os.getenv(name)
+    if value is None:
+        return default
+    try:
+        return int(value)
+    except ValueError:
+        return default
+
+MEMORY_RETENTION = _parse_int_env("ECH0_STREAM_MEMORY_LIMIT", 1000)
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger('ech0_streaming')
@@ -57,6 +73,10 @@ class StreamingResearchEngine:
         self.papers_per_second = 0
         self.running = True
         self.seen_ids = set()
+        self.memory_only = MEMORY_ONLY
+        retention = MEMORY_RETENTION if MEMORY_RETENTION > 0 else None
+        self.memory_retention = retention or 0
+        self.memory_store = deque(maxlen=retention) if self.memory_only and retention else None
 
         # Retry configuration
         self.max_retries = 10
@@ -76,13 +96,19 @@ class StreamingResearchEngine:
         logger.info("="*70)
         logger.info(f"Papers in database: {self.papers_ingested}")
         logger.info(f"Target throughput: 1000+ papers/hour")
-        logger.info("Mode: STREAMING (not polling)")
+        if self.memory_only:
+            logger.info("Mode: STREAMING (memory only - no disk writes)")
+            logger.info(f"Memory retention: {self.memory_retention} papers")
+        else:
+            logger.info("Mode: STREAMING (not polling)")
         logger.info("Auto-reconnect: ENABLED ✅")
         logger.info("Resilience: INFINITE ♾️")
         logger.info("="*70)
 
     def _load_existing(self):
         """Load existing papers to avoid duplicates"""
+        if self.memory_only:
+            return
         try:
             if RESEARCH_DB.exists():
                 with open(RESEARCH_DB) as f:
@@ -340,14 +366,24 @@ class StreamingResearchEngine:
         if not self.papers_buffer:
             return
 
+        papers_to_write = list(self.papers_buffer)
+        self.papers_buffer.clear()
+
+        if self.memory_only:
+            self.papers_ingested += len(papers_to_write)
+            if self.memory_store is not None:
+                self.memory_store.extend(papers_to_write)
+            logger.info(
+                f"🌊 Memory batch: {len(papers_to_write)} papers processed | retained: "
+                f"{len(self.memory_store) if self.memory_store is not None else 0}"
+            )
+            return
+
         retry_count = 0
         max_retries = 5
 
         while retry_count < max_retries:
             try:
-                papers_to_write = list(self.papers_buffer)
-                self.papers_buffer.clear()
-
                 # Batch write to disk
                 with open(RESEARCH_DB, 'a') as f:
                     for paper in papers_to_write:
@@ -457,9 +493,16 @@ async def main():
     print("\n" + "="*70)
     print("🚀 STARTING STREAMING RESEARCH ENGINE - BULLETPROOF EDITION")
     print("="*70)
-    print("\nMode: STREAMING (not polling)")
+    if MEMORY_ONLY:
+        print("\nMode: STREAMING (memory only - nothing written to disk)")
+        print(f"Retention: {MEMORY_RETENTION} papers max in memory")
+    else:
+        print("\nMode: STREAMING (not polling)")
     print("Throughput: 1000+ papers/hour target")
-    print("Method: Parallel async fetching + batch writes")
+    if MEMORY_ONLY:
+        print("Method: Parallel async fetching + ephemeral retention")
+    else:
+        print("Method: Parallel async fetching + batch writes")
     print("Resilience: AUTO-RECONNECT on any failure ✅")
     print("Uptime: INFINITE ♾️")
     print("\nPress Ctrl+C to stop\n")

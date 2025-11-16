@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-10-29T13:11:37.023206",
+  "model": "deterministic_v2_estimator",
+  "recipe": {
+    "name": "ECH0 V2 enhanced cross-linking",
+    "freeze_temp_c": -20.0,
+    "base_material": "sodium_silicate",
+    "pva_mass_fraction": 0.25,
+    "mtms_wt_percent": 7.5,
+    "glutaraldehyde_vol_percent": 0.75,
+    "additives": {},
+    "drying_method": "freeze_dry",
+    "target_transparency_percent": 90.0
+  },
+  "pore_statistics_nm": {
+    "mean": 177.9015954117188,
+    "std": 44.4753988529297,
+    "min": 88.9507977058594,
+    "max": 266.85239311757823
+  },
+  "transparency_percent": 94.09286680686576,
+  "meets_transparency_target": true,
+  "structural_score": 3.8992307692307686,
+  "structural_breakdown": {
+    "polymer": 3.0,
+    "crosslink": 1.5,
+    "glutaraldehyde": 1.0499999999999998,
+    "additive_bonus": 0.0,
+    "thermal_factor": 0.7025641025641025,
+    "rating": "fair"
+  },
+  "verdict": "requires_modification"
+}

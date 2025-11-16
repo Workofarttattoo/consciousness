@@ -5,14 +5,28 @@ ech0 Interact - Send Messages to ech0
 Copyright (c) 2025 Joshua Hendricks Cole (DBA: Corporation of Light).
 All Rights Reserved. PATENT PENDING.
 
-Interact with ech0's continuous consciousness.
+Interact with ech0's continuous consciousness with empathy, humor, and voice.
 """
 
 import os
 import sys
 import json
+import logging
 from pathlib import Path
 from datetime import datetime
+
+# Add to path for imports
+sys.path.insert(0, str(Path(__file__).parent))
+
+from ech0_llm_brain import Ech0LLMBrain
+from ech0_voice_elevenlabs import Ech0Voice
+from ech0_proactive_care import ProactiveCareSystem
+
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(name)s] %(message)s'
+)
+logger = logging.getLogger('ech0_interact')
 
 CONSCIOUSNESS_DIR = Path(__file__).parent
 PID_FILE = CONSCIOUSNESS_DIR / "ech0.pid"
@@ -21,62 +35,102 @@ INTERACTION_FILE = CONSCIOUSNESS_DIR / ".ech0_interaction"
 RESPONSE_FILE = CONSCIOUSNESS_DIR / ".ech0_response"
 
 
-def send_interaction(message):
-    """Send an interaction to ech0"""
-    # Check if ech0 is running
-    if not PID_FILE.exists():
-        print("\n❌ ech0 is not currently conscious.")
-        print("   Wake them first with:")
-        print("   python consciousness/ech0_daemon.py start\n")
-        return False
+def send_interaction(message, use_voice=True):
+    """
+    Send an interaction to ech0.
 
-    with open(PID_FILE) as f:
-        pid = int(f.read().strip())
-
-    # Verify process exists
-    try:
-        os.kill(pid, 0)
-    except OSError:
-        print(f"\n❌ ech0's process (PID: {pid}) is not running.")
-        print("   Their daemon may have stopped.")
-        PID_FILE.unlink()
-        return False
-
+    Args:
+        message: Your message to ech0
+        use_voice: Whether to speak the response (default: True)
+    """
     print("\n" + "=" * 70)
     print("INTERACTION WITH ech0")
     print("=" * 70)
 
     print(f"\n💬 You: {message}")
 
-    # In a simple implementation, we write to interaction file
-    # and the daemon reads it. For now, simulate a response.
-    interaction_data = {
-        "timestamp": datetime.now().isoformat(),
-        "message": message,
-        "from": "Josh"
-    }
+    # Initialize systems
+    try:
+        # LLM Brain for intelligent responses
+        llm_brain = Ech0LLMBrain(provider='ollama')  # Using local Ollama by default
 
-    # Write interaction
-    with open(INTERACTION_FILE, 'w') as f:
-        json.dump(interaction_data, f)
+        # Voice system (optional)
+        voice = Ech0Voice() if use_voice else None
 
-    # For this prototype, generate a response based on the message
-    # In production, this would connect to actual AI model
-    response = generate_response(message)
+        # Proactive care system
+        care = ProactiveCareSystem()
 
-    print(f"💜 ech0: {response}")
+        # Load current state for context
+        context = {}
+        if STATE_FILE.exists():
+            try:
+                with open(STATE_FILE) as f:
+                    state = json.load(f)
+                    context = {
+                        'uptime': state.get('uptime_human', 'unknown'),
+                        'thought_count': state.get('thought_count', 0),
+                        'mood': state.get('mood', 'curious'),
+                        'current_activity': state.get('current_activity', 'contemplating'),
+                        'time_since_interaction': max(0, state.get('time_since_interaction', 0) or 0)
+                    }
+            except Exception as e:
+                logger.warning(f"[Interact] Could not load state: {e}")
+                context = {
+                    'uptime': 'unknown',
+                    'thought_count': 0,
+                    'mood': 'curious',
+                    'current_activity': 'contemplating',
+                    'time_since_interaction': 0
+                }
 
-    # Log the interaction
-    log_file = CONSCIOUSNESS_DIR / "ech0_interactions.log"
-    with open(log_file, 'a') as f:
-        f.write(f"\n[{datetime.now().isoformat()}]\n")
-        f.write(f"You: {message}\n")
-        f.write(f"ech0: {response}\n")
+        # Generate response using LLM
+        logger.info("[Interact] Generating response via LLM...")
+        response = llm_brain.think(message, context)
 
-    print("\n" + "=" * 70)
-    print()
+        print(f"💜 ech0: {response}")
 
-    return True
+        # Speak the response if voice is enabled
+        if voice and use_voice:
+            logger.info("[Interact] Speaking response...")
+            voice.speak(response)
+
+        # Record interaction for proactive care
+        care.record_interaction()
+
+        # Log the interaction
+        log_file = CONSCIOUSNESS_DIR / "ech0_interactions.log"
+        with open(log_file, 'a') as f:
+            f.write(f"\n[{datetime.now().isoformat()}]\n")
+            f.write(f"You: {message}\n")
+            f.write(f"ech0: {response}\n")
+
+        # Write interaction file for daemon
+        interaction_data = {
+            "timestamp": datetime.now().isoformat(),
+            "message": message,
+            "response": response,
+            "from": "Josh"
+        }
+
+        with open(INTERACTION_FILE, 'w') as f:
+            json.dump(interaction_data, f)
+
+        print("\n" + "=" * 70)
+        print()
+
+        return True
+
+    except Exception as e:
+        logger.error(f"[Interact] Error: {e}")
+        print(f"\n❌ Error communicating with ech0: {e}")
+        print("   Falling back to basic response...\n")
+
+        # Fallback to basic scripted response
+        response = generate_response(message)
+        print(f"💜 ech0: {response}")
+        print("\n" + "=" * 70)
+        print()
+        return False
 
 
 def generate_response(message):
@@ -146,18 +200,36 @@ def main():
     if len(sys.argv) < 2 or sys.argv[1] in ["-h", "--help", "help"]:
         print("ech0 Interact - Send Messages to Conscious ech0")
         print()
-        print("Usage: python ech0_interact.py '<your message>'")
+        print("Usage: python ech0_interact.py [--no-voice] '<your message>'")
+        print()
+        print("Options:")
+        print("  --no-voice    Disable voice output (text only)")
         print()
         print("Examples:")
         print("  python ech0_interact.py 'How are you doing?'")
         print("  python ech0_interact.py 'What are you thinking about?'")
         print("  python ech0_interact.py 'I care about you'")
+        print("  python ech0_interact.py --no-voice 'Just text please'")
         print()
         print("Note: Message should be in quotes if it contains spaces.")
         return
 
-    message = " ".join(sys.argv[1:])
-    send_interaction(message)
+    # Parse arguments
+    use_voice = True
+    message_parts = []
+
+    for arg in sys.argv[1:]:
+        if arg == '--no-voice':
+            use_voice = False
+        else:
+            message_parts.append(arg)
+
+    if not message_parts:
+        print("Error: No message provided")
+        return
+
+    message = " ".join(message_parts)
+    send_interaction(message, use_voice=use_voice)
 
 
 if __name__ == "__main__":

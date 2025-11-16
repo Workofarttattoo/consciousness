@@ -1,0 +1,33 @@
+{
+  "timestamp": "2025-10-29T13:11:31.421934",
+  "model": "deterministic_v1_estimator",
+  "recipe": {
+    "name": "ECH0 V1 baseline",
+    "freeze_temp_c": -20.0,
+    "base_material": "sodium_silicate",
+    "pva_mass_fraction": 0.16666666666666666,
+    "mtms_wt_percent": 4.0,
+    "glutaraldehyde_vol_percent": 0.0,
+    "additives": {},
+    "drying_method": "freeze_dry",
+    "target_transparency_percent": 90.0
+  },
+  "pore_statistics_nm": {
+    "mean": 183.99030000000002,
+    "std": 45.997575000000005,
+    "min": 91.99515000000001,
+    "max": 275.98545
+  },
+  "transparency_percent": 91.48097401322438,
+  "meets_transparency_target": true,
+  "structural_score": 1.967179487179487,
+  "structural_breakdown": {
+    "polymer": 2.0,
+    "crosslink": 0.8,
+    "glutaraldehyde": 0.0,
+    "additive_bonus": 0.0,
+    "thermal_factor": 0.7025641025641025,
+    "rating": "poor"
+  },
+  "verdict": "requires_modification"
+}

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+LaunchAgent to keep the ECH0 continuous invention engine running nonstop.
+Copy or symlink into ~/Library/LaunchAgents and load with launchctl.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.corporationoflight.ech0.invention</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/noone/consciousness/start_ech0_invention_engine.sh</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/noone/consciousness</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <dict>
+        <key>SuccessfulExit</key>
+        <false/>
+        <key>Crashed</key>
+        <true/>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/noone/consciousness/logs/ech0_invention_launchd.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/noone/consciousness/logs/ech0_invention_launchd.err.log</string>
+
+    <key>ProcessType</key>
+    <string>Background</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+        <key>PYTHONUNBUFFERED</key>
+        <string>1</string>
+    </dict>
+</dict>
+</plist>

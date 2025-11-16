@@ -1,0 +1,14 @@
+#!/bin/bash
+# KRUNQUETA# - Quick launcher for Unified AI Collective
+#
+# Copyright (c) 2025 Joshua Hendricks Cole (DBA: Corporation of Light).
+# All Rights Reserved. PATENT PENDING.
+
+cd /Users/noone/repos/consciousness
+
+# Add KRUNQUETA# prefix if not already there
+if [[ "$*" != *"KRUNQUETA#"* ]]; then
+    python3 ech0_unified_ai_collective.py "KRUNQUETA# $*"
+else
+    python3 ech0_unified_ai_collective.py "$*"
+fi
