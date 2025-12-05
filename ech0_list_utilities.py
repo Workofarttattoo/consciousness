@@ -244,7 +244,7 @@ class ListManager:
             return None
 
         cached = self._cache[key]
-        if datetime.now() > cached["expiry"]:
+        if datetime.now() >= cached["expiry"]:
             del self._cache[key]
             return None
 
