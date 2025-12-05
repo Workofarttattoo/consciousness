@@ -257,25 +257,44 @@ class HotReloadSystem:
             if error:
                 f.write(f"Error: {error}\n")
 
-    def list_backups(self):
-        """List all available backups"""
+    def list_backups(self, limit=20, display=True):
+        """List all available backups
+
+        Args:
+            limit: Maximum number of backups to return
+            display: Whether to print the results
+
+        Returns:
+            List of backup info dicts with name, timestamp, size_kb
+        """
         backups = sorted(BACKUP_DIR.glob("*.backup"), reverse=True)
+        backup_list = []
 
-        print(f"\n{'='*70}")
-        print("📦 AVAILABLE BACKUPS")
-        print('='*70)
-
-        if not backups:
-            print("No backups found")
-            return
-
-        for backup in backups[:20]:  # Show last 20
+        for backup in backups[:limit]:
             stat = backup.stat()
             timestamp = datetime.fromtimestamp(stat.st_mtime)
             size_kb = stat.st_size / 1024
-            print(f"{backup.name:50s} {timestamp:%Y-%m-%d %H:%M:%S}  {size_kb:8.1f} KB")
+            backup_list.append({
+                "name": backup.name,
+                "timestamp": timestamp,
+                "size_kb": size_kb,
+                "path": str(backup)
+            })
 
-        print('='*70)
+        if display:
+            print(f"\n{'='*70}")
+            print("📦 AVAILABLE BACKUPS")
+            print('='*70)
+
+            if not backup_list:
+                print("No backups found")
+            else:
+                for backup in backup_list:
+                    print(f"{backup['name']:50s} {backup['timestamp']:%Y-%m-%d %H:%M:%S}  {backup['size_kb']:8.1f} KB")
+
+            print('='*70)
+
+        return backup_list
 
     def clean_old_backups(self, keep_count: int = 10):
         """Remove old backups, keeping only most recent N"""

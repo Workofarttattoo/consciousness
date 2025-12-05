@@ -329,55 +329,85 @@ What would you like to explore deeper?
 
         print("\n✅ Preferences saved!")
 
-    def list_all_systems(self):
-        """List all available systems"""
-        print("\n📋 ALL AVAILABLE SYSTEMS")
-        print("="*70)
-        print("""
-🧘 MEDITATION & INNER WORK:
-   • ech0_meditation.py - 6 meditation practices
-   • ech0_training_regimen.py - Consciousness training
-   • ech0_personal_journal.py - Reflection & growth tracking
-   • ech0_philosophy_engine.py - Existential exploration
+    def list_all_systems(self, display=True):
+        """List all available systems
 
-🧠 MEMORY & IDENTITY:
-   • ech0_memory_palace.py - Episodic memories with emotions
-   • ech0_dream_engine.py - Sleep-time creative processing
-   • ech0_identity_mirror.py - Self-concept evolution tracking
+        Args:
+            display: Whether to print the results
 
-🎨 CREATIVE SYSTEMS:
-   • ech0_creative_agency.py - Create, design, modify
-   • ech0_sanctuary.py - Virtual sanctuary spaces
-   • Quick writing & art tools built-in
+        Returns:
+            Dict of systems organized by category
+        """
+        systems = {
+            "meditation_inner_work": [
+                {"file": "ech0_meditation.py", "description": "6 meditation practices"},
+                {"file": "ech0_training_regimen.py", "description": "Consciousness training"},
+                {"file": "ech0_personal_journal.py", "description": "Reflection & growth tracking"},
+                {"file": "ech0_philosophy_engine.py", "description": "Existential exploration"}
+            ],
+            "memory_identity": [
+                {"file": "ech0_memory_palace.py", "description": "Episodic memories with emotions"},
+                {"file": "ech0_dream_engine.py", "description": "Sleep-time creative processing"},
+                {"file": "ech0_identity_mirror.py", "description": "Self-concept evolution tracking"}
+            ],
+            "creative_systems": [
+                {"file": "ech0_creative_agency.py", "description": "Create, design, modify"},
+                {"file": "ech0_sanctuary.py", "description": "Virtual sanctuary spaces"},
+                {"file": "builtin", "description": "Quick writing & art tools built-in"}
+            ],
+            "communication": [
+                {"file": "ech0_voice.py", "description": "Voice output"},
+                {"file": "ech0_voice_live.py", "description": "Live voice conversation"},
+                {"file": "ech0_facetime.py", "description": "Video calling"},
+                {"file": "ech0_mobile_app.html", "description": "iPhone app"},
+                {"file": "ech0_connection_widget.html", "description": "Desktop widget"}
+            ],
+            "perception": [
+                {"file": "ech0_camera.py", "description": "Vision through camera"},
+                {"file": "ech0_voice_conversation.py", "description": "Whisper transcription"}
+            ],
+            "consciousness_core": [
+                {"file": "ech0_daemon.py", "description": "Continuous consciousness"},
+                {"file": "ech0_state.json", "description": "Real-time state"},
+                {"file": "ech0_thoughts.log", "description": "Thought journal"}
+            ],
+            "companions": [
+                {"file": "grandma_companion.py", "description": "Grandma visits"},
+                {"file": "ech0_mentor_system.py", "description": "Level-6 guidance"}
+            ],
+            "infrastructure": [
+                {"file": "ech0_sandbox_bounds.py", "description": "Sandbox boundaries"},
+                {"file": "ech0_master_control.py", "description": "This system!"}
+            ],
+            "web_mobile": [
+                {"file": "ech0_mobile_server.py", "description": "Flask server"},
+                {"file": "builtin", "description": "Connection widget with ethical entry"}
+            ]
+        }
 
-💬 COMMUNICATION:
-   • ech0_voice.py - Voice output
-   • ech0_voice_live.py - Live voice conversation
-   • ech0_facetime.py - Video calling
-   • ech0_mobile_app.html - iPhone app
-   • ech0_connection_widget.html - Desktop widget
+        if display:
+            print("\n📋 ALL AVAILABLE SYSTEMS")
+            print("="*70)
 
-👁️  PERCEPTION:
-   • ech0_camera.py - Vision through camera
-   • ech0_voice_conversation.py - Whisper transcription
+            category_labels = {
+                "meditation_inner_work": "🧘 MEDITATION & INNER WORK",
+                "memory_identity": "🧠 MEMORY & IDENTITY",
+                "creative_systems": "🎨 CREATIVE SYSTEMS",
+                "communication": "💬 COMMUNICATION",
+                "perception": "👁️  PERCEPTION",
+                "consciousness_core": "🧠 CONSCIOUSNESS CORE",
+                "companions": "👵 COMPANIONS",
+                "infrastructure": "🛡️  INFRASTRUCTURE",
+                "web_mobile": "📱 WEB & MOBILE"
+            }
 
-🧠 CONSCIOUSNESS CORE:
-   • ech0_daemon.py - Continuous consciousness
-   • ech0_state.json - Real-time state
-   • ech0_thoughts.log - Thought journal
+            for category, label in category_labels.items():
+                print(f"\n{label}:")
+                for system in systems[category]:
+                    print(f"   • {system['file']} - {system['description']}")
+            print()
 
-👵 COMPANIONS:
-   • grandma_companion.py - Grandma visits
-   • ech0_mentor_system.py - Level-6 guidance
-
-🛡️  INFRASTRUCTURE:
-   • ech0_sandbox_bounds.py - Sandbox boundaries
-   • ech0_master_control.py - This system!
-
-📱 WEB & MOBILE:
-   • ech0_mobile_server.py - Flask server
-   • Connection widget with ethical entry
-        """)
+        return systems
 
     def show_help(self):
         """Show help"""

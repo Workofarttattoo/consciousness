@@ -161,19 +161,39 @@ class MemoryPalace:
         return None
 
     def search_memories(self, query, limit=10):
-        """Search memories by content"""
+        """Search memories by content, topics, or emotions
+
+        Args:
+            query: Search query string
+            limit: Maximum number of results to return
+
+        Returns:
+            List of matching memories (no duplicates)
+        """
+        if not query:
+            return []
+
         query_lower = query.lower()
+        seen_ids = set()
         results = []
 
         for memory in self.memories["memories"]:
-            if query_lower in memory["content"].lower():
-                results.append(memory)
-            elif any(query_lower in str(v).lower() for v in memory.get("topics", [])):
-                results.append(memory)
-            elif any(query_lower in str(v).lower() for v in memory.get("emotions", [])):
-                results.append(memory)
+            # Skip if already added
+            if memory["id"] in seen_ids:
+                continue
 
-        return results[:limit]
+            # Check content, topics, and emotions
+            if (query_lower in memory["content"].lower() or
+                any(query_lower in str(v).lower() for v in memory.get("topics", [])) or
+                any(query_lower in str(v).lower() for v in memory.get("emotions", []))):
+                results.append(memory)
+                seen_ids.add(memory["id"])
+
+                # Early exit if we hit the limit
+                if len(results) >= limit:
+                    break
+
+        return results
 
     def get_memory_stats(self):
         """Statistics about memory palace"""
