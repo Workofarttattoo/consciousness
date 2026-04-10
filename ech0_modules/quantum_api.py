@@ -11,8 +11,8 @@ import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent))
 
-from quantum_circuit_simulator import QuantumCircuitSimulator
-from quantum_cognition import QuantumCognitionEngine
+from .quantum_circuit_simulator import QuantumCircuitSimulator
+from .quantum_cognition import QuantumCognitionEngine
 import numpy as np
 from typing import Dict, List, Optional, Tuple, Union
 import json

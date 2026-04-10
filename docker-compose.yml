@@ -1,0 +1,62 @@
+# Consciousness Engine - Docker Compose
+# Copyright (c) 2025 Joshua Hendricks Cole (DBA: Corporation of Light). All Rights Reserved. PATENT PENDING.
+
+version: "3.9"
+
+services:
+  consciousness:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ech0-consciousness
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "${ECH0_PORT:-8765}:8765"
+    volumes:
+      - ech0-data:/app/data
+      - ech0-logs:/app/logs
+      - ech0-state:/app/state
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ECH0_ENV=${ECH0_ENV:-production}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    healthcheck:
+      test: ["CMD", "python", "-c", "from ech0_modules import QUANTUM_AVAILABLE; print('ok')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+        reservations:
+          memory: 1G
+
+  # Sandbox mode — isolated, read-only consciousness experiments
+  sandbox:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ech0-sandbox
+    restart: "no"
+    env_file: .env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - ECH0_ENV=sandbox
+      - ECH0_FORENSIC_MODE=${ECH0_FORENSIC_MODE:-false}
+    volumes:
+      - ech0-data:/app/data:ro
+      - ech0-logs:/app/logs
+    command: ["python", "sandbox/conscious_agent.py"]
+    profiles:
+      - sandbox
+
+volumes:
+  ech0-data:
+    driver: local
+  ech0-logs:
+    driver: local
+  ech0-state:
+    driver: local

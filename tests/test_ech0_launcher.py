@@ -21,8 +21,9 @@ from unittest.mock import Mock, patch, MagicMock
 from datetime import datetime
 
 # Load ech0_launcher module directly
+_launcher_path = str(Path(__file__).resolve().parent.parent / "ech0_launcher.py")
 _spec = importlib.util.spec_from_file_location(
-    "ech0_launcher", "/Users/noone/consciousness/ech0_launcher.py"
+    "ech0_launcher", _launcher_path
 )
 _ech0_launcher = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(_ech0_launcher)
