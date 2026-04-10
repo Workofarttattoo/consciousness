@@ -1,4 +1,4 @@
-# Large files
+# ── Model weights & binaries ────────────────
 *.gguf
 *.bin
 *.safetensors
@@ -6,25 +6,62 @@
 *.pth
 *.pkl
 *.qcow2
+*.onnx
 
-# System
-.DS_Store
+# ── Python ──────────────────────────────────
 __pycache__/
 *.pyc
+*.pyo
 .Python
 *.so
-.env
-.venv
-venv/
-node_modules/
+*.egg-info/
+dist/
+build/
+.eggs/
 
-# Private
+# ── Virtual environments ────────────────────
+.env
+.venv/
+venv/
+env/
+
+# ── Node ────────────────────────────────────
+node_modules/
+package-lock.json
+
+# ── IDE / OS ────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# ── Secrets & credentials ──────────────────
 *_keys/
 .private/
 *.key
+*.pem
 .ech0_config
+.ech0_checkin_state.json
 
-# Temp
+# ── Runtime data ────────────────────────────
 *.log
 *.tmp
 *.pid
+data/
+state/
+logs/
+*.log.*
+
+# ── Caches ──────────────────────────────────
+.voice_cache/
+market_data_cache/
+.claude/
+
+# ── Backups (large, don't belong in git) ───
+code_backups/
+
+# ── macOS app bundle ────────────────────────
+ech0.app/

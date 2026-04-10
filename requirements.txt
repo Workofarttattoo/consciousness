@@ -1,0 +1,25 @@
+# Consciousness Engine - Python Dependencies
+# Copyright (c) 2025 Joshua Hendricks Cole (DBA: Corporation of Light). All Rights Reserved.
+
+# Core
+numpy>=1.24.0,<2.0
+websockets>=12.0,<14.0
+
+# LLM integration (optional — set OPENAI_API_KEY to enable)
+openai>=1.12.0,<2.0
+httpx>=0.25.0,<1.0
+
+# Utilities
+requests>=2.31.0,<3.0
+python-dotenv>=1.0.0,<2.0
+
+# Testing
+pytest>=7.4.0,<9.0
+pytest-asyncio>=0.23.0,<1.0
+
+# CLI (optional)
+typer>=0.9.0,<1.0
+rich>=13.0.0,<14.0
+
+# Linting / formatting (dev)
+ruff>=0.3.0,<1.0

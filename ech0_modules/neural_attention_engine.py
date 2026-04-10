@@ -12,7 +12,7 @@ All Rights Reserved. PATENT PENDING.
 """
 
 from dataclasses import dataclass, field
-from typing import Dict, List, Tuple, Optional, Callable
+from typing import Any, Dict, List, Tuple, Optional, Callable
 from enum import Enum
 import json
 import time
